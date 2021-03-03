@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ThemeProvider } from "../utils/context";
+import scrollToElement from "scroll-to-element";
 
 function Layout({ children }) {
   const [height, setHeight] = useState(0);
@@ -44,6 +45,30 @@ function Layout({ children }) {
     setMobile(window.innerWidth < 992 ? true : false);
     setScrolllock(window.innerWidth < 1025 ? false : true);
     setWidth(window.innerWidth);
+  };
+
+  const wheel = (e) => {
+    if (!scrolling && !mobile) {
+      setScrolllock(true);
+      if (e.deltaY < 0) {
+        if (
+          sections[(sectionID + sections.length - 1) % tsections.length] !==
+          sections[sections.length - 1]
+        )
+          setSectionID((sectionID + sections.length - 1) % sections.length);
+      } else {
+        if (sectionID !== sections.length - 1)
+          setSectionID(sectionID + (1 % sections.length));
+      }
+      const el = document.getElementById(sections[sectionID]);
+      scrollToElement(el, {
+        offset: 0,
+        ease: "in-out-expo",
+        duration: 2000,
+      }).on("end", () => {
+        scrolling = false;
+      });
+    }
   };
 
   return (
