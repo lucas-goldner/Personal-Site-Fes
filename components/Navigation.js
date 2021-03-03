@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import "../styles/navigation.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faBars } from "@fortawesome/free-solid-svg-icons";
 import scrollToElement from "scroll-to-element";
 
 function Navigation({ setSectionID }) {
-  const [show, setShow] = false;
-  const [sections, setSections] = [
+  const [show, setShow] = useState(false);
+  const [sections, setSections] = useState([
     {
       name: "Home",
     },
@@ -25,7 +24,7 @@ function Navigation({ setSectionID }) {
     {
       name: "Contact",
     },
-  ];
+  ]);
 
   const navScroll = (id, v) => {
     setShow(false);

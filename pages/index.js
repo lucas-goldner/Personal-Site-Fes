@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Layout from "../container/Layout";
-import "../styles/styles.scss";
 
 export default function Home() {
   return (

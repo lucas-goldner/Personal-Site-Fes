@@ -21,7 +21,7 @@ function Layout({ children }) {
 
   useEffect(() => {
     setDefaults();
-    window.addEventListener("resize", this.updateDimensions);
+    window.addEventListener("resize", () => updateDimensions());
   }, []);
 
   const updateDimensions = () => {
