@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ThemeProvider } from "../utils/context";
 import scrollToElement from "scroll-to-element";
 import Navigation from "../components/Navigation";
+import ScrollLock from "react-scrolllock";
 
 function Layout({ children }) {
   const [height, setHeight] = useState(0);
@@ -77,6 +78,7 @@ function Layout({ children }) {
       <ThemeProvider value={{ height: mobile ? "auto" : height }}>
         <Navigation change={setSectionID} />
         <div onWheel={(e) => wheel(e)}>{children}</div>
+        <ScrollLock isActive={scrolllock} />
       </ThemeProvider>
     </>
   );
