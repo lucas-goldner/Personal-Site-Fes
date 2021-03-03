@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ThemeProvider } from "../utils/context";
 import scrollToElement from "scroll-to-element";
+import Navigation from "../components/Navigation";
 
 function Layout({ children }) {
   const [height, setHeight] = useState(0);
@@ -66,16 +67,17 @@ function Layout({ children }) {
         ease: "in-out-expo",
         duration: 2000,
       }).on("end", () => {
-        scrolling = false;
+        setScrolling(false);
       });
     }
   };
 
   return (
     <>
-      <ThemeProvider
-        value={{ height: mobile ? "auto" : height }}
-      ></ThemeProvider>
+      <ThemeProvider value={{ height: mobile ? "auto" : height }}>
+        <Navigation change={setSectionID} />
+        <div onWheel={(e) => wheel(e)}>{children}</div>
+      </ThemeProvider>
     </>
   );
 }
