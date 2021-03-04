@@ -16,6 +16,7 @@
     "react": "17.0.1",
     "react-bootstrap": "^1.5.1",
     "react-dom": "17.0.1",
+    "react-particles-js": "^3.4.1",
     "react-scrolllock": "^5.0.1",
     "sass": "^1.32.8",
     "scroll-to-element": "^2.0.3",
