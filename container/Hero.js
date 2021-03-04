@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import Typewriter from "typewriter-effect";
+import Glitch from "../components/Glitch";
 import ThemeContext from "../utils/context";
+import heroData from "../data/hero.json";
 
 function Hero({ id }) {
   const [height, setHeight] = useState(0);
@@ -34,13 +36,30 @@ function Hero({ id }) {
               <span>Download CV</span>
             </button>
           </div>
-          {this.icons()}
+          {heroData.icons.edges.map((value, index) => {
+            return (
+              <img
+                src={value.node.childImageSharp.fluid.src}
+                className={`animated fadeIn move-${
+                  Math.floor(Math.random() * 10) % 2 === 0 ? "up" : "down"
+                } float-image`}
+                style={{
+                  left: `${index * 10}%`,
+                  bottom: `${
+                    Math.random() *
+                      (+(index % 2 === 0 ? 80 : 20) -
+                        +(index % 2 === 0 ? 70 : 10)) +
+                    +(index % 2 === 0 ? 70 : 10)
+                  }%`,
+                }}
+                alt="shape"
+                key={index}
+              />
+            );
+          })}
         </Col>
         <Col md={6} className="img">
-          <img
-            src={this.props.mainImg.childImageSharp.fluid.src}
-            alt="person"
-          />
+          <img src={heroData.Img.childImageSharp.fluid.src} alt="person" />
         </Col>
       </Row>
     </section>
