@@ -8,8 +8,11 @@ import {
   faTwitter,
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
+import Progress from "../components/Progress";
+import { useRouter } from "next/router";
 
 function About({ id }) {
+  const router = useRouter();
   return (
     <section id={id} className="about" style={{ height: "auto" }}>
       <Particles
@@ -53,26 +56,26 @@ function About({ id }) {
               Maecenas vestibulum sodales justo, id hendrerit orci aliquet
               gravida. Nulla facilisi.
             </p>
-            <div className="social social_icons">
+            <div className="social_icons">
               <FontAwesomeIcon
                 icon={faGithub}
                 className="social_icon"
-                onClick={() => window.open("https://www.github.com")}
+                onClick={() => router.push("https://www.github.com")}
               />
               <FontAwesomeIcon
                 icon={faTwitter}
                 className="social_icon"
-                onClick={() => window.open("https://www.twitter.com")}
+                onClick={() => router.push("https://www.twitter.com")}
               />
               <FontAwesomeIcon
                 icon={faYoutube}
                 className="social_icon"
-                onClick={() => window.open("https://www.youtube.com")}
+                onClick={() => router.push("https://www.youtube.com")}
               />
               <FontAwesomeIcon
                 icon={faLinkedin}
                 className="social_icon"
-                onClick={() => window.open("https://www.linkedin.com")}
+                onClick={() => router.push("https://www.linkedin.com")}
               />
             </div>
           </div>
