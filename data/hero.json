@@ -96,7 +96,7 @@
   "Img": {
     "childImageSharp": {
       "fluid": {
-        "src": "/static/f61ad492ab3e151ca66d8abe9b636621/7ac0b/person.jpg"
+        "src": "/person.jpg"
       }
     }
   }

@@ -54,7 +54,7 @@ function Layout({ children }) {
       setScrolllock(true);
       if (e.deltaY < 0) {
         if (
-          sections[(sectionID + sections.length - 1) % tsections.length] !==
+          sections[(sectionID + sections.length - 1) % sections.length] !==
           sections[sections.length - 1]
         )
           setSectionID((sectionID + sections.length - 1) % sections.length);
@@ -67,8 +67,6 @@ function Layout({ children }) {
         offset: 0,
         ease: "in-out-expo",
         duration: 2000,
-      }).on("end", () => {
-        setScrolling(false);
       });
     }
   };

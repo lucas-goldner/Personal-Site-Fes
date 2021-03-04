@@ -7,13 +7,8 @@ import heroData from "../data/hero.json";
 
 function Hero({ id }) {
   const [height, setHeight] = useState(0);
-  console.log("hey");
   return (
-    <section
-      id={`${id}`}
-      className="hero"
-      //style={{ height: this.context.height }}
-    >
+    <section id={`${id}`} className="hero" style={{ height: "auto" }}>
       <Row>
         <Col md={6} className="content">
           <div className="content-text">
