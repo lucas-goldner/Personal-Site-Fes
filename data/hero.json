@@ -1,0 +1,106 @@
+{
+  "data": {
+    "icons": {
+      "edges": [
+        {
+          "node": {
+            "childImageSharp": {
+              "fluid": {
+                "src": "/static/a7bb949e6d0d488a85cb39612f19aecb/f1913/1.png"
+              }
+            }
+          }
+        },
+        {
+          "node": {
+            "childImageSharp": {
+              "fluid": {
+                "src": "/static/64163140e3dc3c1aad4243465e50acd4/b6970/10.png"
+              }
+            }
+          }
+        },
+        {
+          "node": {
+            "childImageSharp": {
+              "fluid": {
+                "src": "/static/556c1746a1f0e3ede5b29ce5282a8410/6f0bd/2.png"
+              }
+            }
+          }
+        },
+        {
+          "node": {
+            "childImageSharp": {
+              "fluid": {
+                "src": "/static/ad8cd4b553efa809d197aadf994cff55/f1913/4.png"
+              }
+            }
+          }
+        },
+        {
+          "node": {
+            "childImageSharp": {
+              "fluid": {
+                "src": "/static/85e073d211cb9af83ccc592733d9b264/f1913/6.png"
+              }
+            }
+          }
+        },
+        {
+          "node": {
+            "childImageSharp": {
+              "fluid": {
+                "src": "/static/ee0f2ee1da7023a95bdaec5dcc8fb4fc/f1913/5.png"
+              }
+            }
+          }
+        },
+        {
+          "node": {
+            "childImageSharp": {
+              "fluid": {
+                "src": "/static/78893cb2b3ed4a16e83c80c7b1539bcc/8752b/8.png"
+              }
+            }
+          }
+        },
+        {
+          "node": {
+            "childImageSharp": {
+              "fluid": {
+                "src": "/static/cb8939dde0a808f387fea7be78a1c8b2/f1913/7..png"
+              }
+            }
+          }
+        },
+        {
+          "node": {
+            "childImageSharp": {
+              "fluid": {
+                "src": "/static/f4ec350feb3583c8a1c09fc6d8d878ba/a079b/9.png"
+              }
+            }
+          }
+        },
+        {
+          "node": {
+            "childImageSharp": {
+              "fluid": {
+                "src": "/static/f297f859f749ae544e59a4914ceeefd9/f1913/3.png"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "Img": {
+      "childImageSharp": {
+        "fluid": {
+          "src": "/person2x.png"
+        }
+      }
+    }
+  },
+  "extensions": {}
+}
