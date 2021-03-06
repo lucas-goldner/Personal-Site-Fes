@@ -17,6 +17,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-family: Poppins;
 }
+#___gatsby {
+  overflow-x: hidden;
+}
 
 .row {
   margin-right: 0;
@@ -25,10 +28,6 @@ body {
   @media (min-width: 992px) {
     padding: 0 10px;
   }
-}
-
-.goodFont {
-  font-family: Poppins !important;
 }
 
 p {

@@ -14,7 +14,11 @@ export default function Home() {
           href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
           rel="stylesheet"
         ></link>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="/img/favicon.ico" rel="icon" />
       </Head>
+      <div id="___gatsby" />
       <Layout>
         <Hero id="home" />
         <About id="about" />

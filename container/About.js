@@ -80,6 +80,7 @@ function About({ id }) {
             </div>
           </div>
         </Col>
+
         <Col md={6} className="skills">
           <div className="line-text">
             <h4>My Skills</h4>
