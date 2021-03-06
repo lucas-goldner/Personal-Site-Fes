@@ -1,0 +1,97 @@
+.navigation {
+    position: fixed;
+    width: 25%;
+    height: 100%;
+    z-index: -1000;
+    background-color: #000;
+    height: 100%;
+    z-index: 1000;
+    border-right: 2px solid #fff;
+    transform: translateX(-100%);
+    opacity: 0;
+    transition: .5s;
+    visibility: hidden;
+    @media (max-width:500px) {
+        width: 100%;
+    }
+    &.active {
+        transform: translateX(0);
+        opacity: 1;
+        z-index: 1000;
+        visibility: visible;
+    }
+    .closeNav {
+        color: #eb83f8;
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        font-size: 30px;
+        cursor: pointer;
+        transition: .1s;
+        &:hover {
+            color: #fff;
+        }
+    }
+    .logo {
+        max-width: 100px;
+        margin: 50px auto;
+    }
+    ul {
+        padding: 0;
+        li {
+            font-size: 20px;
+            margin: 20px 0;
+            text-align: center;
+            list-style: none;
+            cursor: pointer;
+            padding-bottom: 5px;
+            position: relative;
+            button {
+                color: #fff;
+                background-color: transparent;
+                border: none;
+                &:focus {
+                    outline: none;
+                }
+            }
+            &:after {
+                content: '';
+                position: absolute;
+                height: 2px;
+                width: 100%;
+                left: 0;
+                bottom: 0;
+                visibility: hidden;
+                background-color: #eb83f8;
+                -webkit-transition: all .1s ease;
+                transition: all 0.3s ease;  
+                -webkit-transform: scaleX(0);
+                -ms-transform: scaleX(0);
+                transform: scaleX(0);
+            }
+            &:hover, &.active {
+                &:after {
+                    visibility: visible;
+                    -webkit-transform: scaleX(1);
+                    -ms-transform: scaleX(1);
+                    transform: scaleX(1);
+                }
+            }
+        }
+    }
+}
+.opener {
+    position: fixed;
+    left: 5px;
+    top: 5px;
+    z-index: 50;
+    svg {
+        color: #fff;
+        font-size: 40px;
+        cursor: pointer;
+        transition: .1s;
+        &:hover {
+            color: #eb83f8;
+        }
+    }
+}

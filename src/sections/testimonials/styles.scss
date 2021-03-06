@@ -1,0 +1,221 @@
+.testimonials {
+    background-color: #000;
+    .row.top {
+        min-height: 80%;
+        display: block;
+        overflow: hidden;
+        @media (max-width: 991px) {
+            padding: 50px 0px;
+        }
+        .content {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            padding: 2% 5%;
+            .baffle_text span {
+              color: #fff;
+              font-family: Poppins;
+              font-size: 60px;
+              line-height: 60px;
+              font-weight: 800;
+              @media (max-width:991px) {
+                    font-size: 40px;
+                    line-height: 40px;
+                }
+            }
+            .testimonials_container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                @media (max-width:991px) {
+                    display: block;
+                    padding: 70px 0px;
+                }
+                .container {
+                    @media (min-width:992px) {
+                        max-width: 800px;
+                        margin: auto;
+                    }
+                    @media (max-width:768px) {
+                        max-width: 400px;
+                        margin: auto;
+                    }
+                }
+                .quote {
+                    .animated {
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                    svg {
+                        font-size: 100px;
+                        color: #eb83f8;
+                        position: absolute;
+                        opacity: .2;
+                    }
+                }
+                .testimonial {
+                    outline: none;
+                    h2 {
+                        color: #fff;
+                        font-family: Poppins;
+                        text-align: center;
+                        font-weight: bold;
+                    }
+                    .testimonial_content {
+                        margin: 20px 0 30px 0;
+                            p {
+                                font-family: Poppins;
+                                color: #eee;
+                                font-size: 10px;
+                                font-weight: 300;
+                                text-align: center;
+                        }
+                    }
+                    .client_container {
+                        display: flex;
+                        justify-content: center;
+                        .client {
+                            display: flex;
+                            img {
+                                max-width: 50px;
+                                max-height: 50px;
+                                object-fit: cover;
+                                border-radius: 100%;
+                                margin-bottom: 0;
+                                margin-right: 20px;
+                            }
+                            .info {
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: center;
+                                p {
+                                    margin-bottom: 0;
+                                    text-align: left;
+                                    &.name {
+                                        font-size: 15px;
+                                        color: #fff;
+                                    }
+                                    &.profession {
+                                        font-weight: bold;
+                                        font-size: 10px;
+                                        color: #eb83f8;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .slick-dots {
+                    bottom: -50px;
+                    li {
+                        button:before {
+                            color: #fff;
+                            opacity: 1;
+                        }
+                        &.slick-active button:before {
+                            color: #eb83f8;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .row.bottom {
+         display: flex;
+         min-height: 20%;
+         background-color: #251170;
+         @media (max-width : 991px) {
+            display: block;
+        }
+        .client {
+            display: flex;
+            justify-content: center;
+            @media (max-width : 991px) {
+                margin: 50px 0;
+            }
+            img {
+                object-fit: contain;
+                margin-bottom: 0;
+                max-width: 100px;
+                max-height: 100px;
+                opacity: .5;
+                transition: .5s;
+                &:hover {
+                    opacity: 1;
+                }
+            }
+            div {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+}
+/* Slick Slider */
+.slick-slider
+{
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
+    -ms-touch-action: pan-y;
+        touch-action: pan-y;
+    -webkit-tap-highlight-color: transparent;
+    .slick-list {
+        -webkit-transform: translate3d(0, 0, 0);
+        -moz-transform: translate3d(0, 0, 0);
+         -ms-transform: translate3d(0, 0, 0);
+          -o-transform: translate3d(0, 0, 0);
+             transform: translate3d(0, 0, 0);
+        position: relative;
+        display: block;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+        &:focus{
+            outline: none;
+        }
+    }
+    .slick-track {
+        -webkit-transform: translate3d(0, 0, 0);
+           -moz-transform: translate3d(0, 0, 0);
+            -ms-transform: translate3d(0, 0, 0);
+             -o-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+        position: relative;
+        top: 0;
+        left: 0;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        &:before {
+            display: table;
+            content: '';
+        }
+        &:after {
+            display: table;
+            content: '';
+        }
+    }
+    
+}
+.slick-slide {
+    display: none;
+    float: left;
+    height: 100%;
+    min-height: 1px;
+    img {
+        display: block;
+    }
+}
+.slick-initialized .slick-slide {
+    display: block;
+}

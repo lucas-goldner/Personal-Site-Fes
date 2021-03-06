@@ -1,0 +1,107 @@
+.hero {
+    background-color: #000;
+    height: 500px;
+    padding: 50px;
+    display: flex;
+    align-items: center;
+    @media (max-width: 1024px) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .row {
+        display: flex;
+        flex-wrap: inherit;
+        overflow: hidden;
+        max-height: 100%;
+        @media (max-width: 991px) {
+            flex-wrap: wrap;
+        }
+        .img {
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            padding: 0;
+            overflow: hidden;
+            img {
+                margin-bottom: 0;
+            }
+        }
+        .content {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            padding: 5%;
+            background-color: #251170;
+            @media (max-width:991px) {
+                width: 100%;
+            }
+            .content-text {
+                z-index: 50;
+            }
+            .Typewriter span {
+                color: #fff;
+                font-size: 50px;
+                font-family: Poppins;
+                font-weight: 700;
+                &.Typewriter__cursor {
+                    color: #eb83f8;
+                }
+            }
+            @media (max-width:991px) {
+                .glitch {
+                    font-size: 40px;
+                    line-height: 40px;
+                    margin-bottom: 20px;
+                }
+                .Typewriter span {
+                    font-size: 20px;
+                }
+            }
+            @media (max-width:1024px) {
+                .glitch {
+                    font-size: 40px;
+                    line-height: 40px;
+                }
+                .Typewriter span {
+                    font-size: 20px;
+                }
+            }
+            @media (min-width:1025px) and (max-width: 1500px) {
+                .glitch {
+                    font-size: 70px;
+                    line-height: 70px;
+                }
+            }
+            .hover-button {
+                margin-top: 20px;
+            }
+            @media (max-width:991px) {
+                margin: auto;
+            }
+            .float-image {
+                object-fit: cover;
+                position: absolute;
+                width: 50px;
+                @media (max-width:991px) {
+                    width: 10px;
+                }
+                &.move-up {
+                    animation: up 5s infinite  alternate;
+                }
+                &.move-down {
+                    animation: down 5s infinite  alternate;
+                }
+                
+                @keyframes up {
+                    0% { transform: translateY(0); }
+                    100% { transform: translateY(-50px); }
+                }
+                @keyframes down {
+                    0% { transform: translateY(0); }
+                    100% { transform: translateY(50px); }
+                }
+            }
+        }
+    }
+}
