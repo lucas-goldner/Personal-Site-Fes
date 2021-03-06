@@ -2,6 +2,8 @@ import React from "react";
 import handleViewport from "react-in-viewport";
 import CountUp from "react-countup";
 
+//Used  the old statemanagment because I was not able to use react-in-viewport otherwise
+
 class Progress_Animation extends React.Component {
   constructor(props) {
     super(props);
