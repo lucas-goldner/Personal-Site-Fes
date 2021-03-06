@@ -32,4 +32,4 @@ function Progress({ name, value, delay }) {
   );
 }
 
-export default Progress;
+export default Progress = handleViewport(Progress);

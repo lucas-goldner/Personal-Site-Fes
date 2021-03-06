@@ -13,7 +13,7 @@ function Hero({ id }) {
         <Col md={6} className="content">
           <div className="content-text">
             <div className="line-text">
-              <h4>今日は</h4>
+              <h4>俺は</h4>
             </div>
             <Glitch text="Lucas Goldner" />
             <Typewriter
