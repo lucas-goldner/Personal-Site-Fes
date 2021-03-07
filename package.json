@@ -1,6 +1,6 @@
 {
-  "name": "Persona(l) Site",
-  "description": "Lucas Goldner - Persona(l) Site",
+  "name": "persona-site",
+  "description": "Lucas Goldner - Persona Site",
   "version": "1.0.0",
   "author": "Lucas Goldner",
   "dependencies": {
