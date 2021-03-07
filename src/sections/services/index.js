@@ -1,35 +1,34 @@
-import React from 'react'
-import { Row, Col, Container } from 'react-bootstrap'
-import BaffleText from 'components/baffle-text'
-import AnimationContainer from 'components/animation-container'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faReact, faAngular, faAws } from '@fortawesome/free-brands-svg-icons'
+import { faAngular, faReact } from "@fortawesome/free-brands-svg-icons";
 import {
-  faPencilRuler,
-  faServer,
-  faRobot,
-  faSmileBeam,
+  faCode,
+  faMobile,
   faPizzaSlice,
   faQuoteRight,
-  faCode,
-} from '@fortawesome/free-solid-svg-icons'
-import Counter from 'components/counter'
-import ThemeContext from '../../context'
-import './styles.scss'
+  faServer,
+  faSmileBeam,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import AnimationContainer from "components/animation-container";
+import BaffleText from "components/baffle-text";
+import Counter from "components/counter";
+import React from "react";
+import { Col, Container, Row } from "react-bootstrap";
+import ThemeContext from "../../context";
+import "./styles.scss";
 
 class Services extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       show: false,
-    }
-    this.show = this.show.bind(this)
+    };
+    this.show = this.show.bind(this);
   }
 
-  static contextType = ThemeContext
+  static contextType = ThemeContext;
 
   show() {
-    this.setState({ show: true })
+    this.setState({ show: true });
   }
 
   render() {
@@ -43,9 +42,9 @@ class Services extends React.Component {
           className="top"
           style={{
             maxHeight:
-              this.context.height !== 'auto'
+              this.context.height !== "auto"
                 ? this.context.height * 0.8
-                : 'inherit',
+                : "inherit",
           }}
         >
           <div className="content">
@@ -66,9 +65,9 @@ class Services extends React.Component {
                 className="services_container"
                 style={{
                   minHeight:
-                    this.context.height !== 'auto'
+                    this.context.height !== "auto"
                       ? this.context.height * 0.6
-                      : 'inherit',
+                      : "inherit",
                 }}
               >
                 <Container>{this.services()}</Container>
@@ -78,11 +77,11 @@ class Services extends React.Component {
         </Row>
         <Row className="bottom">{this.counters()}</Row>
       </section>
-    )
+    );
   }
 
   services() {
-    if (this.state.show || this.context.height === 'auto') {
+    if (this.state.show || this.context.height === "auto") {
       return (
         <Row>
           <Col md={4} className="service">
@@ -90,7 +89,7 @@ class Services extends React.Component {
               <div className="icon">
                 <FontAwesomeIcon icon={faReact} />
               </div>
-              <h4>Front-end React</h4>
+              <h4>Front-End React</h4>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
                 dui sem, vulputate vitae dolor sed, sollicitudin pharetra nisi.
@@ -103,9 +102,23 @@ class Services extends React.Component {
           <Col md={4} className="service border-side">
             <AnimationContainer delay={400} animation="fadeInDown fast">
               <div className="icon">
-                <FontAwesomeIcon icon={faAngular} />
+                <svg
+                  aria-hidden="true"
+                  focusable="false"
+                  data-prefix="fab"
+                  data-icon="apple"
+                  class="svg-inline--fa fa-apple fa-w-12"
+                  role="img"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 384 512"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"
+                  ></path>
+                </svg>
               </div>
-              <h4>Angular Web App</h4>
+              <h4>IOS Apps</h4>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
                 dui sem, vulputate vitae dolor sed, sollicitudin pharetra nisi.
@@ -118,9 +131,9 @@ class Services extends React.Component {
           <Col md={4} className="service">
             <AnimationContainer delay={600} animation="fadeInRight fast">
               <div className="icon">
-                <FontAwesomeIcon icon={faAws} />
+                <FontAwesomeIcon icon={faMobile} />
               </div>
-              <h4>AWS Management</h4>
+              <h4>React Native Apps</h4>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
                 dui sem, vulputate vitae dolor sed, sollicitudin pharetra nisi.
@@ -133,9 +146,22 @@ class Services extends React.Component {
           <Col md={4} className="service">
             <AnimationContainer delay={800} animation="fadeInLeft fast">
               <div className="icon">
-                <FontAwesomeIcon icon={faPencilRuler} className="solid" />
+                <svg
+                  aria-hidden="true"
+                  focusable="false"
+                  data-prefix="fab"
+                  data-icon="android"
+                  class="svg-inline--fa fa-android fa-w-18"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 576 512"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M420.55,301.93a24,24,0,1,1,24-24,24,24,0,0,1-24,24m-265.1,0a24,24,0,1,1,24-24,24,24,0,0,1-24,24m273.7-144.48,47.94-83a10,10,0,1,0-17.27-10h0l-48.54,84.07a301.25,301.25,0,0,0-246.56,0L116.18,64.45a10,10,0,1,0-17.27,10h0l47.94,83C64.53,202.22,8.24,285.55,0,384H576c-8.24-98.45-64.54-181.78-146.85-226.55"
+                  ></path>
+                </svg>
               </div>
-              <h4>UI/UX Design</h4>
+              <h4>Android Apps</h4>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
                 dui sem, vulputate vitae dolor sed, sollicitudin pharetra nisi.
@@ -148,9 +174,9 @@ class Services extends React.Component {
           <Col md={4} className="service border-side">
             <AnimationContainer delay={1000} animation="fadeInUp fast">
               <div className="icon">
-                <FontAwesomeIcon icon={faServer} className="solid" />
+                <FontAwesomeIcon icon={faAngular} className="solid" />
               </div>
-              <h4>Linux Server Management</h4>
+              <h4>Front-End Angular</h4>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
                 dui sem, vulputate vitae dolor sed, sollicitudin pharetra nisi.
@@ -163,9 +189,9 @@ class Services extends React.Component {
           <Col md={4} className="service">
             <AnimationContainer delay={1200} animation="fadeInRight fast">
               <div className="icon">
-                <FontAwesomeIcon icon={faRobot} className="solid" />
+                <FontAwesomeIcon icon={faServer} className="solid" />
               </div>
-              <h4>Artifical Intelligence</h4>
+              <h4>Microservices</h4>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
                 dui sem, vulputate vitae dolor sed, sollicitudin pharetra nisi.
@@ -176,12 +202,12 @@ class Services extends React.Component {
             </AnimationContainer>
           </Col>
         </Row>
-      )
+      );
     }
   }
 
   counters() {
-    if (this.state.show || this.context.height === 'auto') {
+    if (this.state.show || this.context.height === "auto") {
       return (
         <Container>
           <Col md={3}>
@@ -229,9 +255,9 @@ class Services extends React.Component {
             </AnimationContainer>
           </Col>
         </Container>
-      )
+      );
     }
   }
 }
 
-export default Services
+export default Services;
