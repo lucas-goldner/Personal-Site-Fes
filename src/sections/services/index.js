@@ -210,47 +210,36 @@ class Services extends React.Component {
     if (this.state.show || this.context.height === "auto") {
       return (
         <Container>
-          <Col md={3}>
+          <Col md={4}>
             <AnimationContainer delay={100} animation="fadeIn fast">
               <Counter
                 icon={faSmileBeam}
-                value={100}
-                text="Happy Clients"
-                symbol="+"
-                duration={3}
+                value={4}
+                text="Coding"
+                symbol="Years"
+                duration={2}
               />
             </AnimationContainer>
           </Col>
-          <Col md={3}>
+          <Col md={4}>
             <AnimationContainer delay={100} animation="fadeIn fast">
               <Counter
                 icon={faPizzaSlice}
-                value={1000}
-                text="Pizzas Ordered"
-                symbol="+"
-                duration={3}
+                value={17}
+                text="Finished"
+                symbol="Projetcs"
+                duration={5}
               />
             </AnimationContainer>
           </Col>
-          <Col md={3}>
-            <AnimationContainer delay={100} animation="fadeIn fast">
-              <Counter
-                icon={faQuoteRight}
-                value={500}
-                text="Reviews"
-                symbol="+"
-                duration={3}
-              />
-            </AnimationContainer>
-          </Col>
-          <Col md={3}>
+          <Col md={4}>
             <AnimationContainer delay={100} animation="fadeIn fast">
               <Counter
                 icon={faCode}
-                value={50000}
-                text="Lines of Code"
-                symbol="+"
-                duration={3}
+                value={609836}
+                text="of Code"
+                symbol="Lines"
+                duration={10}
               />
             </AnimationContainer>
           </Col>
