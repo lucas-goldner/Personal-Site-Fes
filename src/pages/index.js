@@ -7,7 +7,6 @@ import Hero from "sections/hero";
 import About from "sections/about";
 import Portfolio from "sections/portfolio";
 import Services from "sections/services";
-import Testimonials from "sections/testimonials";
 import Contact from "sections/contact";
 
 class HomePage extends React.Component {
@@ -24,7 +23,6 @@ class HomePage extends React.Component {
           <About id="about" />
           <Services id="services" />
           <Portfolio id="portfolio" />
-          <Testimonials id="testimonials" />
           <Contact id="contact" />
         </Layout>
         <Spinner duration={1000} />
