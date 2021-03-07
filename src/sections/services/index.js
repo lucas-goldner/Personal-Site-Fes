@@ -90,11 +90,11 @@ class Services extends React.Component {
               </div>
               <h4>Front-End React</h4>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-                dui sem, vulputate vitae dolor sed, sollicitudin pharetra nisi.
-                In et sem libero. Integer pretium, tellus eu pellentesque
-                tristique, ex libero maximus elit, mollis tristique urna eros
-                non tellus
+                React is my first and also my favourite library to create
+                websites. It is easy to get in, but the learn curve I would
+                argue is big. Learning React really changed how I code
+                personally. I can create amazing websites today in more or less
+                two - three days, if I have enough time.
               </p>
             </AnimationContainer>
           </Col>
@@ -119,11 +119,11 @@ class Services extends React.Component {
               </div>
               <h4>IOS Apps</h4>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-                dui sem, vulputate vitae dolor sed, sollicitudin pharetra nisi.
-                In et sem libero. Integer pretium, tellus eu pellentesque
-                tristique, ex libero maximus elit, mollis tristique urna eros
-                non tellus
+                Funnily enough I started IOS Development, because my friend
+                needed help in his app. I had no idea of Swift, but I was able
+                to help him out quickly. I have built already an entire social
+                media app, a workout tracker, a jogging tracker and even
+                voicechat with WebRTC.
               </p>
             </AnimationContainer>
           </Col>
@@ -134,11 +134,11 @@ class Services extends React.Component {
               </div>
               <h4>React Native Apps</h4>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-                dui sem, vulputate vitae dolor sed, sollicitudin pharetra nisi.
-                In et sem libero. Integer pretium, tellus eu pellentesque
-                tristique, ex libero maximus elit, mollis tristique urna eros
-                non tellus
+                When I found out about this framework I was really excited to
+                try it out. React is my favourite library already and making
+                apps with it seams like a dream. Crossplattform might be the
+                future, so it is good, that I already launched a React Native
+                app.
               </p>
             </AnimationContainer>
           </Col>
@@ -162,11 +162,10 @@ class Services extends React.Component {
               </div>
               <h4>Android Apps</h4>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-                dui sem, vulputate vitae dolor sed, sollicitudin pharetra nisi.
-                In et sem libero. Integer pretium, tellus eu pellentesque
-                tristique, ex libero maximus elit, mollis tristique urna eros
-                non tellus
+                This is where I really started coding. I made an entire social
+                media app in Java by myself in around two - three months. It
+                really changed the way I code. Personally I would use Kotlin
+                today for this section, but I need to learn it first.
               </p>
             </AnimationContainer>
           </Col>
@@ -177,11 +176,10 @@ class Services extends React.Component {
               </div>
               <h4>Front-End Angular</h4>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-                dui sem, vulputate vitae dolor sed, sollicitudin pharetra nisi.
-                In et sem libero. Integer pretium, tellus eu pellentesque
-                tristique, ex libero maximus elit, mollis tristique urna eros
-                non tellus
+                Yes you are seeing right Angular. Yes I am able to make websites
+                in Angular. Would I like to use React instead ? Yes, because I
+                am much faster with React, but if you really need a website in
+                Angular for some reason I can do that too.
               </p>
             </AnimationContainer>
           </Col>
@@ -192,11 +190,10 @@ class Services extends React.Component {
               </div>
               <h4>Microservices</h4>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-                dui sem, vulputate vitae dolor sed, sollicitudin pharetra nisi.
-                In et sem libero. Integer pretium, tellus eu pellentesque
-                tristique, ex libero maximus elit, mollis tristique urna eros
-                non tellus
+                You need an API, a websocket server, a bot, a database ? Great
+                because I have already worked on them all. Normally I use
+                Javascript, to work on things as these, but I am also good in
+                working with GO or Python.
               </p>
             </AnimationContainer>
           </Col>
