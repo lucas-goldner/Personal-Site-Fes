@@ -1,15 +1,16 @@
-import React from 'react'
-import { StaticQuery, graphql } from 'gatsby'
-import './styles.scss'
-import { Row, Col } from 'react-bootstrap'
-import AnimationContainer from 'components/animation-container'
-import BaffleText from 'components/baffle-text'
-import Tilt from 'react-tilt'
-import ThemeContext from '../../context'
+import React from "react";
+import "./styles.scss";
+import { Row, Col } from "react-bootstrap";
+import AnimationContainer from "components/animation-container";
+import BaffleText from "components/baffle-text";
+import Tilt from "react-tilt";
+import ThemeContext from "../../context";
+import portfolioData from "../../../data/portfolio.json";
+
 class Portfolio extends React.Component {
   constructor(props) {
-    super(props)
-    const { items } = this.props
+    super(props);
+    const items = portfolioData.data.items.edges;
     this.state = {
       category: null,
       col:
@@ -24,13 +25,13 @@ class Portfolio extends React.Component {
           : 1,
       items: this.props.items,
       showPortfolio: false,
-    }
-    this.showPortfolio = this.showPortfolio.bind(this)
+    };
+    this.showPortfolio = this.showPortfolio.bind(this);
   }
-  static contextType = ThemeContext
+  static contextType = ThemeContext;
 
   showPortfolio() {
-    this.setState({ showPortfolio: true })
+    this.setState({ showPortfolio: true });
   }
 
   render() {
@@ -58,7 +59,7 @@ class Portfolio extends React.Component {
                 className="portfolio_category"
                 onClick={() => this.changeCategory(null)}
               >
-                <span className={`${!this.state.category ? 'active' : ''}`}>
+                <span className={`${!this.state.category ? "active" : ""}`}>
                   All
                 </span>
               </button>
@@ -70,9 +71,9 @@ class Portfolio extends React.Component {
                 className="portfolio_container"
                 style={{
                   maxHeight:
-                    this.context.height !== 'auto'
+                    this.context.height !== "auto"
                       ? this.context.height * 0.8
-                      : 'inherit',
+                      : "inherit",
                 }}
               >
                 {this.items()}
@@ -81,12 +82,12 @@ class Portfolio extends React.Component {
           </Col>
         </Row>
       </section>
-    )
+    );
   }
 
   items() {
-    if (this.state.showPortfolio || this.context.height === 'auto') {
-      const { items } = this.state
+    if (this.state.showPortfolio || this.context.height === "auto") {
+      const items = portfolioData.data.items.edges;
       return items.map((value, index) => {
         if (
           value.content.frontmatter.category === this.state.category ||
@@ -98,15 +99,15 @@ class Portfolio extends React.Component {
                 className="portfolio_item"
                 style={{
                   width:
-                    this.context.height === 'auto'
-                      ? '100%'
+                    this.context.height === "auto"
+                      ? "100%"
                       : this.state.col === 4
-                      ? '25%'
+                      ? "25%"
                       : this.state.col === 3
-                      ? '33.3%'
+                      ? "33.3%"
                       : this.state.col === 2
-                      ? '50%'
-                      : '100%',
+                      ? "50%"
+                      : "100%",
                 }}
                 key={index}
               >
@@ -117,14 +118,16 @@ class Portfolio extends React.Component {
                     }
                     alt={value.content.frontmatter.title}
                     style={{
-                      maxHeight: `${this.context.height *
+                      maxHeight: `${
+                        this.context.height *
                         (this.state.col >= 3
                           ? 0.35
                           : this.getItemCount(
                               value.content.frontmatter.category
                             ) === 4
                           ? 0.36
-                          : 1)}px`,
+                          : 1)
+                      }px`,
                     }}
                   />
                   <Tilt className="Tilt" options={{ scale: 1, max: 50 }}>
@@ -136,87 +139,58 @@ class Portfolio extends React.Component {
                   </Tilt>
                 </AnimationContainer>
               </div>
-            )
+            );
           }
         }
-        return false
-      })
+        return false;
+      });
     }
   }
 
   getItemCount(category) {
-    let total = 0
-    this.state.items.forEach(v => {
-      if (v.content.frontmatter.category === category || !category) total++
-    })
-    return total
+    let total = 0;
+    this.state.items.forEach((v) => {
+      if (v.content.frontmatter.category === category || !category) total++;
+    });
+    return total;
   }
 
   changeCategory(category) {
-    const { items } = this.props
-    this.setState({ items: [] })
-    let total = 0
-    items.forEach(v => {
-      if (v.content.frontmatter.category === category || !category) total++
-    })
-    let col = total > 6 ? 4 : total > 4 ? 3 : total > 3 ? 2 : total > 1 ? 2 : 1
+    const items = portfolioData.data.items.edges;
+    this.setState({ items: [] });
+    let total = 0;
+    items.forEach((v) => {
+      if (v.content.frontmatter.category === category || !category) total++;
+    });
+    let col = total > 6 ? 4 : total > 4 ? 3 : total > 3 ? 2 : total > 1 ? 2 : 1;
 
-    this.setState({ category: category, col: col })
+    this.setState({ category: category, col: col });
     setTimeout(() => {
-      this.setState({ items: items })
-    }, 50)
+      this.setState({ items: items });
+    }, 50);
   }
 
   categories() {
-    const { items } = this.props
-    let categories = []
+    const items = portfolioData.data.items.edges;
+    let categories = [];
     for (var v of items) {
-      categories.push(v.content.frontmatter.category)
+      categories.push(v.content.frontmatter.category);
     }
-    categories = [...new Set(categories)]
+    categories = [...new Set(categories)];
     return categories.map((value, index) => {
       return (
         <button
           className="portfolio_category"
           onClick={() => this.changeCategory(value)}
           key={index}
-        > 
-          <span className={`${this.state.category === value ? 'active' : ''}`}>
+        >
+          <span className={`${this.state.category === value ? "active" : ""}`}>
             {value}
           </span>
         </button>
-      )
-    })
+      );
+    });
   }
 }
 
-export default props => (
-  <StaticQuery
-    query={graphql`
-          query {
-            items: allMarkdownRemark(filter: {fileAbsolutePath: {regex: "/(portfolio)/"}}, sort: {fields: [frontmatter___id], order: ASC}, 
-            # The layout is built for 6 portfolio items #
-            limit: 6) {
-              edges {
-                content: node {
-                  html
-                  frontmatter {
-                    id
-                    title
-                    category
-                    image {
-                      childImageSharp {
-                        fluid(maxWidth: 2000, maxHeight: 2000) {
-                          src
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }      
-        `}
-    render={({ items }) => <Portfolio items={items.edges} {...props} />}
-  />
-)
+export default Portfolio;

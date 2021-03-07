@@ -1,0 +1,111 @@
+{
+  "data": {
+    "items": {
+      "edges": [
+        {
+          "content": {
+            "html": "",
+            "frontmatter": {
+              "id": 1,
+              "title": "FlowUs Landing Page made with React",
+              "category": "Website",
+              "image": {
+                "childImageSharp": {
+                  "fluid": {
+                    "src": "./projectImg/flowUs.png"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "content": {
+            "html": "",
+            "frontmatter": {
+              "id": 2,
+              "title": "Webnetes",
+              "category": "Website",
+              "image": {
+                "childImageSharp": {
+                  "fluid": {
+                    "src": "./projectImg/webnetes.png"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "content": {
+            "html": "",
+            "frontmatter": {
+              "id": 3,
+              "title": "Angular Project",
+              "category": "App",
+              "image": {
+                "childImageSharp": {
+                  "fluid": {
+                    "src": "/static/f61ad492ab3e151ca66d8abe9b636621/c384e/image.jpg"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "content": {
+            "html": "",
+            "frontmatter": {
+              "id": 4,
+              "title": "Angular + Ionic ",
+              "category": "App",
+              "image": {
+                "childImageSharp": {
+                  "fluid": {
+                    "src": "/static/f61ad492ab3e151ca66d8abe9b636621/c384e/image.jpg"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "content": {
+            "html": "",
+            "frontmatter": {
+              "id": 5,
+              "title": "UI Deisgn for Company",
+              "category": "Microservice",
+              "image": {
+                "childImageSharp": {
+                  "fluid": {
+                    "src": "/static/f61ad492ab3e151ca66d8abe9b636621/c384e/image.jpg"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "content": {
+            "html": "",
+            "frontmatter": {
+              "id": 6,
+              "title": "UX Development for Company",
+              "category": "Microservice",
+              "image": {
+                "childImageSharp": {
+                  "fluid": {
+                    "src": "/static/f61ad492ab3e151ca66d8abe9b636621/c384e/image.jpg"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "extensions": {}
+}

@@ -3,7 +3,6 @@ import {
   faCode,
   faMobile,
   faPizzaSlice,
-  faQuoteRight,
   faServer,
   faSmileBeam,
 } from "@fortawesome/free-solid-svg-icons";
