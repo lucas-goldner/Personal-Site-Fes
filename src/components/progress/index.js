@@ -40,7 +40,7 @@ class Progress_Animation extends React.Component {
             start={0}
             end={this.state.inViewport === true ? this.state.value : 0}
           />{" "}
-          {this.state.value == 1 ? " Year" : " Years"}
+          {this.state.value === 1 ? " Year" : " Years"}
         </span>
         <div
           className="progress"
