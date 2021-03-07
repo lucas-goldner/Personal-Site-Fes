@@ -7,7 +7,7 @@
             "html": "",
             "frontmatter": {
               "id": 1,
-              "title": "FlowUs Landing Page made with React",
+              "title": "FlowUs Landing Page (NextJS)",
               "category": "Website",
               "image": {
                 "childImageSharp": {
@@ -24,7 +24,75 @@
             "html": "",
             "frontmatter": {
               "id": 2,
-              "title": "Webnetes",
+              "title": "FlowUs App (Swift)",
+              "category": "App",
+              "image": {
+                "childImageSharp": {
+                  "fluid": {
+                    "src": "./projectImg/flowUsApp.png"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "content": {
+            "html": "",
+            "frontmatter": {
+              "id": 3,
+              "title": "DailyTarot (Angular)",
+              "category": "Website",
+              "image": {
+                "childImageSharp": {
+                  "fluid": {
+                    "src": "./projectImg/tarot.png"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "content": {
+            "html": "",
+            "frontmatter": {
+              "id": 4,
+              "title": "Daily Tarot (React Native)",
+              "category": "App",
+              "image": {
+                "childImageSharp": {
+                  "fluid": {
+                    "src": "./projectImg/DailyTarotApp.webp"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "content": {
+            "html": "",
+            "frontmatter": {
+              "id": 5,
+              "title": "Golden a Netflix Clone (React)",
+              "category": "Website",
+              "image": {
+                "childImageSharp": {
+                  "fluid": {
+                    "src": "./projectImg/golden.png"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "content": {
+            "html": "",
+            "frontmatter": {
+              "id": 6,
+              "title": "Part of Webnetes Team (React)",
               "category": "Website",
               "image": {
                 "childImageSharp": {
@@ -40,13 +108,13 @@
           "content": {
             "html": "",
             "frontmatter": {
-              "id": 3,
-              "title": "Angular Project",
-              "category": "App",
+              "id": 7,
+              "title": "Old Persona(l) Site (NextJS)",
+              "category": "Website",
               "image": {
                 "childImageSharp": {
                   "fluid": {
-                    "src": "/static/f61ad492ab3e151ca66d8abe9b636621/c384e/image.jpg"
+                    "src": "./projectImg/oldSite.png"
                   }
                 }
               }
@@ -57,47 +125,13 @@
           "content": {
             "html": "",
             "frontmatter": {
-              "id": 4,
-              "title": "Angular + Ionic ",
-              "category": "App",
+              "id": 8,
+              "title": "Demon Summoning Programm (React)",
+              "category": "Website",
               "image": {
                 "childImageSharp": {
                   "fluid": {
-                    "src": "/static/f61ad492ab3e151ca66d8abe9b636621/c384e/image.jpg"
-                  }
-                }
-              }
-            }
-          }
-        },
-        {
-          "content": {
-            "html": "",
-            "frontmatter": {
-              "id": 5,
-              "title": "UI Deisgn for Company",
-              "category": "Microservice",
-              "image": {
-                "childImageSharp": {
-                  "fluid": {
-                    "src": "/static/f61ad492ab3e151ca66d8abe9b636621/c384e/image.jpg"
-                  }
-                }
-              }
-            }
-          }
-        },
-        {
-          "content": {
-            "html": "",
-            "frontmatter": {
-              "id": 6,
-              "title": "UX Development for Company",
-              "category": "Microservice",
-              "image": {
-                "childImageSharp": {
-                  "fluid": {
-                    "src": "/static/f61ad492ab3e151ca66d8abe9b636621/c384e/image.jpg"
+                    "src": "./projectImg/demon.png"
                   }
                 }
               }
