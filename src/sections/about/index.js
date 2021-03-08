@@ -76,12 +76,37 @@ class Hero extends React.Component {
               <h4>My Skills</h4>
             </div>
             <div className="skills-container">
-              <Progress name="JavaScript" value={2} delay={1100} />
-              <Progress name="Java" value={4} delay={1100} />
-              <Progress name="Swift" value={1} delay={1100} />
-              <Progress name="Go" value={1} delay={1100} />
-              <Progress name="Python" value={1} delay={1100} />
-              <Progress name="C#" value={4} delay={1100} />
+              <Progress
+                name="JavaScript"
+                value={5}
+                delay={1100}
+                display={"Mastered"}
+              />
+              <Progress
+                name="Java"
+                value={3}
+                delay={1100}
+                display={"Comfortable"}
+              />
+              <Progress
+                name="Swift"
+                value={4}
+                delay={1100}
+                display={"Advanced"}
+              />
+              <Progress name="Go" value={2} delay={1100} display={"Good"} />
+              <Progress
+                name="Python"
+                value={1}
+                delay={1100}
+                display={"Beginner"}
+              />
+              <Progress
+                name="C#"
+                value={3}
+                delay={1100}
+                display={"Comfortable"}
+              />
             </div>
           </Col>
         </Row>

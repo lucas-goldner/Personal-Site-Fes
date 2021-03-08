@@ -10,6 +10,7 @@ class Progress_Animation extends React.Component {
       value: 0,
       inViewport: false,
       animation_complete: false,
+      display: "",
     };
   }
 
@@ -35,13 +36,7 @@ class Progress_Animation extends React.Component {
     return (
       <div className="progress-container">
         <span className="name">{name}</span>
-        <span className="value">
-          <CountUp
-            start={0}
-            end={this.state.inViewport === true ? this.state.value : 0}
-          />{" "}
-          {this.state.value === 1 ? " Year" : " Years"}
-        </span>
+        <span className="value">{this.props.display}</span>
         <div
           className="progress"
           style={{ width: `${this.state.value * 20}%` }}
