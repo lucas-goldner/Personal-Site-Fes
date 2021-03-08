@@ -1,5 +1,4 @@
 import React from "react";
-import { graphql } from "gatsby";
 import Helmet from "react-helmet";
 import Layout from "components/layout";
 import Spinner from "components/spinner";
@@ -8,15 +7,18 @@ import About from "sections/about";
 import Portfolio from "sections/portfolio";
 import Services from "sections/services";
 import Contact from "sections/contact";
+import metaData from "../../data/meta.json";
 
 class HomePage extends React.Component {
   render() {
-    const { site } = this.props.data;
+    const { site } = metaData.data;
     return (
       <div>
         <Helmet>
           <title>{site.meta.title}</title>
+          <meta name="author" content={site.meta.author} />
           <meta name="description" content={site.meta.description} />
+          <meta name="keywords" content={site.meta.keywords} />
         </Helmet>
         <Layout>
           <Hero id="home" />
@@ -32,14 +34,3 @@ class HomePage extends React.Component {
 }
 
 export default HomePage;
-
-export const pageQuery = graphql`
-  query {
-    site {
-      meta: siteMetadata {
-        title
-        description
-      }
-    }
-  }
-`;

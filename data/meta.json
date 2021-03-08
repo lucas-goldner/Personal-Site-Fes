@@ -1,0 +1,13 @@
+{
+  "data": {
+    "site": {
+      "meta": {
+        "title": "Lucas Goldner - Persona(l) Portfolio Website",
+        "description": "Persona(l) site of a Web- and Mobile Developer with all of his projects",
+        "keywords": "Lucas, Goldner, Personal, Site, Developer, Front-End, Mobile, React, Gatsby, NextJS, React Native, Swift, Javascript",
+        "author": "Lucas Goldner"
+      }
+    }
+  },
+  "extensions": {}
+}
