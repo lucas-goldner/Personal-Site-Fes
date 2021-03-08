@@ -132,9 +132,14 @@ class Portfolio extends React.Component {
                   />
                   <Tilt className="Tilt" options={{ scale: 1, max: 50 }}>
                     <div className="overlay">
-                      <span className="title">
+                      <a
+                        href={value.content.frontmatter.link}
+                        target="_blank"
+                        ref="noopener noreferrer"
+                        className="title whiteColor"
+                      >
                         {value.content.frontmatter.title}
-                      </span>
+                      </a>
                     </div>
                   </Tilt>
                 </AnimationContainer>

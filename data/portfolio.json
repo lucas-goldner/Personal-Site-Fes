@@ -9,6 +9,7 @@
               "id": 1,
               "title": "FlowUs Landing Page (NextJS)",
               "category": "Website",
+              "link": "https://flowus.app",
               "image": {
                 "childImageSharp": {
                   "fluid": {
@@ -26,6 +27,7 @@
               "id": 2,
               "title": "FlowUs App (Swift)",
               "category": "App",
+              "link": "https://flowus.app/testflight",
               "image": {
                 "childImageSharp": {
                   "fluid": {
@@ -43,6 +45,7 @@
               "id": 3,
               "title": "DailyTarot (Angular)",
               "category": "Website",
+              "link": "https://tarot.lucas-goldner.com",
               "image": {
                 "childImageSharp": {
                   "fluid": {
@@ -60,6 +63,7 @@
               "id": 4,
               "title": "Daily Tarot (React Native)",
               "category": "App",
+              "link": "https://play.google.com/store/apps/details?id=com.lucasgoldner.DailyTarotApp",
               "image": {
                 "childImageSharp": {
                   "fluid": {
@@ -77,6 +81,7 @@
               "id": 5,
               "title": "Golden a Netflix Clone (React)",
               "category": "Website",
+              "link": "https://golden.lucas-goldner.com",
               "image": {
                 "childImageSharp": {
                   "fluid": {
@@ -94,6 +99,7 @@
               "id": 6,
               "title": "Part of Webnetes Team (React)",
               "category": "Website",
+              "link": "https://webnetes.dev",
               "image": {
                 "childImageSharp": {
                   "fluid": {
@@ -111,6 +117,7 @@
               "id": 7,
               "title": "Old Persona(l) Site (NextJS)",
               "category": "Website",
+              "link": "https://old.lucas-goldner.com",
               "image": {
                 "childImageSharp": {
                   "fluid": {
@@ -128,6 +135,7 @@
               "id": 8,
               "title": "Demon Summoning Programm (React)",
               "category": "Website",
+              "link": "https://demon-program.vercel.app/",
               "image": {
                 "childImageSharp": {
                   "fluid": {
