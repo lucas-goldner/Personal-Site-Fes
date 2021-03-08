@@ -36,11 +36,14 @@ class Hero extends React.Component {
                 always been my passion. I started to get into programming by
                 making my own small game in Unity. After that I started learning
                 Java and got into Android App Development, mainly because I am
-                Co-Founder of <a href="https://flowus.app">FlowUS</a>. I also
-                learnt all about web development HTML, CSS, JS, React and other
-                frameworks, in order to code our landing page for the app. By
-                working as a Front End Engineer, I made enough money to buy me a
-                Mac and IPhone, so I can also assist my team in the IOS
+                Co-Founder of{" "}
+                <a href="https://flowus.app" className="freshColor">
+                  FlowUS
+                </a>
+                . I also learnt all about web development HTML, CSS, JS, React
+                and other frameworks, in order to code our landing page for the
+                app. By working as a Front End Engineer, I made enough money to
+                buy me a Mac and IPhone, so I can also assist my team in the IOS
                 Development department. Along the way I learnt some languages,
                 like Python and Go for microservices.
               </p>
