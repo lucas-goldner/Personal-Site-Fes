@@ -43,7 +43,7 @@ class Hero extends React.Component {
           <Col md={6} className="img">
             <img
               src={heroData.data.Img.childImageSharp.fluid.src}
-              alt="person"
+              alt="Lucas Goldner with inline skates posing in front of a graffiti wall"
             />
           </Col>
         </Row>

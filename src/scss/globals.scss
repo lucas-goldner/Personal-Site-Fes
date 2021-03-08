@@ -31,9 +31,9 @@ p {
 
 img {
   max-width: 100%;
-} 
+}
 
-.line-text h4{
+.line-text h4 {
   color: #fff;
   font-family: Poppins;
   font-size: 22px;
@@ -45,13 +45,13 @@ img {
     height: 3px;
     width: 90px;
     display: block;
-    background-color: #eb83f8;
+    background-color: #ffb035;
     position: absolute;
     top: 0;
     left: -108px;
     top: 11px;
   }
-  @media (max-width:500px) {
+  @media (max-width: 500px) {
     font-size: 14px;
     &:after {
       top: 7px;
@@ -66,7 +66,7 @@ img {
     border-radius: 20px;
     font-family: Poppins;
     font-weight: 700;
-    transition: .5s;
+    transition: 0.5s;
   }
   &.white {
     button {
@@ -129,52 +129,52 @@ img {
   letter-spacing: 4px;
   border: none;
   span {
-      font-size: 15px;
-      &:before, &:after {
-          content: '';
-          position: absolute;
-          width: 10px;
-          height: 10px;
-          transition: 1s;
-          mix-blend-mode: hue;
-      }
-      &:before {
-          bottom: -2px;
-          left: -2px;
-          background: #fff;
-      }
-      &:after {
-          bottom: -2px;
-          right: -2px;
-          background: #eb83f8;
-      }
-  }
-  &:before,
-  &:after {
-      content: '';
+    font-size: 15px;
+    &:before,
+    &:after {
+      content: "";
       position: absolute;
       width: 10px;
       height: 10px;
       transition: 1s;
       mix-blend-mode: hue;
+    }
+    &:before {
+      bottom: -2px;
+      left: -2px;
+      background: #fff;
+    }
+    &:after {
+      bottom: -2px;
+      right: -2px;
+      background: #ffb035;
+    }
+  }
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    transition: 1s;
+    mix-blend-mode: hue;
   }
   &:before {
-      top: -2px;
-      left: -2px;
-      background: #eb83f8;
+    top: -2px;
+    left: -2px;
+    background: #ffb035;
   }
   &:after {
-      top: -2px;
-      right: -2px;
-      background: #fff;
+    top: -2px;
+    right: -2px;
+    background: #fff;
   }
   &:hover:before,
   &:hover:after,
   &:hover span:before,
-  &:hover span:after
-  {
-      width: calc( 180px/2 );
-      height: calc( 50px/2 )
+  &:hover span:after {
+    width: calc(180px / 2);
+    height: calc(50px / 2);
   }
   &:focus {
     outline: none;
@@ -184,7 +184,7 @@ img {
     &:after,
     span:before,
     span:after {
-      background-color: #FF0000;
+      background-color: #ff0000;
     }
   }
 }

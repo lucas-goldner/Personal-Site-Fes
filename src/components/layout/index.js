@@ -3,7 +3,7 @@ import { ThemeProvider } from "../../context";
 import Navigation from "components/navigation";
 import ScrollLock from "react-scrolllock";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "scss/retro.scss";
+import "scss/globals.scss";
 var scrollToElement = require("scroll-to-element");
 
 class Layout extends React.Component {
