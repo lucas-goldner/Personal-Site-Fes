@@ -7,7 +7,7 @@ import {
   faGithub,
   faLinkedin,
   faTwitter,
-  faYoutube,
+  faStackOverflow,
 } from "@fortawesome/free-brands-svg-icons";
 import ThemeContext from "../../context";
 import "./styles.scss";
@@ -51,22 +51,30 @@ class Hero extends React.Component {
                 <FontAwesomeIcon
                   icon={faGithub}
                   className="social_icon"
-                  onClick={() => window.open("https://www.github.com")}
-                />
-                <FontAwesomeIcon
-                  icon={faTwitter}
-                  className="social_icon"
-                  onClick={() => window.open("https://www.twitter.com")}
-                />
-                <FontAwesomeIcon
-                  icon={faYoutube}
-                  className="social_icon"
-                  onClick={() => window.open("https://www.youtube.com")}
+                  onClick={() =>
+                    window.open("https://github.lucas-goldner.com")
+                  }
                 />
                 <FontAwesomeIcon
                   icon={faLinkedin}
                   className="social_icon"
-                  onClick={() => window.open("https://www.linkedin.com")}
+                  onClick={() =>
+                    window.open("https://linkedin.lucas-goldner.com")
+                  }
+                />
+                <FontAwesomeIcon
+                  icon={faTwitter}
+                  className="social_icon"
+                  onClick={() =>
+                    window.open("https://www.twitter.lucas-goldner.com")
+                  }
+                />
+                <FontAwesomeIcon
+                  icon={faStackOverflow}
+                  className="social_icon"
+                  onClick={() =>
+                    window.open("https://stackoverflow.lucas-goldner.com")
+                  }
                 />
               </div>
             </div>
