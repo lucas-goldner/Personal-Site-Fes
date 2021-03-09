@@ -8,6 +8,7 @@
     "@primer/octicons-react": "^9.6.0",
     "animate.css": "^3.7.2",
     "baffle-react": "0.0.2",
+    "emailjs-com": "^2.6.4",
     "gatsby": "^2.21.1",
     "gatsby-image": "2.2.37",
     "gatsby-link": "2.2.27",
@@ -42,6 +43,7 @@
     "react-slick": "^0.25.2",
     "react-tilt": "^0.1.4",
     "scroll-to-element": "^2.0.3",
+    "sharp": "^0.27.2",
     "slick-carousel": "^1.8.1",
     "typewriter-effect": "^2.13.0"
   },

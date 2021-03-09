@@ -1,6 +1,5 @@
 import React from "react";
 import handleViewport from "react-in-viewport";
-import CountUp from "react-countup";
 import "./styles.scss";
 
 class Progress_Animation extends React.Component {

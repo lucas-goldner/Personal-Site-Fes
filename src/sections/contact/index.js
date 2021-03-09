@@ -4,6 +4,7 @@ import { Row, Col } from "react-bootstrap";
 import AnimationContainer from "components/animation-container";
 import BaffleText from "components/baffle-text";
 import ThemeContext from "../../context";
+import emailjs from "emailjs-com";
 
 class Contact extends React.Component {
   constructor(props) {
@@ -41,6 +42,27 @@ class Contact extends React.Component {
       this.setState({ error: true });
     } else {
       this.setState({ error: false });
+      emailjs
+        .send(
+          process.env.SERVICE_ID,
+          process.env.TEMPLATE_ID,
+          {
+            from_name: this.state.name,
+            email: this.state.email,
+            number: this.state.phone,
+            message: this.state.message,
+            to_name: "Lucas Goldner",
+          },
+          process.env.USER_ID
+        )
+        .then(
+          function (response) {
+            console.log("SUCCESS!", response.status, response.text);
+          },
+          function (error) {
+            console.log("FAILED...", error);
+          }
+        );
     }
   }
   render() {

@@ -106,7 +106,7 @@ class Services extends React.Component {
                   focusable="false"
                   data-prefix="fab"
                   data-icon="apple"
-                  class="svg-inline--fa fa-apple fa-w-12"
+                  className="svg-inline--fa fa-apple fa-w-12"
                   role="img"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 384 512"
@@ -150,7 +150,7 @@ class Services extends React.Component {
                   focusable="false"
                   data-prefix="fab"
                   data-icon="android"
-                  class="svg-inline--fa fa-android fa-w-18"
+                  className="svg-inline--fa fa-android fa-w-18"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 576 512"
                 >
