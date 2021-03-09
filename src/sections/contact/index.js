@@ -45,8 +45,8 @@ class Contact extends React.Component {
       this.setState({ error: false });
       emailjs
         .send(
-          process.env.SERVICE_ID,
-          process.env.TEMPLATE_ID,
+          process.env.GATSBY_SERVICE_ID,
+          process.env.GATSBY_TEMPLATE_ID,
           {
             from_name: this.state.name,
             email: this.state.email,
@@ -54,7 +54,7 @@ class Contact extends React.Component {
             message: this.state.message,
             to_name: "Lucas Goldner",
           },
-          process.env.USER_ID
+          process.env.GATSBY_USER_ID
         )
         .then(this.setState({ sent: "Email sent!" }));
     }
