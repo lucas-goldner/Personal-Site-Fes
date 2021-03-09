@@ -58,7 +58,7 @@ class Navigation extends React.Component {
             onClick={() => this.setState({ show: false })}
           />
           <div className="logo">
-            <img src="img/logo.png" alt="logo" />
+            <img src="img/LucasLogo.png" alt="logo" />
           </div>
           <div className="links">
             <ul>{this.items()}</ul>
