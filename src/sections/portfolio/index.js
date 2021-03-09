@@ -135,7 +135,7 @@ class Portfolio extends React.Component {
                       <a
                         href={value.content.frontmatter.link}
                         target="_blank"
-                        ref="noopener noreferrer"
+                        rel="noopener noreferrer"
                         className="title whiteColor"
                       >
                         {value.content.frontmatter.title}
