@@ -6,7 +6,7 @@ import "scss/globals.scss";
 class page404 extends React.Component {
   render() {
     return (
-      <div>
+      <div className="bg">
         <Helmet>
           <title>Error : 404</title>
         </Helmet>

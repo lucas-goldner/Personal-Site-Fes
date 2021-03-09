@@ -89,18 +89,25 @@ img {
   overflow-x: hidden;
 }
 
+.bg {
+  height: 100vw;
+  background-color: #2c343f;
+  justify-content: center;
+  align-items: center;
+}
+
 .error-404 {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #251170;
+  background-color: #2c343f;
   color: #fff;
   h1 {
     font-size: 50px;
     font-weight: 900;
   }
   a {
-    color: #eb83f8;
+    color: #ffb035;
     &:hover {
       text-decoration: none;
     }
