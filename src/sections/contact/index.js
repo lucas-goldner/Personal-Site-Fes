@@ -14,6 +14,7 @@ class Contact extends React.Component {
       email: "",
       phone: "",
       message: "",
+      sent: "",
       error: false,
       show: false,
     };
@@ -55,14 +56,7 @@ class Contact extends React.Component {
           },
           process.env.USER_ID
         )
-        .then(
-          function (response) {
-            console.log("SUCCESS!", response.status, response.text);
-          },
-          function (error) {
-            console.log("FAILED...", error);
-          }
-        );
+        .then(this.setState({ sent: "Email sent!" }));
     }
   }
   render() {
@@ -147,6 +141,7 @@ class Contact extends React.Component {
                   ></textarea>
                 </div>
               </AnimationContainer>
+              <p className="message whiteColor"> {this.state.sent}</p>
               <AnimationContainer delay={250} animation="fadeInUp fast">
                 <div className="submit">
                   <button
