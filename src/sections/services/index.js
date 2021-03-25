@@ -164,8 +164,8 @@ class Services extends React.Component {
               <p>
                 This is where I really started coding. I made an entire social
                 media app in Java by myself in around two - three months. It
-                really changed the way I code. Personally I would use Kotlin
-                today for this section, but I need to learn it first.
+                really changed the way I code. At the moment I am trying to get
+                into Kotlin too.
               </p>
             </AnimationContainer>
           </Col>
@@ -176,10 +176,10 @@ class Services extends React.Component {
               </div>
               <h4>Front-End Angular</h4>
               <p>
-                Yes you are seeing right Angular. Yes I am able to make websites
-                in Angular. Would I like to use React instead ? Yes, because I
-                am much faster with React, but if you really need a website in
-                Angular for some reason I can do that too.
+                Yes I am able to make websites with Angular. Would I like to use
+                React instead ? Yes, because I am much faster with React, but if
+                you really need a website in Angular for some reason I can do
+                that too.
               </p>
             </AnimationContainer>
           </Col>
@@ -221,9 +221,9 @@ class Services extends React.Component {
             <AnimationContainer delay={100} animation="fadeIn fast">
               <Counter
                 icon={faPizzaSlice}
-                value={17}
+                value={21}
                 text="Finished"
-                symbol="Projetcs"
+                symbol="Projects"
                 duration={5}
               />
             </AnimationContainer>
@@ -232,10 +232,10 @@ class Services extends React.Component {
             <AnimationContainer delay={100} animation="fadeIn fast">
               <Counter
                 icon={faCode}
-                value={609836}
+                value={749836}
                 text="of Code"
                 symbol="Lines"
-                duration={10}
+                duration={15}
               />
             </AnimationContainer>
           </Col>

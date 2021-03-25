@@ -7,6 +7,60 @@
             "html": "",
             "frontmatter": {
               "id": 1,
+              "title": "Nifter App (React Native)",
+              "category": "App",
+              "link": "https://nifter.app",
+              "image": {
+                "childImageSharp": {
+                  "fluid": {
+                    "src": "./projectImg/nifter.png"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "content": {
+            "html": "",
+            "frontmatter": {
+              "id": 2,
+              "title": "Nifter Landing Page (React)",
+              "category": "Website",
+              "link": "https://nifter.app",
+              "image": {
+                "childImageSharp": {
+                  "fluid": {
+                    "src": "./projectImg/nifterPage.png"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "content": {
+            "html": "",
+            "frontmatter": {
+              "id": 3,
+              "title": "Kawa Druck Home Page (React)",
+              "category": "Website",
+              "link": "https://kawa-druck.de",
+              "image": {
+                "childImageSharp": {
+                  "fluid": {
+                    "src": "./projectImg/kawaPage.png"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "content": {
+            "html": "",
+            "frontmatter": {
+              "id": 4,
               "title": "FlowUs Landing Page (NextJS)",
               "category": "Website",
               "link": "https://flowus.app",
@@ -24,7 +78,7 @@
           "content": {
             "html": "",
             "frontmatter": {
-              "id": 2,
+              "id": 5,
               "title": "FlowUs App (Swift)",
               "category": "App",
               "link": "https://flowus.app/testflight",
@@ -42,7 +96,7 @@
           "content": {
             "html": "",
             "frontmatter": {
-              "id": 3,
+              "id": 6,
               "title": "DailyTarot (Angular)",
               "category": "Website",
               "link": "https://tarot.lucas-goldner.com",
@@ -60,7 +114,7 @@
           "content": {
             "html": "",
             "frontmatter": {
-              "id": 4,
+              "id": 7,
               "title": "Daily Tarot (React Native)",
               "category": "App",
               "link": "https://play.google.com/store/apps/details?id=com.lucasgoldner.DailyTarotApp",
@@ -78,7 +132,7 @@
           "content": {
             "html": "",
             "frontmatter": {
-              "id": 5,
+              "id": 8,
               "title": "Golden a Netflix Clone (React)",
               "category": "Website",
               "link": "https://golden.lucas-goldner.com",
@@ -96,8 +150,8 @@
           "content": {
             "html": "",
             "frontmatter": {
-              "id": 6,
-              "title": "Part of Webnetes Team (React)",
+              "id": 9,
+              "title": "Part of Webnetes Team",
               "category": "Website",
               "link": "https://webnetes.dev",
               "image": {
@@ -114,7 +168,7 @@
           "content": {
             "html": "",
             "frontmatter": {
-              "id": 7,
+              "id": 10,
               "title": "Old Persona(l) Site (NextJS)",
               "category": "Website",
               "link": "https://old.lucas-goldner.com",
@@ -132,8 +186,8 @@
           "content": {
             "html": "",
             "frontmatter": {
-              "id": 8,
-              "title": "Demon Summoning Programm (React)",
+              "id": 11,
+              "title": "Demon Programm (React)",
               "category": "Website",
               "link": "https://demon-program.vercel.app/",
               "image": {
