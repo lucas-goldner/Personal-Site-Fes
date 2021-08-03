@@ -38,7 +38,7 @@ class Hero extends React.Component {
                 className="hover-button"
                 onClick={() =>
                   window.open(
-                    "https://drive.google.com/file/d/1qCnGiMGsw47aWv_utwy5aMF1OZr_V-6R/view"
+                    "https://drive.google.com/file/d/1MIq9I-JI51NMxK73RH7rGsqqwml0JZs6/view?usp=sharing"
                   )
                 }
               >
