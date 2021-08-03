@@ -26,7 +26,7 @@ class Hero extends React.Component {
               <Typewriter
                 options={{
                   strings: [
-                    "IOS Developer",
+                    "iOS Developer",
                     "Front End Engineer",
                     "Android Developer",
                   ],
