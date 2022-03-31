@@ -7,9 +7,9 @@
             "html": "",
             "frontmatter": {
               "id": 1,
-              "title": "Nifter App (React Native)",
+              "title": "NFT Metro App (React Native)",
               "category": "App",
-              "link": "https://nifter.app",
+              "link": "https://nftmetro.com",
               "image": {
                 "childImageSharp": {
                   "fluid": {
@@ -25,9 +25,9 @@
             "html": "",
             "frontmatter": {
               "id": 2,
-              "title": "Nifter Landing Page (React)",
+              "title": "NFT Metro Landing Page (React)",
               "category": "Website",
-              "link": "https://nifter.app",
+              "link": "https://old-metro.vercel.app",
               "image": {
                 "childImageSharp": {
                   "fluid": {
@@ -63,7 +63,7 @@
               "id": 4,
               "title": "FlowUs Landing Page (NextJS)",
               "category": "Website",
-              "link": "https://flowus.app",
+              "link": "https://flowus.vercel.app",
               "image": {
                 "childImageSharp": {
                   "fluid": {
@@ -81,7 +81,7 @@
               "id": 5,
               "title": "FlowUs App (Swift)",
               "category": "App",
-              "link": "https://flowus.app/testflight",
+              "link": "https://flowus.vercel.app",
               "image": {
                 "childImageSharp": {
                   "fluid": {

@@ -8,6 +8,7 @@ import {
   faLinkedin,
   faTwitter,
   faStackOverflow,
+  faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
 import ThemeContext from "../../context";
 import "./styles.scss";
@@ -32,20 +33,19 @@ class Hero extends React.Component {
               <h3>I'm an App and Web Developer</h3>
               <div className="separator" />
               <p>
-                Creating something from the ground up, completly by myself, has
+                Creating something from the ground up, entirely by myself, has
                 always been my passion. I started to get into programming by
-                making my own small game in Unity. After that I started learning
-                Java and got into Android App Development, mainly because I am
-                Co-Founder of{" "}
-                <a href="https://flowus.app" className="freshColor">
-                  FlowUS
+                making my own small game in Unity. After that, I started
+                learning Java and got into Android App Development. After that,
+                I tried out web development, HTML, CSS, JS, React. And other
+                frameworks to code landing pages and earn some money. By working
+                as a Front End Engineer, I made enough to buy myself a Mac and
+                iPhone, so I could also start developing for iOS. During my
+                fourth semester, I learned Python, and at my internship at{" "}
+                <a href="https://bitfactory.io" className="freshColor">
+                  Bitfactory{" "}
                 </a>
-                . I also learnt all about web development HTML, CSS, JS, React
-                and other frameworks, in order to code our landing page for the
-                app. By working as a Front End Engineer, I made enough money to
-                buy me a Mac and IPhone, so I can also assist my team in the IOS
-                Development department. Along the way I learnt some languages,
-                like Python and Go for microservices.
+                I worked as a Flutter Developer.
               </p>
               <div className="social social_icons">
                 <FontAwesomeIcon
@@ -60,6 +60,13 @@ class Hero extends React.Component {
                   className="social_icon"
                   onClick={() =>
                     window.open("https://linkedin.lucas-goldner.com")
+                  }
+                />
+                <FontAwesomeIcon
+                  icon={faYoutube}
+                  className="social_icon"
+                  onClick={() =>
+                    window.open("https://youtube.lucas-goldner.com")
                   }
                 />
                 <FontAwesomeIcon
@@ -85,10 +92,10 @@ class Hero extends React.Component {
             </div>
             <div className="skills-container">
               <Progress
-                name="JavaScript"
+                name="JavaScript / TypeScript"
                 value={5}
                 delay={1100}
-                display={"Mastered"}
+                display={"Most comfortable"}
               />
               <Progress
                 name="Java"
@@ -102,19 +109,19 @@ class Hero extends React.Component {
                 delay={1100}
                 display={"Advanced"}
               />
-              <Progress name="Go" value={2} delay={1100} display={"Good"} />
               <Progress
-                name="Python"
-                value={1}
-                delay={1100}
-                display={"Beginner"}
-              />
-              <Progress
-                name="C#"
+                name="Dart"
                 value={3}
                 delay={1100}
                 display={"Comfortable"}
               />
+              <Progress
+                name="Python"
+                value={4}
+                delay={1100}
+                display={"Advanced"}
+              />
+              <Progress name="C#" value={2} delay={1100} display={"Basic"} />
             </div>
           </Col>
         </Row>

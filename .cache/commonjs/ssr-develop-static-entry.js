@@ -196,7 +196,16 @@ var _default = (pagePath, isClientOnlyPage, callback) => {
           // pathContext was deprecated in v2. Renamed to pageContext
           pathContext: pageData.result ? pageData.result.pageContext : undefined
         };
-        const pageElement = createElement(_ssrSyncRequires.default.ssrComponents[componentChunkName], props);
+        let pageElement;
+
+        if (_ssrSyncRequires.default.ssrComponents[componentChunkName] && !isClientOnlyPage) {
+          pageElement = createElement(_ssrSyncRequires.default.ssrComponents[componentChunkName], props);
+        } else {
+          // If this is a client-only page or the pageComponent didn't finish
+          // compiling yet, just render an empty component.
+          pageElement = () => null;
+        }
+
         const wrappedPage = (0, _apiRunnerSsr.default)(`wrapPageElement`, {
           element: pageElement,
           props
@@ -277,7 +286,7 @@ var _default = (pagePath, isClientOnlyPage, callback) => {
     return bodyHtml;
   };
 
-  const bodyStr = isClientOnlyPage ? `` : generateBodyHTML();
+  const bodyStr = generateBodyHTML();
 
   const htmlElement = /*#__PURE__*/_react.default.createElement(Html, { ...bodyProps,
     body: bodyStr,
