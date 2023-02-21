@@ -1,11 +1,11 @@
 var plugins = [{
-      plugin: require('/Users/lucasgoldner/Developer/React/personal-site-fes/node_modules/gatsby-plugin-google-fonts/gatsby-ssr'),
+      plugin: require('/Users/lucasgoldner/Developer/React/Personal-Site-Fes/node_modules/gatsby-plugin-google-fonts/gatsby-ssr'),
       options: {"plugins":[],"fonts":["Poppins:300,400,400,700,800,900"],"display":"swap"},
     },{
-      plugin: require('/Users/lucasgoldner/Developer/React/personal-site-fes/node_modules/gatsby-plugin-offline/gatsby-ssr'),
+      plugin: require('/Users/lucasgoldner/Developer/React/Personal-Site-Fes/node_modules/gatsby-plugin-offline/gatsby-ssr'),
       options: {"plugins":[]},
     },{
-      plugin: require('/Users/lucasgoldner/Developer/React/personal-site-fes/node_modules/gatsby-plugin-react-helmet/gatsby-ssr'),
+      plugin: require('/Users/lucasgoldner/Developer/React/Personal-Site-Fes/node_modules/gatsby-plugin-react-helmet/gatsby-ssr'),
       options: {"plugins":[]},
     }]
 // During bootstrap, we write requires at top of this file which looks like:

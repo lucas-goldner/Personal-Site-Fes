@@ -60,6 +60,10 @@
     "prismjs": "1.18.0",
     "react-helmet": "5.2.1"
   },
+  "engines": {
+    "npm": ">=8.0.0 <9.0.0",
+    "node": "14.21.3"
+  },
   "keywords": [
     "lucas",
     "portfolio"
