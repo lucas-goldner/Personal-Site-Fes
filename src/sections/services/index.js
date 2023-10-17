@@ -172,7 +172,7 @@ class Services extends React.Component {
           <Col md={4} className="service border-side">
             <AnimationContainer delay={1000} animation="fadeInUp fast">
               <div className="icon">
-                <FontAwesomeIcon icon={faAngular} className="solid" />
+                <FontAwesomeIcon icon={faFlutt} className="solid" />
               </div>
               <h4>Front-End Angular</h4>
               <p>
