@@ -92,10 +92,16 @@ class Hero extends React.Component {
             </div>
             <div className="skills-container">
               <Progress
-                name="JavaScript / TypeScript"
+                name="Dart"
                 value={5}
                 delay={1100}
                 display={"Most comfortable"}
+              />
+              <Progress
+                name="TypeScript"
+                value={4}
+                delay={1100}
+                display={"Advanced"}
               />
               <Progress
                 name="Java"
@@ -110,18 +116,17 @@ class Hero extends React.Component {
                 display={"Advanced"}
               />
               <Progress
-                name="Dart"
+                name="Python"
                 value={3}
                 delay={1100}
                 display={"Comfortable"}
               />
               <Progress
-                name="Python"
-                value={4}
+                name="Kotlin"
+                value={2}
                 delay={1100}
-                display={"Advanced"}
+                display={"Basic"}
               />
-              <Progress name="C#" value={2} delay={1100} display={"Basic"} />
             </div>
           </Col>
         </Row>
