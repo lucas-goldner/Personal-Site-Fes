@@ -8,9 +8,19 @@ import '../components/icons_data.dart';
 class SiteMeta {
   static const title = 'Lucas Goldner - Persona(l) Portfolio Website';
   static const description = 'Persona(l) site of a Web- and Mobile Developer with all of his projects';
+
+  /// Keywords describing what the page actually covers.
+  ///
+  /// Each entry is backed by something on the site: the three roles the hero
+  /// cycles through, the skill bars, the service cards and the project tiles.
+  /// Gatsby was dropped because the site no longer uses it and no project
+  /// references it.
   static const keywords =
-      'Lucas, Goldner, Personal, Site, Developer, '
-      'Front-End, Mobile, React, Gatsby, NextJS, React Native, Swift, Javascript';
+      'Lucas Goldner, portfolio, personal website, software developer, '
+      'app developer, web developer, iOS developer, Android developer, '
+      'front end engineer, mobile development, Flutter, Dart, Swift, Kotlin, '
+      'Java, TypeScript, JavaScript, Python, React, React Native, Angular, '
+      'Next.js, Jaspr, microservices';
   static const author = 'Lucas Goldner';
 }
 
