@@ -1,5 +1,10 @@
 # Plan: Rebuild lucas-goldner.com in Jaspr
 
+> **Status: implemented.** All phases below are done and merged into this
+> branch. The site now builds with `jaspr build`; see `README.md` for the
+> day-to-day commands. This document is kept as the record of what was
+> inventoried, decided and ported.
+
 Goal: recreate the current Gatsby site 1:1 (same layout, colours, typography, animations and
 behaviour) as a **statically generated Jaspr site**, and drop Gatsby, React, Node and Yarn
 entirely. Work happens on the branch `claude/personal-website-jaspr-frd85l` so every push gets
