@@ -11,7 +11,7 @@ class SiteMeta {
 
   /// Keywords describing what the page actually covers.
   ///
-  /// Each entry is backed by something on the site: the three roles the hero
+  /// Each entry is backed by something on the site: the roles the hero
   /// cycles through, the skill bars, the service cards and the project tiles.
   /// Gatsby was dropped because the site no longer uses it and no project
   /// references it.
@@ -68,6 +68,9 @@ const heroIcons = <HeroIcon>[
 /// The photo of Lucas shown on the right half of the hero.
 const heroImage = 'person2x.png';
 const heroImageAlt = 'Lucas Goldner with inline skates posing in front of a graffiti wall';
+
+/// The Google Developer Expert programme page, linked from the hero credential.
+const gdeUrl = 'https://developers.google.com/community/experts';
 
 /// Link behind the hero's "Download CV" button.
 const cvUrl = 'https://drive.google.com/file/d/1iRmTNFP1dI41ZUowzwdVZeJGzOwKNIjE/view?usp=sharing';

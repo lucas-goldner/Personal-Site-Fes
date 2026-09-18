@@ -1,6 +1,7 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 
+import '../components/gde_badge.dart';
 import '../components/glitch.dart';
 import '../components/hover_button.dart';
 import '../components/typewriter.dart';
@@ -29,6 +30,7 @@ class Hero extends StatelessComponent {
               ]),
               const Glitch('Lucas Goldner'),
               const Typewriter(strings: typewriterStrings),
+              const GdeBadge(),
               HoverButton(
                 label: 'Download CV',
                 onClick: () => openUrl(cvUrl),
