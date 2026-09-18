@@ -18,7 +18,8 @@ class SiteMeta {
   static const keywords =
       'Lucas Goldner, portfolio, personal website, software developer, '
       'app developer, web developer, iOS developer, Android developer, '
-      'front end engineer, mobile development, Flutter, Dart, Swift, Kotlin, '
+      'frontend engineer, backend engineer, mobile development, '
+      'Flutter, Dart, Swift, Kotlin, '
       'Java, TypeScript, JavaScript, Python, React, React Native, Angular, '
       'Next.js, Jaspr, microservices';
   static const author = 'Lucas Goldner';
@@ -298,7 +299,9 @@ const mapEmbedUrl =
 
 /// The strings the hero's typewriter cycles through.
 const typewriterStrings = [
-  'iOS Developer',
-  'Front End Engineer',
-  'Android Developer',
+  'Flutter Engineer',
+  'iOS Engineer',
+  'Android Engineer',
+  'Backend Engineer',
+  'Frontend Engineer',
 ];
