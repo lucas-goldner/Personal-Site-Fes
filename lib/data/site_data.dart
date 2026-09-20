@@ -114,7 +114,7 @@ class Skill {
 const skills = <Skill>[
   Skill('Flutter & Dart', 100, 'Primary Stack'),
   Skill('iOS & Swift', 85, 'Advanced'),
-  Skill('Flutter Architecture', 85, 'Advanced'),
+  Skill('Architecture & Scalability', 85, 'Advanced'),
   Skill('Testing & Quality', 80, 'Advanced'),
   Skill('TypeScript \u2014 Backend & Frontend', 75, 'Proficient'),
   Skill('Android & Kotlin', 50, 'Experienced'),
