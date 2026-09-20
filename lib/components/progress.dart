@@ -25,17 +25,16 @@ class Progress extends StatefulComponent {
   /// Lets a long skill name share its line with the right-aligned label.
   ///
   /// The ported rule floats the label right, which a name like
-  /// "AI-Assisted Development - Harness / Claude Code" runs straight into. The
-  /// row becomes a wrapping flex line instead: the name takes the space that is
-  /// left and wraps within it, the label stays on one line at the right, and the
-  /// bar keeps a full-width line of its own. Type, colours and spacing are
-  /// untouched.
+  /// "AI-Assisted Development - Harness / Claude Code" runs straight into. Only
+  /// the name/label header becomes a flex line; the bar stays a plain block so
+  /// its inline percentage width still sizes it and still animates. Making the
+  /// whole row a flex container would give the bar a flex-basis, which wins
+  /// over width and would peg every bar to full width.
   @css
   static List<StyleRule> get styles => [
-    css('.progress-container', [
+    css('.progress-container .progress-head', [
       css('&').styles(
         display: .flex,
-        flexWrap: .wrap,
         justifyContent: .spaceBetween,
         raw: {'align-items': 'baseline', 'column-gap': '16px'},
       ),
@@ -51,7 +50,6 @@ class Progress extends StatefulComponent {
           'white-space': 'nowrap',
         },
       ),
-      css('.progress').styles(raw: {'flex': '0 0 100%'}),
     ]),
   ];
 }
@@ -80,8 +78,10 @@ class _ProgressState extends State<Progress> with ViewportAware {
   @override
   Component build(BuildContext context) {
     return div(key: viewportKey, classes: 'progress-container', [
-      span(classes: 'name', [.text(component.skill.name)]),
-      span(classes: 'value', [.text(component.skill.label)]),
+      div(classes: 'progress-head', [
+        span(classes: 'name', [.text(component.skill.name)]),
+        span(classes: 'value', [.text(component.skill.label)]),
+      ]),
       div(
         classes: 'progress',
         styles: Styles(raw: {'width': '$_percent%'}),
