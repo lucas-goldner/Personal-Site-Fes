@@ -27,6 +27,11 @@ class About extends StatefulComponent {
   /// id-based to outrank the ported rules in site.css regardless of load order.
   @css
   static List<StyleRule> get styles => [
+    // The icons sit inside anchors now; Bootstrap would otherwise colour and
+    // underline them.
+    css('#about .social_link').styles(
+      raw: {'color': 'inherit', 'text-decoration': 'none'},
+    ),
     css.media(const MediaQuery.raw('(min-width: 992px) and (max-height: 860px)'), [
       css('#about .row .content').styles(
         raw: {'padding-top': '2.5%', 'padding-bottom': '2.5%'},
@@ -147,11 +152,21 @@ class _AboutState extends State<About> {
                 ),
               ]),
               div(classes: 'social social_icons', [
+                // Real anchors rather than click handlers on the SVGs: the
+                // icons carry no text, so each link needs an accessible name,
+                // and they should be reachable by keyboard and openable in a
+                // new tab from the context menu.
                 for (final link in socialLinks)
-                  Icon(
-                    link.icon,
-                    classes: 'social_icon',
-                    events: events(onClick: () => openUrl(link.url)),
+                  a(
+                    href: link.url,
+                    target: Target.blank,
+                    attributes: {
+                      'rel': 'noopener noreferrer',
+                      'aria-label': link.label,
+                      'title': link.label,
+                    },
+                    classes: 'social_link',
+                    [Icon(link.icon, classes: 'social_icon')],
                   ),
               ]),
             ]),

@@ -5,7 +5,8 @@ const kebab = (n) => n.replace(/^fa/, "").replace(/([a-z0-9])([A-Z])/g, "$1-$2")
 const header = [
   "// GENERATED FILE - do not edit by hand. See tool/gen_icons.js.",
   "//",
-  "// Path data from Font Awesome Free 5.15.4, licensed CC BY 4.0",
+  "// Path data from Font Awesome Free, licensed CC BY 4.0. Everything comes",
+  "// from 5.15.4 except the X logo, which only exists from 6.x onward.",
   "// (https://fontawesome.com/license/free). The outlines are copied verbatim so",
   "// the inline SVGs render identically to the <FontAwesomeIcon> output of the",
   "// previous React site.",

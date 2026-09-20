@@ -83,18 +83,25 @@ const cvUrl = 'https://drive.google.com/file/d/1iRmTNFP1dI41ZUowzwdVZeJGzOwKNIjE
 
 /// One of the social links under the about text.
 class SocialLink {
-  const SocialLink(this.icon, this.url);
+  const SocialLink(this.icon, this.url, this.label);
 
   final FaIcon icon;
   final String url;
+
+  /// Accessible name for the link, since the icon carries no text.
+  final String label;
 }
 
 const socialLinks = <SocialLink>[
-  SocialLink(faGithub, 'https://github.lucas-goldner.com'),
-  SocialLink(faLinkedin, 'https://linkedin.lucas-goldner.com'),
-  SocialLink(faYoutube, 'https://youtube.lucas-goldner.com'),
-  SocialLink(faTwitter, 'https://www.twitter.lucas-goldner.com'),
-  SocialLink(faStackOverflow, 'https://stackoverflow.lucas-goldner.com'),
+  SocialLink(faXTwitter, 'https://www.twitter.lucas-goldner.com', 'X'),
+  SocialLink(faGithub, 'https://github.lucas-goldner.com', 'GitHub'),
+  // Font Awesome has no YOUTRUST mark, and none of the usual brand icon sets
+  // carry one either, so the Google 'G' stands in for the developer profile and
+  // a briefcase for YOUTRUST until real logos are supplied.
+  SocialLink(faGoogle, 'https://me.developers.google.com/u/me', 'Google Developer Profile'),
+  SocialLink(faLinkedin, 'https://www.linkedin.com/in/lucas-goldner/', 'LinkedIn'),
+  SocialLink(faBriefcase, 'https://youtrust.jp/users/lucas', 'YOUTRUST'),
+  SocialLink(faStackOverflow, 'https://stackoverflow.lucas-goldner.com', 'Stack Overflow'),
 ];
 
 /// A skill bar in the about section.
