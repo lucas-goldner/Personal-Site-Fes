@@ -8,17 +8,44 @@ import '../interop/browser.dart';
 import '../interop/js_libs.dart' as js;
 import '../layout/metrics.dart';
 
+/// The id of the element particles.js draws its canvas into.
+const _particlesId = 'particles-js';
+
 /// The about text with the particle background, plus the skill bars.
 class About extends StatefulComponent {
   const About({super.key});
 
   @override
   State<About> createState() => _AboutState();
+
+  /// Tightens the column on short viewports.
+  ///
+  /// The section is locked to the viewport height on desktop while its row is
+  /// absolutely positioned, so copy that outgrows the viewport spills over the
+  /// services section below. The about text is long enough to do that on common
+  /// laptop heights, so the type and spacing step down there. Selectors are
+  /// id-based to outrank the ported rules in site.css regardless of load order.
+  @css
+  static List<StyleRule> get styles => [
+    css.media(const MediaQuery.raw('(min-width: 992px) and (max-height: 860px)'), [
+      css('#about .row .content').styles(
+        raw: {'padding-top': '2.5%', 'padding-bottom': '2.5%'},
+      ),
+      css('#about .row .content h3').styles(
+        raw: {
+          'font-size': '42px',
+          'line-height': '46px',
+          'margin': '6px 0 12px 0',
+        },
+      ),
+      css('#about .row .content p').styles(
+        raw: {'font-size': '13px', 'margin-top': '10px'},
+      ),
+    ]),
+  ];
 }
 
 class _AboutState extends State<About> {
-  static const _particlesId = 'particles-js';
-
   @override
   void initState() {
     super.initState();
@@ -48,28 +75,64 @@ class _AboutState extends State<About> {
               div(classes: 'line-text', [
                 h4([.text('About Me')]),
               ]),
-              h3([.text("I'm an App and Web Developer")]),
+              h3([.text('Mobile Engineer. Builder. Speaker.')]),
               div(classes: 'separator', const []),
               p([
                 .text(
-                  'Creating something from the ground up, entirely by '
-                  'myself, has always been my passion. I started to get into '
-                  'programming by making my own small game in Unity. After '
-                  'that, I started learning Java and got into Android App '
-                  'Development. After that, I tried out web development, '
-                  'HTML, CSS, JS, React. And other frameworks to code '
-                  'landing pages and earn some money. By working as a Front '
-                  'End Engineer, I made enough to buy myself a Mac and '
-                  'iPhone, so I could also start developing for iOS. During '
-                  'my fourth semester, I learned Python, and at my '
-                  'internship at ',
+                  'I\u2019m a mobile engineer based in Japan, specializing in '
+                  'Flutter and Dart. At ',
                 ),
                 a(
-                  href: 'https://bitfactory.io',
+                  href: youtrustUrl,
+                  target: Target.blank,
+                  attributes: const {'rel': 'noopener noreferrer'},
                   classes: 'freshColor',
-                  [.text('Bitfactory ')],
+                  [.text('YOUTRUST')],
                 ),
-                .text('I worked as a Flutter Developer.'),
+                .text(
+                  ' I build and improve a large-scale production app, and '
+                  'contribute to technical direction, architecture, '
+                  'performance, testing and developer experience.',
+                ),
+              ]),
+              p([
+                .text(
+                  'I like digging deeper than the screens \u2014 Flutter '
+                  'internals, shaders and rendering, native iOS integrations '
+                  'and platform APIs. I\u2019m also a ',
+                ),
+                a(
+                  href: gdeUrl,
+                  target: Target.blank,
+                  attributes: const {'rel': 'noopener noreferrer'},
+                  classes: 'freshColor',
+                  [.text('Flutter & Dart Google Developer Expert')],
+                ),
+                .text(' and an organizer of '),
+                a(
+                  href: flutterTokyoUrl,
+                  target: Target.blank,
+                  attributes: const {'rel': 'noopener noreferrer'},
+                  classes: 'freshColor',
+                  [.text('Flutter Tokyo')],
+                ),
+                .text(', where I share what I learn with the community.'),
+              ]),
+              p([
+                .text(
+                  'Before Flutter I worked across Android, iOS, web, Unity '
+                  'and backend. That background still shapes how I work: '
+                  'understand the whole product, experiment with new '
+                  'technology, and turn ideas into things people can '
+                  'actually use.',
+                ),
+              ]),
+              p([
+                .text(
+                  'Outside of work I\u2019m usually building side projects, '
+                  'experimenting with UI ideas, writing technical articles, '
+                  'or preparing my next Flutter talk.',
+                ),
               ]),
               div(classes: 'social social_icons', [
                 for (final link in socialLinks)

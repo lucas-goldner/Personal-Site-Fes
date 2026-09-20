@@ -69,6 +69,12 @@ const heroIcons = <HeroIcon>[
 const heroImage = 'person2x.png';
 const heroImageAlt = 'Lucas Goldner with inline skates posing in front of a graffiti wall';
 
+/// Lucas's employer, linked from the about text.
+const youtrustUrl = 'https://youtrust.jp/';
+
+/// The Flutter Tokyo meetup Lucas organises, linked from the about text.
+const flutterTokyoUrl = 'https://flutter-jp.connpass.com/';
+
 /// The Google Developer Expert programme page, linked from the hero credential.
 const gdeUrl = 'https://developers.google.com/community/experts';
 
