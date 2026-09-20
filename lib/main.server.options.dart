@@ -9,6 +9,7 @@ import 'package:persona_site/components/gde_badge.dart' as _gde_badge;
 import 'package:persona_site/components/progress.dart' as _progress;
 import 'package:persona_site/pages/home_page.dart' as _home_page;
 import 'package:persona_site/sections/about.dart' as _about;
+import 'package:persona_site/sections/portfolio.dart' as _portfolio;
 import 'package:persona_site/sections/services.dart' as _services;
 
 /// Default [ServerOptions] for use with your Jaspr project.
@@ -34,6 +35,7 @@ ServerOptions get defaultServerOptions => ServerOptions(
     ..._gde_badge.GdeBadge.styles,
     ..._progress.Progress.styles,
     ..._about.About.styles,
+    ..._portfolio.Portfolio.styles,
     ..._services.Services.styles,
   ],
 );

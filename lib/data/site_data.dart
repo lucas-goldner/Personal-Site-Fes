@@ -287,60 +287,176 @@ const counters = <CounterData>[
   CounterData(faMicrophoneAlt, Stats.talksDelivered, 'Delivered', 'Talks', 4),
 ];
 
-/// A project tile, previously `data/portfolio.json`.
+/// A tile in the portfolio grid.
 class PortfolioItem {
-  const PortfolioItem(this.id, this.title, this.category, this.link, this.image);
+  const PortfolioItem({
+    required this.id,
+    required this.title,
+    required this.category,
+    required this.link,
+    this.image,
+    this.meta,
+  });
 
-  /// Stable identity, carried over from the ids in the original portfolio.json.
-  ///
-  /// Two projects legitimately share a link (the FlowUs app and its landing
-  /// page), so the link cannot be used to tell tiles apart.
+  /// Stable identity, so switching category rebuilds a tile rather than
+  /// reusing a tilt handler bound to a different one. Links cannot stand in:
+  /// an app and its landing page can point at the same place.
   final int id;
 
   final String title;
 
-  /// Used by the All / App / Website filter.
+  /// Used by the All / App / Website / Article / Talk filter. The filter row
+  /// follows the order the categories first appear in [portfolioItems].
   final String category;
+
   final String link;
-  final String image;
+
+  /// Screenshot for the tile. Articles and talks have none, so those tiles
+  /// fall back to the title and [meta] on a plain panel.
+  final String? image;
+
+  /// The line under the title on a tile without a screenshot: the publication
+  /// or the event, and the year.
+  final String? meta;
 }
 
+/// The App Store apps, the sites, and the writing and speaking.
+///
+/// TODO(lucas): the app list is the four apps that were already known to this
+/// repository plus Pushup Bro; replace it with the full list from
+/// https://apps.apple.com/jp/developer/lucas-goldner/id1540753257, which is not
+/// reachable from the build environment. The articles and talks are
+/// placeholders and are meant to be swapped for the real ones.
 const portfolioItems = <PortfolioItem>[
-  PortfolioItem(1, 'NFT Metro App (React Native)', 'App', 'https://nftmetro.com', 'projectImg/nifter.png'),
   PortfolioItem(
-    2,
-    'NFT Metro Landing Page (React)',
-    'Website',
-    'https://old-metro.vercel.app',
-    'projectImg/nifterPage.png',
-  ),
-  PortfolioItem(3, 'Kawa Druck Home Page (React)', 'Website', 'https://kawa-druck.de', 'projectImg/kawaPage.png'),
-  PortfolioItem(4, 'FlowUs Landing Page (NextJS)', 'Website', 'https://flowus.vercel.app', 'projectImg/flowUs.png'),
-  PortfolioItem(5, 'FlowUs App (Swift)', 'App', 'https://flowus.vercel.app', 'projectImg/flowUsApp.png'),
-  PortfolioItem(6, 'DailyTarot (Angular)', 'Website', 'https://tarot.lucas-goldner.com', 'projectImg/tarot.png'),
-  PortfolioItem(
-    7,
-    'Daily Tarot (React Native)',
-    'App',
-    'https://play.google.com/store/apps/details?id=com.lucasgoldner.DailyTarotApp',
-    'projectImg/DailyTarotApp.webp',
+    id: 1,
+    title: 'Pushup Bro',
+    category: 'App',
+    link: 'https://apps.apple.com/jp/app/pushup-bro/id1673181014',
+    // No artwork in the repository yet, so this one stands as a panel.
+    meta: 'iOS \u00b7 Flutter',
   ),
   PortfolioItem(
-    8,
-    'Golden a Netflix Clone (React)',
-    'Website',
-    'https://golden.lucas-goldner.com',
-    'projectImg/golden.png',
+    id: 2,
+    title: 'FlowUs',
+    category: 'App',
+    link: 'https://flowus.vercel.app',
+    image: 'projectImg/flowUsApp.png',
+    meta: 'iOS \u00b7 Swift',
   ),
-  PortfolioItem(9, 'Part of Webnetes Team', 'Website', 'https://webnetes.dev', 'projectImg/webnetes.png'),
   PortfolioItem(
-    10,
-    'Old Persona(l) Site (NextJS)',
-    'Website',
-    'https://old.lucas-goldner.com',
-    'projectImg/oldSite.png',
+    id: 3,
+    title: 'NFT Metro',
+    category: 'App',
+    link: 'https://nftmetro.com',
+    image: 'projectImg/nifter.png',
+    meta: 'iOS \u00b7 React Native',
   ),
-  PortfolioItem(11, 'Demon Programm (React)', 'Website', 'https://demon-program.vercel.app/', 'projectImg/demon.png'),
+  PortfolioItem(
+    id: 4,
+    title: 'Daily Tarot',
+    category: 'App',
+    link: 'https://play.google.com/store/apps/details?id=com.lucasgoldner.DailyTarotApp',
+    image: 'projectImg/DailyTarotApp.webp',
+    meta: 'Android \u00b7 React Native',
+  ),
+  PortfolioItem(
+    id: 10,
+    title: 'Personal Website',
+    category: 'Website',
+    link: 'https://lucas-goldner.com',
+    image: 'projectImg/personalSite.jpg',
+    meta: 'Jaspr \u00b7 Dart',
+  ),
+  PortfolioItem(
+    id: 11,
+    title: 'FlowUs Website',
+    category: 'Website',
+    link: 'https://flowus.vercel.app',
+    image: 'projectImg/flowUs.png',
+    meta: 'Next.js',
+  ),
+  PortfolioItem(
+    id: 12,
+    title: 'Kawa Druck Homepage',
+    category: 'Website',
+    link: 'https://kawa-druck.de',
+    image: 'projectImg/kawaPage.png',
+    meta: 'React',
+  ),
+  PortfolioItem(
+    id: 13,
+    title: 'NFT Metro Website',
+    category: 'Website',
+    link: 'https://old-metro.vercel.app',
+    image: 'projectImg/nifterPage.png',
+    meta: 'React',
+  ),
+  PortfolioItem(
+    id: 14,
+    title: 'Golden Website',
+    category: 'Website',
+    link: 'https://golden.lucas-goldner.com',
+    image: 'projectImg/golden.png',
+    meta: 'React',
+  ),
+  PortfolioItem(
+    id: 20,
+    title: 'How I Survived My First BIG Tech Presentation',
+    category: 'Article',
+    link:
+        'https://medium.com/@lucas.goldner/how-i-survived-my-first-big-tech-presentation-fluttercon-2023-f6c1c10f0263',
+    meta: 'Medium \u00b7 2023',
+  ),
+  PortfolioItem(
+    id: 21,
+    title: 'Sample \u2014 Writing Golden Tests That Catch Regressions',
+    category: 'Article',
+    link: 'https://medium.com/@lucas.goldner',
+    meta: 'Medium \u00b7 placeholder',
+  ),
+  PortfolioItem(
+    id: 22,
+    title: 'Sample \u2014 A Practical Introduction to Flutter Shaders',
+    category: 'Article',
+    link: 'https://medium.com/@lucas.goldner',
+    meta: 'Medium \u00b7 placeholder',
+  ),
+  PortfolioItem(
+    id: 23,
+    title: 'Sample \u2014 Bridging Flutter and Native iOS APIs',
+    category: 'Article',
+    link: 'https://medium.com/@lucas.goldner',
+    meta: 'Medium \u00b7 placeholder',
+  ),
+  PortfolioItem(
+    id: 30,
+    title: 'Sample \u2014 Shaders and Rendering in Flutter',
+    category: 'Talk',
+    link: 'https://sessionize.com/lucas-goldner/',
+    meta: 'Conference talk \u00b7 placeholder',
+  ),
+  PortfolioItem(
+    id: 31,
+    title: 'Sample \u2014 Scaling a Flutter App With a Growing Team',
+    category: 'Talk',
+    link: 'https://sessionize.com/lucas-goldner/',
+    meta: 'Conference talk \u00b7 placeholder',
+  ),
+  PortfolioItem(
+    id: 32,
+    title: 'Sample \u2014 What Flutter Engineers Should Know About iOS',
+    category: 'Talk',
+    link: 'https://sessionize.com/lucas-goldner/',
+    meta: 'Meetup talk \u00b7 placeholder',
+  ),
+  PortfolioItem(
+    id: 33,
+    title: 'Sample \u2014 Running a Flutter Community in Tokyo',
+    category: 'Talk',
+    link: 'https://flutter-jp.connpass.com/',
+    meta: 'Meetup talk \u00b7 placeholder',
+  ),
 ];
 
 /// The Google Maps embed shown next to the contact form.
