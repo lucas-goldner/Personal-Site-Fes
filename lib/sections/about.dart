@@ -41,6 +41,18 @@ class About extends StatefulComponent {
       css('#about .row .content p').styles(
         raw: {'font-size': '13px', 'margin-top': '10px'},
       ),
+      // The skills column is the taller of the two now that it carries seven
+      // bars, so it has to give up the same kind of room.
+      css('#about .row .skills').styles(
+        raw: {'padding-top': '2.5%', 'padding-bottom': '2.5%'},
+      ),
+      css('#about .progress-container').styles(
+        raw: {'margin-bottom': '12px'},
+      ),
+      css('#about .progress-container .name, #about .progress-container .value').styles(raw: {'font-size': '14px'}),
+      css('#about .progress-container .progress').styles(
+        raw: {'height': '8px', 'margin-top': '6px'},
+      ),
     ]),
   ];
 }

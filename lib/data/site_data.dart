@@ -99,24 +99,26 @@ const socialLinks = <SocialLink>[
 
 /// A skill bar in the about section.
 class Skill {
-  const Skill(this.name, this.value, this.label);
+  const Skill(this.name, this.percent, this.label);
 
   final String name;
 
-  /// Level from 1 to 5; the bar is rendered at `value * 20%`.
-  final int value;
+  /// How far the bar fills, 0 to 100. Previously a 1-5 level rendered at
+  /// `value * 20%`, which could not express the values this list needs.
+  final int percent;
 
   /// The wording shown on the right of the bar.
   final String label;
 }
 
 const skills = <Skill>[
-  Skill('Dart', 5, 'Most comfortable'),
-  Skill('TypeScript', 4, 'Advanced'),
-  Skill('Java', 3, 'Comfortable'),
-  Skill('Swift', 4, 'Advanced'),
-  Skill('Python', 3, 'Comfortable'),
-  Skill('Kotlin', 2, 'Basic'),
+  Skill('Flutter & Dart', 100, 'Primary Stack'),
+  Skill('iOS & Swift', 85, 'Advanced'),
+  Skill('Flutter Architecture', 85, 'Advanced'),
+  Skill('Testing & Quality', 80, 'Advanced'),
+  Skill('TypeScript \u2014 Backend & Frontend', 75, 'Proficient'),
+  Skill('Android & Kotlin', 50, 'Experienced'),
+  Skill('AI-Assisted Development \u2014 Harness / Claude Code', 100, 'Primary Stack'),
 ];
 
 /// A card in the services section.
