@@ -12,16 +12,20 @@ class SiteMeta {
   /// Keywords describing what the page actually covers.
   ///
   /// Each entry is backed by something on the site: the roles the hero
-  /// cycles through, the skill bars, the service cards and the project tiles.
+  /// cycles through, the skill bars, the expertise cards and the project
+  /// tiles.
   /// Gatsby was dropped because the site no longer uses it and no project
   /// references it.
   static const keywords =
-      'Lucas Goldner, portfolio, personal website, software developer, '
-      'app developer, web developer, iOS developer, Android developer, '
-      'frontend engineer, backend engineer, mobile development, '
-      'Flutter, Dart, Swift, Kotlin, '
-      'Java, TypeScript, JavaScript, Python, React, React Native, Angular, '
-      'Next.js, Jaspr, microservices';
+      'Lucas Goldner, portfolio, personal website, mobile engineer, '
+      'software developer, Flutter developer, iOS developer, '
+      'Android developer, frontend engineer, backend engineer, '
+      'Google Developer Expert, '
+      'Flutter, Dart, SwiftUI, Jetpack Compose, Swift, Kotlin, '
+      'React, Next.js, TypeScript, NestJS, MongoDB, PostgreSQL, '
+      'Azure, GCP, Terraform, '
+      'mobile architecture, testing, QA, mentoring, '
+      'AI-assisted development, Claude Code, Jaspr';
   static const author = 'Lucas Goldner';
 }
 
@@ -30,7 +34,7 @@ class SiteMeta {
 /// The ids double as the anchor targets used by the navigation and the wheel
 /// handler; the labels are the navigation entries.
 const sectionIds = ['home', 'about', 'services', 'portfolio', 'contact'];
-const sectionLabels = ['Home', 'About', 'Services', 'Portfolio', 'Contact'];
+const sectionLabels = ['Home', 'About', 'Expertise', 'Portfolio', 'Contact'];
 
 /// A hobby icon floating over the hero panel.
 ///
@@ -125,23 +129,28 @@ const skills = <Skill>[
   Skill('Testing & Quality', 80, 'Advanced'),
   Skill('TypeScript \u2014 Backend & Frontend', 75, 'Proficient'),
   Skill('Android & Kotlin', 50, 'Experienced'),
-  Skill('AI-Assisted Development \u2014 Harness / Claude Code', 100, 'Primary Stack'),
+  Skill('AI-Assisted Development \u2014 Claude Code', 100, 'Primary Stack'),
 ];
 
-/// A card in the services section.
+/// A card in the expertise section.
 class Service {
   const Service({
     required this.icon,
     required this.title,
+    required this.technologies,
     required this.text,
     required this.delay,
     required this.animation,
     this.borderSide = false,
-    this.solid = false,
+    this.featured = false,
   });
 
   final FaIcon icon;
   final String title;
+
+  /// The stack behind the area, shown as a smaller line under the title.
+  final String technologies;
+
   final String text;
 
   /// Delay in milliseconds before the card animates in.
@@ -153,87 +162,103 @@ class Service {
   /// Whether the card carries the vertical dividers of the middle column.
   final bool borderSide;
 
-  /// Solid icons render one size smaller than brand icons.
-  final bool solid;
+  /// The closing card, laid out as a full-width band rather than a column so
+  /// it reads as a way of working rather than another platform.
+  final bool featured;
 }
 
 const services = <Service>[
   Service(
-    icon: faReact,
-    title: 'Front-End React',
+    icon: faMobile,
+    title: 'Mobile App Development',
+    technologies: 'Flutter \u00b7 SwiftUI \u00b7 Jetpack Compose',
     text:
-        'React is my first and also my favourite library to create '
-        'websites. It is easy to get in, but the learn curve I would '
-        'argue is big. Learning React really changed how I code '
-        'personally. I can create amazing websites today in more or less '
-        'two - three days, if I have enough time.',
+        'I build mobile applications across Flutter and native platforms, '
+        'from polished UI and complex product features to platform-specific '
+        'integrations. Flutter is my primary stack, while I also work with '
+        'SwiftUI and Jetpack Compose when native development makes sense.',
     delay: 200,
     animation: 'fadeInLeft fast',
   ),
   Service(
-    icon: faApple,
-    title: 'IOS Apps',
+    icon: faLaptopCode,
+    title: 'Frontend Development',
+    technologies: 'React \u00b7 Next.js \u00b7 TypeScript',
     text:
-        'Funnily enough I started IOS Development, because my friend '
-        'needed help in his app. I had no idea of Swift, but I was able '
-        'to help him out quickly. I have built already an entire social '
-        'media app, a workout tracker, a jogging tracker and even '
-        'voicechat with WebRTC.',
+        'I build modern web applications using React, Next.js, and '
+        'TypeScript, with a focus on maintainable components, responsive '
+        'interfaces, good user experience, and clean integration with backend '
+        'services.',
     delay: 400,
     animation: 'fadeInDown fast',
     borderSide: true,
   ),
   Service(
-    icon: faMobile,
-    title: 'React Native Apps',
+    icon: faServer,
+    title: 'Backend & Infrastructure',
+    technologies: 'NestJS \u00b7 MongoDB \u00b7 PostgreSQL \u00b7 Azure \u00b7 GCP \u00b7 Terraform',
     text:
-        'When I found out about this framework I was really excited to '
-        'try it out. React is my favourite library already and making '
-        'apps with it seams like a dream. Crossplattform might be the '
-        'future, so it is good, that I already launched a React Native '
-        'app.',
+        'I work across backend development and infrastructure, building APIs '
+        'and services with NestJS, working with MongoDB and PostgreSQL, and '
+        'deploying and managing cloud infrastructure using Azure, GCP, and '
+        'Terraform.',
     delay: 600,
     animation: 'fadeInRight fast',
   ),
   Service(
-    icon: faAndroid,
-    title: 'Android Apps',
+    icon: faLayerGroup,
+    title: 'Mobile Architecture',
+    technologies: 'Architecture \u00b7 State Management \u00b7 Technical Design',
     text:
-        'This is where I really started coding. I made an entire social '
-        'media app in Java by myself in around two - three months. It '
-        'really changed the way I code. At the moment I am trying to get '
-        'into Kotlin too.',
+        'I work on scalable mobile architecture, state management, reusable '
+        'components, technical design, platform boundaries, and engineering '
+        'decisions that keep applications maintainable as products and teams '
+        'grow.',
     delay: 800,
     animation: 'fadeInLeft fast',
   ),
   Service(
-    icon: faAngular,
-    title: 'Front-End Angular',
+    icon: faVials,
+    title: 'Testing & Quality',
+    technologies: 'Widget \u00b7 Golden \u00b7 E2E \u00b7 QA',
     text:
-        'Yes I am able to make websites with Angular. Would I like to use '
-        'React instead ? Yes, because I am much faster with React, but if '
-        'you really need a website in Angular for some reason I can do '
-        'that too.',
+        'I build quality into the development process through widget, golden, '
+        'and end-to-end testing. I also work on QA planning, QA sheet '
+        'creation, test-case definition, execution, bug tracking, regression '
+        'testing, and improving release confidence.',
     delay: 1000,
     animation: 'fadeInUp fast',
     borderSide: true,
-    solid: true,
   ),
   Service(
-    icon: faServer,
-    title: 'Microservices',
+    icon: faUsers,
+    title: 'Team Growth & Mentoring',
+    technologies: 'Code Reviews \u00b7 Mentoring \u00b7 Internal Education',
     text:
-        'You need an API, a websocket server, a bot, a database ? Great '
-        'because I have already worked on them all. Normally I use '
-        'Javascript, to work on things as these, but I am also good in '
-        'working with GO or Python.',
+        'I help engineers grow through code reviews, technical feedback, '
+        'mentoring, and knowledge sharing. I organize internal study '
+        'sessions, prepare learning materials, explain technical concepts, '
+        'and help engineers become more confident and independent.',
     delay: 1200,
     animation: 'fadeInRight fast',
-    solid: true,
+  ),
+  Service(
+    icon: faRobot,
+    title: 'AI-Assisted Engineering',
+    technologies: 'Claude Code \u00b7 Agentic Development',
+    text:
+        'AI-assisted development is part of my primary engineering workflow. '
+        'I use Claude Code for implementation, codebase exploration, '
+        'debugging, refactoring, testing, and accelerating larger development '
+        'tasks while keeping engineering decisions and code quality under '
+        'human control.',
+    delay: 1400,
+    animation: 'fadeIn fast',
+    featured: true,
   ),
 ];
 
-/// A count-up figure in the strip below the services.
+/// A count-up figure in the strip below the expertise cards.
 class CounterData {
   const CounterData(this.icon, this.value, this.text, this.symbol, this.duration);
 
@@ -246,10 +271,20 @@ class CounterData {
   final int duration;
 }
 
+/// The figures the counters count up to.
+///
+/// Kept apart from [counters] so the numbers can be bumped in one place
+/// without touching the icons or the wording around them.
+abstract final class Stats {
+  static const appsShipped = 12;
+  static const articlesPublished = 30;
+  static const talksDelivered = 40;
+}
+
 const counters = <CounterData>[
-  CounterData(faSmileBeam, 4, 'Coding', 'Years', 2),
-  CounterData(faPizzaSlice, 21, 'Finished', 'Projects', 5),
-  CounterData(faCode, 749836, 'of Code', 'Lines', 15),
+  CounterData(faMobileAlt, Stats.appsShipped, 'Shipped', 'Apps', 2),
+  CounterData(faPenNib, Stats.articlesPublished, 'Published', 'Articles', 3),
+  CounterData(faMicrophoneAlt, Stats.talksDelivered, 'Delivered', 'Talks', 4),
 ];
 
 /// A project tile, previously `data/portfolio.json`.

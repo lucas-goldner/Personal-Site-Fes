@@ -25,7 +25,7 @@ class Progress extends StatefulComponent {
   /// Lets a long skill name share its line with the right-aligned label.
   ///
   /// The ported rule floats the label right, which a name like
-  /// "AI-Assisted Development - Harness / Claude Code" runs straight into. Only
+  /// "TypeScript - Backend & Frontend" runs straight into. Only
   /// the name/label header becomes a flex line; the bar stays a plain block so
   /// its inline percentage width still sizes it and still animates. Making the
   /// whole row a flex container would give the bar a flex-basis, which wins
