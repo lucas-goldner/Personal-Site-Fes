@@ -322,43 +322,44 @@ class PortfolioItem {
 
 /// The App Store apps, the sites, and the writing and speaking.
 ///
-/// TODO(lucas): the app list is the four apps that were already known to this
-/// repository plus Pushup Bro; replace it with the full list from
-/// https://apps.apple.com/jp/developer/lucas-goldner/id1540753257, which is not
-/// reachable from the build environment. The articles and talks are
-/// placeholders and are meant to be swapped for the real ones.
+/// TODO(lucas): none of the apps has artwork in the repository, so they stand
+/// as panels; drop an icon into web/projectImg and set `image` to turn one
+/// into a picture tile. The articles and talks are placeholders.
 const portfolioItems = <PortfolioItem>[
   PortfolioItem(
     id: 1,
     title: 'Pushup Bro',
     category: 'App',
     link: 'https://apps.apple.com/jp/app/pushup-bro/id1673181014',
-    // No artwork in the repository yet, so this one stands as a panel.
-    meta: 'iOS \u00b7 Flutter',
+    meta: 'iOS \u00b7 Push-up tracking with AirPods',
   ),
   PortfolioItem(
     id: 2,
-    title: 'FlowUs',
+    title: 'Japanana',
     category: 'App',
-    link: 'https://flowus.vercel.app',
-    image: 'projectImg/flowUsApp.png',
-    meta: 'iOS \u00b7 Swift',
+    link: 'https://apps.apple.com/jp/app/japanana-japanese-grammar/id6476447175',
+    meta: 'iOS \u00b7 Japanese grammar',
   ),
   PortfolioItem(
     id: 3,
-    title: 'NFT Metro',
+    title: 'Giro',
     category: 'App',
-    link: 'https://nftmetro.com',
-    image: 'projectImg/nifter.png',
-    meta: 'iOS \u00b7 React Native',
+    link: 'https://apps.apple.com/jp/app/giro-mark-past-walks/id6737528413',
+    meta: 'iOS \u00b7 Marking past walks',
   ),
   PortfolioItem(
     id: 4,
-    title: 'Daily Tarot',
+    title: 'ReadOn',
     category: 'App',
-    link: 'https://play.google.com/store/apps/details?id=com.lucasgoldner.DailyTarotApp',
-    image: 'projectImg/DailyTarotApp.webp',
-    meta: 'Android \u00b7 React Native',
+    link: 'https://apps.apple.com/jp/app/readon-read-in-any-language/id6757393728',
+    meta: 'iOS \u00b7 Reading in any language',
+  ),
+  PortfolioItem(
+    id: 5,
+    title: 'Dream Lucid Now!',
+    category: 'App',
+    link: 'https://apps.apple.com/jp/app/dream-lucid-now-dreams-sleep/id6752128546',
+    meta: 'iOS \u00b7 Dreams and sleep',
   ),
   PortfolioItem(
     id: 10,
