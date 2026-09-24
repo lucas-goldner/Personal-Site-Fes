@@ -80,8 +80,6 @@ class _LayoutState extends State<Layout> {
   void _onWheel(web.Event event) {
     if (_scrolling || _metrics.isAuto) return;
     final delta = (event as web.WheelEvent).deltaY;
-    // A section may hold more than fits, and its own scrolling comes first.
-    if (wheelScrollsInnerBox(event, delta)) return;
 
     final last = sectionIds.length - 1;
     if (delta < 0) {

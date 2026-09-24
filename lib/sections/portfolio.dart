@@ -5,6 +5,7 @@ import 'package:jaspr/jaspr.dart';
 
 import '../components/animation_container.dart';
 import '../components/baffle_text.dart';
+import '../components/icon.dart';
 import '../components/tilt_box.dart';
 import '../data/site_data.dart';
 import '../layout/metrics.dart';
@@ -32,22 +33,21 @@ class Portfolio extends StatefulComponent {
       display: .flex,
       flexWrap: .wrap,
       alignItems: .start,
-      raw: {
-        // The All filter now holds every app, site, article and talk, more
-        // than fits a section locked to the viewport. Rather than shrinking
-        // the tiles until the writing is unreadable, the grid keeps a legible
-        // floor and scrolls; the layout's wheel handler yields to it before
-        // snapping on to the next section.
-        'overflow-y': 'auto',
-        'scrollbar-width': 'thin',
-        'scrollbar-color': '#2c343f transparent',
-      },
     ),
     // With every tile the same height the ported `cover` would crop a wide
     // screenshot down to a slice of itself, so the images are fitted inside
     // the box instead. The section is black, so the spare room does not read
     // as a letterbox.
     css('#portfolio .portfolio_item img').styles(raw: {'object-fit': 'contain'}),
+    // A page of two rows leaves each tile half the section to itself, which
+    // is far more than a screenshot or a title and a source line need. The
+    // tiles take their height from their own width instead and only fall back
+    // to the cap the grid gives them when that is the smaller of the two.
+    css('#portfolio .portfolio_item img, #portfolio .portfolio_card').styles(
+      width: 100.percent,
+      height: .auto,
+      raw: {'aspect-ratio': '1 / 1'},
+    ),
     css('#portfolio .portfolio_card').styles(
       display: .flex,
       padding: .symmetric(vertical: 18.px, horizontal: 20.px),
@@ -74,15 +74,80 @@ class Portfolio extends StatefulComponent {
       fontSize: 16.px,
       fontWeight: .w600,
       lineHeight: 22.px,
-      raw: {'overflow-wrap': 'break-word'},
+      raw: {
+        'overflow-wrap': 'break-word',
+        // A long title is cut off rather than pushed out of a box that cannot
+        // grow. Nothing is lost: hovering the tile shows the whole title.
+        'display': '-webkit-box',
+        '-webkit-box-orient': 'vertical',
+        '-webkit-line-clamp': '4',
+        'overflow': 'hidden',
+      },
     ),
     css('#portfolio .portfolio_card .card_meta').styles(
       margin: .only(top: 10.px),
       color: const Color('#bbb'),
       fontSize: 11.px,
       fontWeight: .w300,
+      raw: {
+        'display': '-webkit-box',
+        '-webkit-box-orient': 'vertical',
+        '-webkit-line-clamp': '2',
+        'overflow': 'hidden',
+      },
     ),
-    // The grid is six across at the All filter, where the type has to come
+    // One page of tiles at a time, stepped through with the arrows. On a
+    // phone they sit under the grid; from the desktop breakpoint up they move
+    // out into the column's own padding, one on each side of the grid.
+    css('#portfolio .portfolio_nav').styles(
+      display: .flex,
+      margin: .only(top: 20.px),
+      alignItems: .center,
+      justifyContent: .center,
+      gap: Gap(column: 20.px),
+    ),
+    css('#portfolio .portfolio_arrow', [
+      css('&').styles(
+        display: .flex,
+        width: 38.px,
+        height: 38.px,
+        alignItems: .center,
+        justifyContent: .center,
+        color: Colors.white,
+        raw: {
+          'background-color': 'transparent',
+          'border': '1px solid #2c343f',
+          'border-radius': '50%',
+          'cursor': 'pointer',
+          'transition': 'color .3s ease, border-color .3s ease',
+        },
+      ),
+      css('&:hover').styles(raw: {'color': '#ffb035', 'border-color': '#ffb035'}),
+      css('&:focus-visible').styles(raw: {'outline': '2px solid #ffb035', 'outline-offset': '2px'}),
+      css('& svg').styles(width: .auto, height: 14.px),
+    ]),
+    css('#portfolio .portfolio_pages').styles(
+      color: const Color('#bbb'),
+      fontSize: 12.px,
+      fontWeight: .w300,
+      raw: {'letter-spacing': '1px', 'font-variant-numeric': 'tabular-nums'},
+    ),
+    css.media(const MediaQuery.raw('(min-width: 992px)'), [
+      css('#portfolio .content').styles(position: .relative()),
+      // .content is positioned now, so without this it paints over the filter
+      // row above it and swallows the clicks.
+      css('#portfolio .portfolio_selector').styles(zIndex: const ZIndex(2)),
+      css('#portfolio .portfolio_nav').styles(margin: .only(top: 14.px)),
+      // Out in the 5% padding the column already carries, so the arrows never
+      // sit on top of a tile.
+      css('#portfolio .portfolio_arrow').styles(
+        position: .absolute(top: 50.percent),
+        raw: {'transform': 'translateY(-50%)'},
+      ),
+      css('#portfolio .portfolio_arrow.prev').styles(position: .absolute(left: (-46).px)),
+      css('#portfolio .portfolio_arrow.next').styles(position: .absolute(right: (-46).px)),
+    ]),
+    // The grid is five across on a full page, where the type has to come
     // down with the box.
     css.media(const MediaQuery.raw('(min-width: 992px)'), [
       css('#portfolio .portfolio_container.dense .portfolio_card').styles(
@@ -95,6 +160,7 @@ class Portfolio extends StatefulComponent {
       css('#portfolio .portfolio_container.dense .portfolio_card .card_title').styles(
         fontSize: 13.px,
         lineHeight: 18.px,
+        raw: {'-webkit-line-clamp': '3'},
       ),
       css('#portfolio .portfolio_container.dense .portfolio_card .card_meta').styles(
         margin: .only(top: 7.px),
@@ -106,13 +172,32 @@ class Portfolio extends StatefulComponent {
 
 const _accent = Color('#ffb035');
 
-/// The shortest a tile may be, as a fraction of the section height. Below this
-/// a card's title and source line start colliding with its own box.
-const _minTileFactor = 0.22;
+/// How many tiles a page of the grid holds.
+///
+/// The section is locked to the viewport height and does not scroll, so the
+/// grid can only ever be as deep as fits; everything past this is a page of
+/// its own, reached with the arrows.
+const _pageSize = 10;
+
+/// The share of the section height the grid and its arrows may take.
+///
+/// The filter row sits absolutely at 8% of the section and the block below it
+/// is centred, so a block taller than this would slide up under the filters.
+const _gridFraction = 0.76;
+
+/// `margin-bottom` on a tile, from the ported rules, which sits under every
+/// row and so has to come out of the budget along with the tiles themselves.
+const _tileGap = 10.0;
+
+/// The arrows and page counter under the grid, with their margin.
+const _navHeight = 34.0;
 
 class _PortfolioState extends State<Portfolio> {
   /// Null means the "All" filter.
   String? _category;
+
+  /// Which page of the current filter is on screen.
+  int _page = 0;
 
   /// Set once the rotated "Portfolio" heading has finished resolving.
   bool _show = false;
@@ -125,16 +210,37 @@ class _PortfolioState extends State<Portfolio> {
       if (_category == null || item.category == _category) item,
   ];
 
+  int get _pageCount => (_visibleItems.length / _pageSize).ceil().clamp(1, 1 << 30);
+
+  /// How many tiles the grid is laid out for.
+  ///
+  /// A full page, unless the whole filter is smaller than one. Sizing from the
+  /// tiles actually on screen would blow the last page up whenever it held a
+  /// couple of leftovers.
+  int get _layoutCount => math.min(_pageSize, _visibleItems.length);
+
+  /// The tiles on screen: one page of the current filter.
+  List<PortfolioItem> get _pageItems => _visibleItems.skip(_page * _pageSize).take(_pageSize).toList();
+
+  void _select(String? category) => setState(() {
+    _category = category;
+    _page = 0;
+  });
+
+  /// Steps the page, wrapping at either end so the arrows never dead-end.
+  void _step(int by) => setState(() {
+    final count = _pageCount;
+    _page = (_page + by + count) % count;
+  });
+
   /// The column count the React component derived from the number of tiles.
   ///
   /// The ported ladder stopped at four columns, which was enough for the
-  /// eleven tiles it had. The All filter now holds every app, site, article
-  /// and talk, and four columns would run it five rows deep in a section that
-  /// does not scroll, so the ladder gains a wider step. Four tiles also move
-  /// from two columns to one row: the ported pair of half-width tiles blew a
-  /// square app icon up to the height of the section.
+  /// eleven tiles it had. A full page is five across in two rows, and four
+  /// tiles move from two columns to one row: the ported pair of half-width
+  /// tiles blew a square app icon up to the height of the section.
   int _columnsFor(int total) {
-    if (total > 12) return 6;
+    if (total > 8) return 5;
     if (total > 6) return 4;
     if (total > 4) return 3;
     if (total == 4) return 4;
@@ -145,7 +251,7 @@ class _PortfolioState extends State<Portfolio> {
   String _itemWidth(SiteMetrics metrics, int columns) {
     if (metrics.isAuto) return '100%';
     return switch (columns) {
-      6 => '16.6%',
+      5 => '20%',
       4 => '25%',
       3 => '33.3%',
       2 => '50%',
@@ -179,7 +285,7 @@ class _PortfolioState extends State<Portfolio> {
             div(classes: 'portfolio_selector', [
               button(
                 classes: 'portfolio_category',
-                onClick: () => setState(() => _category = null),
+                onClick: () => _select(null),
                 [
                   span(
                     classes: _category == null ? 'active' : null,
@@ -190,7 +296,7 @@ class _PortfolioState extends State<Portfolio> {
               for (final category in _categories)
                 button(
                   classes: 'portfolio_category',
-                  onClick: () => setState(() => _category = category),
+                  onClick: () => _select(category),
                   [
                     span(
                       classes: _category == category ? 'active' : null,
@@ -201,7 +307,7 @@ class _PortfolioState extends State<Portfolio> {
             ]),
             div(classes: 'content', [
               div(
-                classes: 'portfolio_container${_columnsFor(_visibleItems.length) >= 6 ? ' dense' : ''}',
+                classes: 'portfolio_container${_columnsFor(_layoutCount) >= 5 ? ' dense' : ''}',
                 styles: Styles(
                   raw: {
                     'max-height': containerMaxHeight == null ? 'inherit' : '${containerMaxHeight.toStringAsFixed(0)}px',
@@ -209,6 +315,7 @@ class _PortfolioState extends State<Portfolio> {
                 ),
                 _tiles(metrics),
               ),
+              _nav(metrics),
             ]),
           ]),
         ]),
@@ -219,18 +326,19 @@ class _PortfolioState extends State<Portfolio> {
   List<Component> _tiles(SiteMetrics metrics) {
     if (!_show && !metrics.isAuto) return const [];
 
-    final items = _visibleItems;
-    final columns = _columnsFor(items.length);
+    final items = _pageItems;
+    final columns = _columnsFor(_layoutCount);
     final width = _itemWidth(metrics, columns);
-    final rows = (items.length / columns).ceil();
+    final rows = (_layoutCount / columns).ceil();
 
     // Mirrors the height factor of the React component, which shrank the tiles
     // for wide grids. Its four-item case is gone with the two-column step it
-    // belonged to. A deep grid shrinks to fit the container, down to a floor:
-    // past that the tiles stop being readable, so the container scrolls
-    // instead.
+    // belonged to. Nothing here scrolls, so a deeper grid always shrinks to
+    // the room it has; what will not fit legibly goes on the next page.
     final ported = columns >= 3 ? 0.35 : 1.0;
-    final factor = math.max(_minTileFactor, math.min(ported, 0.76 / rows));
+    final forRows = _gridFraction * metrics.height - (_pageCount > 1 ? _navHeight : 0);
+    final perRow = forRows / rows - _tileGap;
+    final factor = math.min(ported, perRow / (metrics.height == 0 ? 1 : metrics.height));
     final maxHeight = metrics.isAuto ? null : metrics.height * factor;
 
     return [
@@ -268,6 +376,27 @@ class _PortfolioState extends State<Portfolio> {
     ];
   }
 
+  /// The arrows and the page counter, or nothing when the filter fits a page.
+  Component _nav(SiteMetrics metrics) {
+    if ((!_show && !metrics.isAuto) || _pageCount < 2) return const Component.empty();
+
+    return div(classes: 'portfolio_nav', [
+      button(
+        classes: 'portfolio_arrow prev',
+        attributes: const {'aria-label': 'Previous page', 'type': 'button'},
+        onClick: () => _step(-1),
+        [const Icon(faChevronLeft)],
+      ),
+      span(classes: 'portfolio_pages', [.text('${_page + 1} / $_pageCount')]),
+      button(
+        classes: 'portfolio_arrow next',
+        attributes: const {'aria-label': 'Next page', 'type': 'button'},
+        onClick: () => _step(1),
+        [const Icon(faChevronRight)],
+      ),
+    ]);
+  }
+
   /// The tile itself: a screenshot where there is one, a panel otherwise.
   Component _face(PortfolioItem item, double? maxHeight) {
     final image = item.image;
@@ -277,9 +406,7 @@ class _PortfolioState extends State<Portfolio> {
         alt: item.title,
         styles: Styles(
           raw: {
-            // A height rather than a cap, so tiles of different proportions
-            // still line up. The ported rule crops them to fit.
-            'height': maxHeight == null ? 'auto' : '${maxHeight.toStringAsFixed(0)}px',
+            'max-height': maxHeight == null ? 'none' : '${maxHeight.toStringAsFixed(0)}px',
           },
         ),
       );
@@ -289,9 +416,10 @@ class _PortfolioState extends State<Portfolio> {
       classes: 'portfolio_card',
       styles: Styles(
         raw: {
-          // A fixed height rather than a cap, so a panel lines up with the
-          // screenshots beside it instead of collapsing onto its own text.
-          'height': maxHeight == null ? 'auto' : '${maxHeight.toStringAsFixed(0)}px',
+          // The cap the grid allows; the square aspect takes it from there, so
+          // a panel lines up with the screenshots beside it rather than
+          // collapsing onto its own text.
+          'max-height': maxHeight == null ? 'none' : '${maxHeight.toStringAsFixed(0)}px',
           if (maxHeight == null) 'min-height': '150px',
         },
       ),
