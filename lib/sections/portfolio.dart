@@ -32,6 +32,16 @@ class Portfolio extends StatefulComponent {
       display: .flex,
       flexWrap: .wrap,
       alignItems: .start,
+      raw: {
+        // The All filter now holds every app, site, article and talk, more
+        // than fits a section locked to the viewport. Rather than shrinking
+        // the tiles until the writing is unreadable, the grid keeps a legible
+        // floor and scrolls; the layout's wheel handler yields to it before
+        // snapping on to the next section.
+        'overflow-y': 'auto',
+        'scrollbar-width': 'thin',
+        'scrollbar-color': '#2c343f transparent',
+      },
     ),
     // With every tile the same height the ported `cover` would crop a wide
     // screenshot down to a slice of itself, so the images are fitted inside
@@ -95,6 +105,10 @@ class Portfolio extends StatefulComponent {
 }
 
 const _accent = Color('#ffb035');
+
+/// The shortest a tile may be, as a fraction of the section height. Below this
+/// a card's title and source line start colliding with its own box.
+const _minTileFactor = 0.22;
 
 class _PortfolioState extends State<Portfolio> {
   /// Null means the "All" filter.
@@ -211,12 +225,12 @@ class _PortfolioState extends State<Portfolio> {
     final rows = (items.length / columns).ceil();
 
     // Mirrors the height factor of the React component, which shrank the tiles
-    // for wide grids, capped so that a grid deeper than two rows still fits:
-    // the container is limited to 80% of the section and the page snaps
-    // between sections rather than scrolling inside one. Its four-item case is
-    // gone with the two-column step it belonged to.
+    // for wide grids. Its four-item case is gone with the two-column step it
+    // belonged to. A deep grid shrinks to fit the container, down to a floor:
+    // past that the tiles stop being readable, so the container scrolls
+    // instead.
     final ported = columns >= 3 ? 0.35 : 1.0;
-    final factor = math.min(ported, 0.76 / rows);
+    final factor = math.max(_minTileFactor, math.min(ported, 0.76 / rows));
     final maxHeight = metrics.isAuto ? null : metrics.height * factor;
 
     return [

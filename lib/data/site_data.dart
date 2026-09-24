@@ -322,9 +322,13 @@ class PortfolioItem {
 
 /// The App Store apps, the sites, and the writing and speaking.
 ///
+/// The articles and talks are kept in step with
+/// https://github.com/lucas-goldner/Talks-Articles-Events, which is the list
+/// of record for them.
+///
 /// TODO(lucas): none of the apps has artwork in the repository, so they stand
 /// as panels; drop an icon into web/projectImg and set `image` to turn one
-/// into a picture tile. The articles and talks are placeholders.
+/// into a picture tile.
 const portfolioItems = <PortfolioItem>[
   PortfolioItem(
     id: 1,
@@ -403,60 +407,154 @@ const portfolioItems = <PortfolioItem>[
   ),
   PortfolioItem(
     id: 20,
-    title: 'How I Survived My First BIG Tech Presentation',
+    title: '拙者、FlutterNinjas2025にて修行して参った！',
     category: 'Article',
-    link:
-        'https://medium.com/@lucas.goldner/how-i-survived-my-first-big-tech-presentation-fluttercon-2023-f6c1c10f0263',
-    meta: 'Medium \u00b7 2023',
+    link: 'https://tech.youtrust.co.jp/entry/flutterninjas2025-day-one',
+    meta: 'YOUTRUST Tech Blog',
   ),
   PortfolioItem(
     id: 21,
-    title: 'Sample \u2014 Writing Golden Tests That Catch Regressions',
+    title: '美味しいチーズ牛丼を通じて、ListView.builderのfindChildIndexCallbackについて学びませんか？',
     category: 'Article',
-    link: 'https://medium.com/@lucas.goldner',
-    meta: 'Medium \u00b7 placeholder',
+    link: 'https://tech.youtrust.co.jp/entry/flutter-findchildindexcallback',
+    meta: 'YOUTRUST Tech Blog',
   ),
   PortfolioItem(
     id: 22,
-    title: 'Sample \u2014 A Practical Introduction to Flutter Shaders',
+    title: 'AndroidでFlutterアプリでイメージ選択に気をつけろ',
     category: 'Article',
-    link: 'https://medium.com/@lucas.goldner',
-    meta: 'Medium \u00b7 placeholder',
+    link: 'https://tech.youtrust.co.jp/entry/flutter-image-picking-android',
+    meta: 'YOUTRUST Tech Blog',
   ),
   PortfolioItem(
     id: 23,
-    title: 'Sample \u2014 Bridging Flutter and Native iOS APIs',
+    title: 'テキスト入力のUXを改善しました',
     category: 'Article',
-    link: 'https://medium.com/@lucas.goldner',
-    meta: 'Medium \u00b7 placeholder',
+    link: 'https://tech.youtrust.co.jp/entry/app-text-ux-improvements',
+    meta: 'YOUTRUST Tech Blog',
+  ),
+  PortfolioItem(
+    id: 24,
+    title: 'FlutterKaigi 2024に参加してきました！',
+    category: 'Article',
+    link: 'https://tech.youtrust.co.jp/entry/2024/11/27/184941',
+    meta: 'YOUTRUST Tech Blog',
+  ),
+  PortfolioItem(
+    id: 25,
+    title: 'Flutter Connection参加レポート',
+    category: 'Article',
+    link: 'https://tech.youtrust.co.jp/entry/2024/08/07/184732',
+    meta: 'YOUTRUST Tech Blog',
+  ),
+  PortfolioItem(
+    id: 26,
+    title: 'Flutter エレメントエンべディング・アプリを ウェブサイト内に入れられるの力！AngularやReactまでもできる！',
+    category: 'Article',
+    link: 'https://qiita.com/LucasGoldner/items/64b9e74f5b982465cf76',
+    meta: 'Qiita \u00b7 Zenn',
+  ),
+  PortfolioItem(
+    id: 27,
+    title:
+        'Flutter Element Embedding \u2014 Unleashing the Power of Integrating Flutter Apps into Websites, including React-powered ones!',
+    category: 'Article',
+    link:
+        'https://medium.com/@lucas.goldner/flutter-element-embedding-unleashing-the-power-of-integrating-flutter-apps-into-websites-e91c84c13f2d',
+    meta: 'Medium',
+  ),
+  PortfolioItem(
+    id: 28,
+    title: '僕の最初のテックトーク、どうやって乗り越えたか - Fluttercon2023',
+    category: 'Article',
+    link: 'https://qiita.com/LucasGoldner/items/7583c9bc1316286b9121',
+    meta: 'Qiita',
+  ),
+  PortfolioItem(
+    id: 29,
+    title: 'How I Survived My First BIG Tech Presentation \u2014 Fluttercon 2023',
+    category: 'Article',
+    link:
+        'https://medium.com/@lucas.goldner/how-i-survived-my-first-big-tech-presentation-fluttercon-2023-f6c1c10f0263',
+    meta: 'Medium',
   ),
   PortfolioItem(
     id: 30,
-    title: 'Sample \u2014 Shaders and Rendering in Flutter',
-    category: 'Talk',
-    link: 'https://sessionize.com/lucas-goldner/',
-    meta: 'Conference talk \u00b7 placeholder',
+    title: 'Flutterで簡単プレゼンをする - FlutterShow⚡',
+    category: 'Article',
+    link: 'https://qiita.com/LucasGoldner/items/225a793035820137fc18',
+    meta: 'Qiita',
   ),
   PortfolioItem(
     id: 31,
-    title: 'Sample \u2014 Scaling a Flutter App With a Growing Team',
-    category: 'Talk',
-    link: 'https://sessionize.com/lucas-goldner/',
-    meta: 'Conference talk \u00b7 placeholder',
+    title: 'Presentations made easy in Flutter - FlutterShow⚡',
+    category: 'Article',
+    link: 'https://medium.com/@lucas.goldner/presentations-made-easy-in-flutter-fluttershow-79ab316253b5',
+    meta: 'Medium',
   ),
   PortfolioItem(
-    id: 32,
-    title: 'Sample \u2014 What Flutter Engineers Should Know About iOS',
+    id: 40,
+    title: 'ListView.builderの謎：効率的リスト構築の秘密を解明',
     category: 'Talk',
-    link: 'https://sessionize.com/lucas-goldner/',
-    meta: 'Meetup talk \u00b7 placeholder',
+    link: 'https://enechange-meetup.connpass.com/event/347260/',
+    meta: 'Flutter開発の舞台裏！3社のエンジニアがおくるLTナイト',
   ),
   PortfolioItem(
-    id: 33,
-    title: 'Sample \u2014 Running a Flutter Community in Tokyo',
+    id: 41,
+    title: 'Part of Team Flutter',
     category: 'Talk',
-    link: 'https://flutter-jp.connpass.com/',
-    meta: 'Meetup talk \u00b7 placeholder',
+    link: 'https://dena.connpass.com/event/339747/',
+    meta: '突撃！隣のモバイルプラットフォーム！',
+  ),
+  PortfolioItem(
+    id: 42,
+    title: 'テキスト入力のUXを改善',
+    category: 'Talk',
+    link: 'https://yumemi.connpass.com/event/340473/',
+    meta: 'YOUTRUST x ビビッドガーデン x ゆめみ Flutter LT会@渋谷 #7',
+  ),
+  PortfolioItem(
+    id: 43,
+    title: '僕のstate restorationアカデミア',
+    category: 'Talk',
+    link: 'https://www.youtube.com/watch?v=ZEpcXKXSIyI',
+    meta: 'FlutterKaigi 2024 \u00b7 Recording',
+  ),
+  PortfolioItem(
+    id: 44,
+    title: 'Don\u2019t Leave Your Assets in Their Pajamas\u2014Transform Them!',
+    category: 'Talk',
+    link: 'https://www.meetup.com/de-DE/fluttervienna/events/303135184/',
+    meta: '22nd Flutter Vienna Meetup',
+  ),
+  PortfolioItem(
+    id: 45,
+    title: 'Saving data before the app getting killed! Easy state restoration with Flutter',
+    category: 'Talk',
+    link:
+        'https://www.droidcon.com/2024/09/03/saving-data-before-the-app-getting-killed-easy-state-restoration-with-flutter/',
+    meta: 'Fluttercon 2024 \u00b7 Recording',
+  ),
+  PortfolioItem(
+    id: 46,
+    title: 'Flutter Web Laughs: Element Embedding Made Easy',
+    category: 'Talk',
+    link: 'https://www.youtube.com/watch?v=Hhq5PRD6c3I',
+    meta: 'Flutterconnection 2024 \u00b7 Recording',
+  ),
+  PortfolioItem(
+    id: 47,
+    title: 'flutterでエレメントエンベディング',
+    category: 'Talk',
+    link: 'https://www.youtube.com/live/uuaxvgKrDtE?feature=shared&t=25508',
+    meta: 'GDG DevFest Tokyo 2023 \u00b7 Recording',
+  ),
+  PortfolioItem(
+    id: 48,
+    title: 'Comparing ways of accessing native functionality',
+    category: 'Talk',
+    link: 'https://droidcon.com/2023/08/07/comparing-ways-of-accessing-native-functionality/',
+    meta: 'Fluttercon 2023 \u00b7 Recording',
   ),
 ];
 

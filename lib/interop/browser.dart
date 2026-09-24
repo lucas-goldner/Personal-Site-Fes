@@ -161,3 +161,36 @@ int elementHeight(String elementId) {
   if (!kIsWeb) return 0;
   return web.document.getElementById(elementId)?.clientHeight ?? 0;
 }
+
+/// Whether [event] lands on something that can still scroll itself.
+///
+/// The layout snaps the whole page from section to section on every wheel
+/// event, which would make a scrollable box inside a section unreachable. This
+/// walks up from the target looking for an ancestor that scrolls and still has
+/// room to move in the direction of [delta]; when it finds one the layout
+/// leaves the event alone and the browser scrolls that box instead.
+bool wheelScrollsInnerBox(web.Event event, double delta) {
+  if (!kIsWeb || delta == 0) return false;
+
+  // Node types rather than `is web.Element`: the interop types erase to the
+  // same representation, so a type test against one matches every node and
+  // then reads properties a text node does not have.
+  const elementNode = 1;
+
+  var node = event.target as web.Node?;
+  while (node != null) {
+    if (node.nodeType == elementNode) {
+      final element = node as web.Element;
+      final scrollable = element.scrollHeight - element.clientHeight;
+      if (scrollable > 1) {
+        final overflow = web.window.getComputedStyle(element).overflowY;
+        if (overflow == 'auto' || overflow == 'scroll') {
+          final top = element.scrollTop;
+          if (delta > 0 ? top < scrollable - 1 : top > 1) return true;
+        }
+      }
+    }
+    node = node.parentNode;
+  }
+  return false;
+}
