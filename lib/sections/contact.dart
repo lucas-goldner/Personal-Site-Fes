@@ -14,6 +14,25 @@ class Contact extends StatefulComponent {
 
   @override
   State<Contact> createState() => _ContactState();
+
+  /// Lines up the message box with the single-line fields above it.
+  ///
+  /// The ported rule gives every field the same 50px height. An input centres
+  /// its one line in that box, while a textarea starts at the top of it, which
+  /// left the Message placeholder sitting higher than the other three. Letting
+  /// the row count drive the height gives the box its three lines, and the top
+  /// padding puts the first of them where the inputs put theirs.
+  @css
+  static List<StyleRule> get styles => [
+    css('#contact .form-container textarea').styles(
+      height: .auto,
+      // Left and right stay at the browser's 2px so the placeholder starts on
+      // the same column as the ones above.
+      padding: .only(top: 14.px, right: 2.px, bottom: 10.px, left: 2.px),
+      // Dragging the corner sideways pulled the field out of its column.
+      raw: {'resize': 'vertical'},
+    ),
+  ];
 }
 
 class _ContactState extends State<Contact> {
@@ -133,6 +152,7 @@ class _ContactState extends State<Contact> {
               child: textarea(
                 classes: 'message${_isValid(_message) ? '' : ' error'}',
                 placeholder: 'Message',
+                rows: 3,
                 onInput: (String value) => _message = value,
                 const [],
               ),
