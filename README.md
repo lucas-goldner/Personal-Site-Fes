@@ -142,5 +142,10 @@ the Rive web runtime (`@rive-app/canvas` 2.43.1, MIT) and Font Awesome Free
 
 Both Rive wasm builds are served from `web/js/` rather than the CDN the runtime
 reaches for by default, so the site has no third-party runtime dependency. The
-runtime, the wasm and the .riv come to roughly 3.8 MB between them, which is
+runtime, the wasm and the .riv come to roughly 4.5 MB between them, which is
 why none of it is fetched until the contact section scrolls into view.
+
+The frame around the canvas takes its shape from the artboard rather than the
+other way round: the runtime reports the artboard's bounds on load and the
+screen's `aspect-ratio` is set from them, so nothing is cropped or letterboxed
+and a different .riv reshapes the phone by itself.
