@@ -99,6 +99,13 @@ class Portfolio extends StatefulComponent {
     // One page of tiles at a time, stepped through with the arrows. On a
     // phone they sit under the grid; from the desktop breakpoint up they move
     // out into the column's own padding, one on each side of the grid.
+    // Dimmer and smaller than the name it follows, so the row still reads as
+    // a set of filters rather than a table of figures.
+    css('#portfolio .portfolio_category .count').styles(
+      color: const Color('#8d8d8d'),
+      fontWeight: .w300,
+      raw: {'font-size': '.75em'},
+    ),
     css('#portfolio .portfolio_nav').styles(
       display: .flex,
       margin: .only(top: 20.px),
@@ -137,6 +144,13 @@ class Portfolio extends StatefulComponent {
       // .content is positioned now, so without this it paints over the filter
       // row above it and swallows the clicks.
       css('#portfolio .portfolio_selector').styles(zIndex: const ZIndex(2)),
+      // Dimmer and smaller than the name it follows, so the row still reads as
+      // a set of filters rather than a table of figures.
+      css('#portfolio .portfolio_category .count').styles(
+        color: const Color('#8d8d8d'),
+        fontWeight: .w300,
+        raw: {'font-size': '.75em'},
+      ),
       css('#portfolio .portfolio_nav').styles(margin: .only(top: 14.px)),
       // Out in the 5% padding the column already carries, so the arrows never
       // sit on top of a tile.
@@ -211,6 +225,10 @@ class _PortfolioState extends State<Portfolio> {
   ];
 
   int get _pageCount => (_visibleItems.length / _pageSize).ceil().clamp(1, 1 << 30);
+
+  /// How many tiles a filter holds, for the number beside its name. All is
+  /// left without one: it is the total, which the others already add up to.
+  int _countFor(String category) => portfolioItems.where((item) => item.category == category).length;
 
   /// How many tiles the grid is laid out for.
   ///
@@ -300,7 +318,12 @@ class _PortfolioState extends State<Portfolio> {
                   [
                     span(
                       classes: _category == category ? 'active' : null,
-                      [.text(category)],
+                      [
+                        .text(category),
+                        span(classes: 'count', [
+                          .text(' (${_countFor(category)})'),
+                        ]),
+                      ],
                     ),
                   ],
                 ),
