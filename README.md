@@ -46,7 +46,9 @@ lib/
   interop/            browser helpers, EmailJS, bridge to the vendored JS libs
 web/
   styles/             site.css (compiled from the original SCSS) + vendored CSS
-  js/                 particles.js, vanilla-tilt, and the interop shim
+  js/                 particles.js, vanilla-tilt, the Rive runtime, and
+                      the interop shim
+  rive/               the .riv the contact section plays
   img/ heroIcons/ projectImg/   images, moved over unchanged
 tool/                 generators for the icon and legal-page Dart sources
 scripts/              Vercel install and build steps
@@ -133,6 +135,12 @@ jobs:
 
 ## Third-party assets
 
-Bootstrap (MIT), animate.css (MIT), particles.js (MIT), vanilla-tilt (MIT) and
-Font Awesome Free (CC BY 4.0 for the icons, MIT for the styles) are vendored
-under `web/` and `lib/components/icons_data.dart` with their original notices.
+Bootstrap (MIT), animate.css (MIT), particles.js (MIT), vanilla-tilt (MIT),
+the Rive web runtime (`@rive-app/canvas` 2.43.1, MIT) and Font Awesome Free
+(CC BY 4.0 for the icons, MIT for the styles) are vendored under `web/` and
+`lib/components/icons_data.dart` with their original notices.
+
+Both Rive wasm builds are served from `web/js/` rather than the CDN the runtime
+reaches for by default, so the site has no third-party runtime dependency. The
+runtime, the wasm and the .riv come to roughly 3.8 MB between them, which is
+why none of it is fetched until the contact section scrolls into view.

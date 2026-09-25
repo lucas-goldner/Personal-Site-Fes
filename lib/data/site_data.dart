@@ -558,12 +558,23 @@ const portfolioItems = <PortfolioItem>[
   ),
 ];
 
-/// The Google Maps embed shown next to the contact form.
-const mapEmbedUrl =
-    'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2619.671296609889'
-    '!2d9.254451415905514!3d48.95974450151858!2m3!1f0!2f0!3f0!3m2!1i1024!2i768'
-    '!4f13.1!3m3!1m2!1s0x4799cd709411aa19%3A0x943b069597674234!2sHeerstra%C3%9Fe'
-    '%2013%2C%2071711%20Murr!5e0!3m2!1sde!2sde!4v1615071789410!5m2!1sde!2sde';
+/// The Rive file playing on the phone beside the contact form.
+///
+/// It replaces a Google Maps embed that pinned a private address, and one in
+/// the wrong country at that.
+const riveScene = 'rive/flappy_flap_flap.riv';
+
+/// The artboard and state machine to run.
+///
+/// The file's default artboard is only the scene: the bird sits on the floor
+/// and nothing responds to a tap. This one nests that scene together with the
+/// score and the hitbox, and is the one that actually plays.
+const riveArtboard = 'contrOL ya heard';
+const riveStateMachine = 'flappy flap flap';
+
+/// Says what the frame holds, for the caption under it and for anyone on a
+/// screen reader who would otherwise meet a bare canvas.
+const riveSceneLabel = 'Flappy Bird, built in Rive \u2014 tap to play';
 
 /// The strings the hero's typewriter cycles through.
 const typewriterStrings = [

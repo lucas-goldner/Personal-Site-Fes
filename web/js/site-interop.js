@@ -11,6 +11,29 @@
   var resizeHandlers = {};
   var nextHandlerId = 1;
 
+  /*
+   * The Rive runtime and the file it plays come to about three and a half
+   * megabytes, which nobody should pay for before they have scrolled to the
+   * section that uses them. The script tag is injected on first use and the
+   * instance is built once it has run.
+   */
+  var riveScript = null;
+
+  function loadRiveScript(callback) {
+    if (window.rive) {
+      callback();
+      return;
+    }
+    if (riveScript) {
+      riveScript.addEventListener('load', callback);
+      return;
+    }
+    riveScript = document.createElement('script');
+    riveScript.src = 'js/rive.js';
+    riveScript.addEventListener('load', callback);
+    document.head.appendChild(riveScript);
+  }
+
   window.siteInterop = {
     /*
      * Registers a resize listener and returns a token to remove it with, so
@@ -29,6 +52,59 @@
       if (handler) {
         window.removeEventListener('resize', handler);
         delete resizeHandlers[id];
+      }
+    },
+
+    /*
+     * Plays a .riv file on a canvas, fetching the runtime the first time it is
+     * asked for. Returns nothing; the instance is parked on the canvas so
+     * stopRive can find it again.
+     */
+    startRive: function (canvas, src, artboard, stateMachine) {
+      if (!canvas || canvas.riveInstance) {
+        return;
+      }
+      loadRiveScript(function () {
+        if (!window.rive || canvas.riveInstance) {
+          return;
+        }
+        // Both wasm builds are served from this site, so nothing here reaches
+        // for the CDN the runtime would otherwise default to.
+        window.rive.RuntimeLoader.setWasmUrl('js/rive.wasm');
+        window.rive.RuntimeLoader.setWasmFallbackUrl('js/rive_fallback.wasm');
+
+        var instance = new window.rive.Rive({
+          src: src,
+          canvas: canvas,
+          artboard: artboard,
+          autoplay: true,
+          stateMachines: stateMachine,
+          layout: new window.rive.Layout({
+            fit: window.rive.Fit.Cover,
+            alignment: window.rive.Alignment.Center
+          }),
+          onLoad: function () {
+            // The canvas is sized by CSS; this matches its backing store to
+            // the device pixels it actually occupies.
+            instance.resizeDrawingSurfaceToCanvas();
+          }
+        });
+        canvas.riveInstance = instance;
+      });
+    },
+
+    /** Matches the drawing surface to the canvas box again after a resize. */
+    resizeRive: function (canvas) {
+      if (canvas && canvas.riveInstance) {
+        canvas.riveInstance.resizeDrawingSurfaceToCanvas();
+      }
+    },
+
+    /** Tears the instance down when the section leaves the tree. */
+    stopRive: function (canvas) {
+      if (canvas && canvas.riveInstance) {
+        canvas.riveInstance.cleanup();
+        canvas.riveInstance = null;
       }
     },
 

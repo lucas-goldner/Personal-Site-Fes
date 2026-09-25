@@ -4,7 +4,7 @@ import 'package:jaspr/jaspr.dart';
 import '../components/animation_container.dart';
 import '../components/baffle_text.dart';
 import '../components/hover_button.dart';
-import '../data/site_data.dart';
+import '../components/rive_phone.dart';
 import '../interop/email.dart';
 import '../layout/metrics.dart';
 
@@ -102,7 +102,7 @@ class _ContactState extends State<Contact> {
             ]),
           ]),
           div(classes: 'form col-md-5', [_form(metrics)]),
-          div(classes: 'map col-md-5', [_map(metrics)]),
+          div(classes: 'phone col-md-5', [_scene(metrics)]),
         ]),
       ],
     );
@@ -187,24 +187,14 @@ class _ContactState extends State<Contact> {
     );
   }
 
-  Component _map(SiteMetrics metrics) {
+  Component _scene(SiteMetrics metrics) {
     if (!_visible(metrics)) return const Component.empty();
 
     return AnimationContainer(
-      delay: 1000,
+      delay: 300,
       animation: 'fadeIn fast',
       height: metrics.cssHeight,
-      children: [
-        iframe(
-          src: mapEmbedUrl,
-          attributes: const {
-            'title': 'map',
-            'width': '100%',
-            'height': '100%',
-          },
-          const [],
-        ),
-      ],
+      children: const [RivePhone()],
     );
   }
 }

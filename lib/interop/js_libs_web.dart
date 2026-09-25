@@ -2,6 +2,15 @@ import 'dart:js_interop';
 
 import 'package:universal_web/web.dart' as web;
 
+@JS('siteInterop.startRive')
+external void startRive(web.Element canvas, String src, String artboard, String stateMachine);
+
+@JS('siteInterop.resizeRive')
+external void resizeRive(web.Element canvas);
+
+@JS('siteInterop.stopRive')
+external void stopRive(web.Element canvas);
+
 @JS('siteInterop.particlesReady')
 external bool particlesReady();
 
