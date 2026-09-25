@@ -579,9 +579,12 @@ const riveStateMachine = 'flappy flap flap';
 /// in the editor does not leave the restart button unreachable.
 const riveDeathSignals = <String>['hitBOxx 0', 'death sound'];
 
-/// Says what the frame holds, for the caption under it and for anyone on a
-/// screen reader who would otherwise meet a bare canvas.
-const riveSceneLabel = 'Flappy Bird, built in Rive \u2014 tap to play';
+/// What a screen reader gets in place of a bare canvas. It describes the
+/// thing itself, which the line underneath the phone no longer does.
+const riveSceneLabel = 'Flappy Bird game, built in Rive \u2014 tap to play';
+
+/// The line under the phone. The game is the argument; this is the ask.
+const riveSceneCaption = 'Fun is a feature. Get in touch and I\'ll build one into your product.';
 
 /// The strings the hero's typewriter cycles through.
 const typewriterStrings = [

@@ -246,7 +246,7 @@ class _RivePhoneState extends State<RivePhone> with ViewportAware {
           ]),
         ]),
       ]),
-      p(classes: 'phone_caption', [.text(riveSceneLabel)]),
+      p(classes: 'phone_caption', [.text(riveSceneCaption)]),
     ]);
   }
 }
