@@ -1,13 +1,16 @@
+import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
+import 'package:universal_web/web.dart' as web;
 
 import '../components/animation_container.dart';
 import '../components/baffle_text.dart';
 import '../components/icon.dart';
 import '../components/tilt_box.dart';
 import '../data/site_data.dart';
+import '../interop/js_libs.dart' as js;
 import '../layout/metrics.dart';
 
 /// The filterable project grid.
@@ -99,6 +102,48 @@ class Portfolio extends StatefulComponent {
     // One page of tiles at a time, stepped through with the arrows. On a
     // phone they sit under the grid; from the desktop breakpoint up they move
     // out into the column's own padding, one on each side of the grid.
+    // The ported rule ruled each name itself, growing the line out from the
+    // middle of whichever was active. There is one rule for the row now, so
+    // it travels between names instead.
+    css('#portfolio .portfolio_category span:after').styles(
+      raw: {'content': 'none'},
+    ),
+    // The ported rule puts a 40px gap after `.portfolio_category span`, which
+    // reaches the count nested inside the label as well as the label itself.
+    // Both of those margins widened the label's box past its own text and took
+    // the rule with them, so both are cleared and the gap moves to the button.
+    css('#portfolio .portfolio_label').styles(
+      display: .inlineBlock,
+      padding: .only(bottom: 0.px),
+      lineHeight: 20.px,
+      raw: {
+        'margin-right': '0',
+        // A name and its count belong on one line; the row wraps between
+        // filters instead, which it has to do on a narrow screen.
+        'white-space': 'nowrap',
+        'transition': 'color .3s ease',
+      },
+    ),
+    css('#portfolio .portfolio_selector').styles(flexWrap: .wrap),
+    css('#portfolio .portfolio_category .count').styles(
+      margin: .only(right: 0.px),
+    ),
+    // The line marks the active filter, so hovering says so in colour.
+    css('#portfolio .portfolio_category:hover .portfolio_label').styles(
+      color: _accent,
+    ),
+    css('#portfolio .portfolio_underline').styles(
+      position: .absolute(left: 0.px, top: 0.px),
+      height: 2.px,
+      backgroundColor: _accent,
+      raw: {
+        'transform-origin': 'left',
+        'transition':
+            'transform .35s cubic-bezier(.4, 0, .2, 1),'
+            ' width .35s cubic-bezier(.4, 0, .2, 1), opacity .2s ease',
+        'pointer-events': 'none',
+      },
+    ),
     // Dimmer and smaller than the name it follows, so the row still reads as
     // a set of filters rather than a table of figures.
     css('#portfolio .portfolio_category .count').styles(
@@ -140,6 +185,12 @@ class Portfolio extends StatefulComponent {
       raw: {'letter-spacing': '1px', 'font-variant-numeric': 'tabular-nums'},
     ),
     css.media(const MediaQuery.raw('(min-width: 992px)'), [
+      css('#portfolio .portfolio_category').styles(
+        margin: .only(right: 40.px),
+      ),
+      css('#portfolio .portfolio_category:last-of-type').styles(
+        margin: .only(right: 0.px),
+      ),
       css('#portfolio .content').styles(position: .relative()),
       // .content is positioned now, so without this it paints over the filter
       // row above it and swallows the clicks.
@@ -213,6 +264,67 @@ class _PortfolioState extends State<Portfolio> {
   /// Which page of the current filter is on screen.
   int _page = 0;
 
+  /// Where the shared underline sits, measured from the filter row's left
+  /// edge, and how wide it is. Both are zero until the first measurement,
+  /// which is also what keeps it hidden until there is something to show.
+  final _selectorKey = GlobalNodeKey<web.HTMLElement>();
+  double _underlineLeft = 0;
+  double _underlineTop = 0;
+  double _underlineWidth = 0;
+  int? _resizeToken;
+
+  @override
+  void initState() {
+    super.initState();
+    if (!kIsWeb) return;
+    // The row is laid out by the time this runs a turn later, and the labels
+    // move with the viewport, so the measurement is redone on a resize.
+    Timer.run(_measureUnderline);
+    _resizeToken = js.addResizeListener(_measureUnderline);
+  }
+
+  @override
+  void dispose() {
+    final token = _resizeToken;
+    if (kIsWeb && token != null) js.removeResizeListener(token);
+    super.dispose();
+  }
+
+  /// Puts the underline under the active filter's own text.
+  ///
+  /// Measured rather than styled: the labels are different widths, and a rule
+  /// sized with a percentage would take in the gap the ported stylesheet puts
+  /// after each one.
+  void _measureUnderline() {
+    if (!kIsWeb) return;
+    final row = _selectorKey.currentNode;
+    if (row == null) return;
+
+    final index = _category == null ? 0 : _categories.indexOf(_category!) + 1;
+    final labels = row.querySelectorAll('.portfolio_label');
+    if (index < 0 || index >= labels.length) return;
+    final label = labels.item(index);
+    if (label == null) return;
+
+    final rowBox = row.getBoundingClientRect();
+    final box = (label as web.Element).getBoundingClientRect();
+    final left = box.left - rowBox.left;
+    // Measured against the label rather than pinned to the bottom of the row,
+    // so the rule still sits under its own name when the row wraps onto a
+    // second line on a narrow screen.
+    final top = box.bottom - rowBox.top + 3;
+    final width = box.width;
+    if (left == _underlineLeft && top == _underlineTop && width == _underlineWidth) {
+      return;
+    }
+    if (!mounted) return;
+    setState(() {
+      _underlineLeft = left;
+      _underlineTop = top;
+      _underlineWidth = width;
+    });
+  }
+
   /// Set once the rotated "Portfolio" heading has finished resolving.
   bool _show = false;
 
@@ -240,10 +352,14 @@ class _PortfolioState extends State<Portfolio> {
   /// The tiles on screen: one page of the current filter.
   List<PortfolioItem> get _pageItems => _visibleItems.skip(_page * _pageSize).take(_pageSize).toList();
 
-  void _select(String? category) => setState(() {
-    _category = category;
-    _page = 0;
-  });
+  void _select(String? category) {
+    setState(() {
+      _category = category;
+      _page = 0;
+    });
+    // After the rebuild, so the label being measured is the active one.
+    if (kIsWeb) Timer.run(_measureUnderline);
+  }
 
   /// Steps the page, wrapping at either end so the arrows never dead-end.
   void _step(int by) => setState(() {
@@ -300,13 +416,13 @@ class _PortfolioState extends State<Portfolio> {
             ]),
           ]),
           div(classes: 'recent-works col-md-10', [
-            div(classes: 'portfolio_selector', [
+            div(key: _selectorKey, classes: 'portfolio_selector', [
               button(
                 classes: 'portfolio_category',
                 onClick: () => _select(null),
                 [
                   span(
-                    classes: _category == null ? 'active' : null,
+                    classes: 'portfolio_label${_category == null ? ' active' : ''}',
                     [.text('All')],
                   ),
                 ],
@@ -317,7 +433,7 @@ class _PortfolioState extends State<Portfolio> {
                   onClick: () => _select(category),
                   [
                     span(
-                      classes: _category == category ? 'active' : null,
+                      classes: 'portfolio_label${_category == category ? ' active' : ''}',
                       [
                         .text(category),
                         span(classes: 'count', [
@@ -327,6 +443,22 @@ class _PortfolioState extends State<Portfolio> {
                     ),
                   ],
                 ),
+              // One rule for the whole row rather than one per filter, so it
+              // travels to whichever name was pressed instead of each name
+              // growing its own.
+              div(
+                classes: 'portfolio_underline',
+                styles: Styles(
+                  raw: {
+                    'width': '${_underlineWidth.toStringAsFixed(1)}px',
+                    'transform':
+                        'translate(${_underlineLeft.toStringAsFixed(1)}px,'
+                        ' ${_underlineTop.toStringAsFixed(1)}px)',
+                    'opacity': _underlineWidth > 0 ? '1' : '0',
+                  },
+                ),
+                const [],
+              ),
             ]),
             div(classes: 'content', [
               div(
