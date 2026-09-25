@@ -572,6 +572,13 @@ const riveScene = 'rive/flappy_flap_flap.riv';
 const riveArtboard = 'contrOL ya heard';
 const riveStateMachine = 'flappy flap flap';
 
+/// What the file says when the bird dies.
+///
+/// It reports nothing directly: it enters a state and fires a sound event.
+/// Either name arriving is taken as the end of a run, so renaming one of them
+/// in the editor does not leave the restart button unreachable.
+const riveDeathSignals = <String>['hitBOxx 0', 'death sound'];
+
 /// Says what the frame holds, for the caption under it and for anyone on a
 /// screen reader who would otherwise meet a bare canvas.
 const riveSceneLabel = 'Flappy Bird, built in Rive \u2014 tap to play';

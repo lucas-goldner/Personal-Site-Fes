@@ -85,6 +85,50 @@ class RivePhone extends StatefulComponent {
           'border-radius': '12px',
         },
       ),
+      // The end of a run, laid over the screen rather than under it, so the
+      // game stays visible behind the offer to go again.
+      css('.phone_over').styles(
+        display: .flex,
+        position: .absolute(left: 0.px, top: 0.px),
+        zIndex: const ZIndex(3),
+        width: 100.percent,
+        height: 100.percent,
+        flexDirection: .column,
+        alignItems: .center,
+        justifyContent: .center,
+        gap: Gap(column: 0.px, row: 14.px),
+        raw: {'background': 'rgba(0, 0, 0, .55)'},
+      ),
+      css('.phone_over .over_title').styles(
+        color: Colors.white,
+        fontSize: 18.px,
+        fontWeight: .w600,
+        raw: {'letter-spacing': '1px', 'text-shadow': '0 2px 6px rgba(0,0,0,.6)'},
+      ),
+      css('.phone_over .over_button', [
+        css('&').styles(
+          padding: .symmetric(vertical: 10.px, horizontal: 22.px),
+          color: const Color('#000'),
+          fontSize: 12.px,
+          fontWeight: .w600,
+          textTransform: .upperCase,
+          raw: {
+            'background-color': '#ffb035',
+            'border': 'none',
+            'border-radius': '999px',
+            'letter-spacing': '1.5px',
+            'cursor': 'pointer',
+            'font-family': 'Poppins',
+            'transition': 'transform .2s ease, background-color .2s ease',
+          },
+        ),
+        css('&:hover').styles(
+          raw: {'background-color': '#ffc166', 'transform': 'translateY(-1px)'},
+        ),
+        css('&:focus-visible').styles(
+          raw: {'outline': '2px solid #fff', 'outline-offset': '3px'},
+        ),
+      ]),
       css('canvas').styles(
         display: .block,
         width: 100.percent,
@@ -125,6 +169,9 @@ class _RivePhoneState extends State<RivePhone> with ViewportAware {
   final _canvas = GlobalNodeKey<web.HTMLCanvasElement>();
   int? _resizeToken;
 
+  /// True between the bird dying and the restart button being pressed.
+  bool _over = false;
+
   @override
   void initState() {
     super.initState();
@@ -135,13 +182,29 @@ class _RivePhoneState extends State<RivePhone> with ViewportAware {
       whenReady(() => _canvas.currentNode != null, () {
         final canvas = _canvas.currentNode;
         if (canvas == null) return;
-        js.startRive(canvas, riveScene, riveArtboard, riveStateMachine);
+        js.startRive(
+          canvas,
+          riveScene,
+          riveArtboard,
+          riveStateMachine,
+          riveDeathSignals,
+          () {
+            if (mounted) setState(() => _over = true);
+          },
+        );
         _resizeToken = js.addResizeListener(() {
           final node = _canvas.currentNode;
           if (node != null) js.resizeRive(node);
         });
       });
     });
+  }
+
+  /// Puts the file back to its first frame and takes the button away again.
+  void _restart() {
+    final canvas = _canvas.currentNode;
+    if (canvas != null) js.restartRive(canvas);
+    setState(() => _over = false);
   }
 
   @override
@@ -170,6 +233,16 @@ class _RivePhoneState extends State<RivePhone> with ViewportAware {
               },
               children: const [],
             ),
+            if (_over)
+              div(classes: 'phone_over', [
+                span(classes: 'over_title', [.text('Game over')]),
+                button(
+                  classes: 'over_button',
+                  attributes: const {'type': 'button'},
+                  onClick: _restart,
+                  [.text('Play again')],
+                ),
+              ]),
           ]),
         ]),
       ]),

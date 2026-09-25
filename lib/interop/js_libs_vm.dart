@@ -4,7 +4,16 @@ import 'package:universal_web/web.dart' as web;
 // Nothing here ever runs during static generation, it only keeps the shared
 // widget code compiling for the VM target.
 
-void startRive(web.Element canvas, String src, String artboard, String stateMachine) {}
+void startRive(
+  web.Element canvas,
+  String src,
+  String artboard,
+  String stateMachine,
+  List<String> deathSignals,
+  void Function() onDeath,
+) {}
+
+void restartRive(web.Element canvas) {}
 
 void resizeRive(web.Element canvas) {}
 

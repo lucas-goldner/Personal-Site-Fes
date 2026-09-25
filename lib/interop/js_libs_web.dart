@@ -2,8 +2,37 @@ import 'dart:js_interop';
 
 import 'package:universal_web/web.dart' as web;
 
+/// Plays [src] on [canvas], calling [onDeath] the first time the run ends.
+void startRive(
+  web.Element canvas,
+  String src,
+  String artboard,
+  String stateMachine,
+  List<String> deathSignals,
+  void Function() onDeath,
+) {
+  _startRive(
+    canvas,
+    src,
+    artboard,
+    stateMachine,
+    deathSignals.map((name) => name.toJS).toList().toJS,
+    onDeath.toJS,
+  );
+}
+
 @JS('siteInterop.startRive')
-external void startRive(web.Element canvas, String src, String artboard, String stateMachine);
+external void _startRive(
+  web.Element canvas,
+  String src,
+  String artboard,
+  String stateMachine,
+  JSArray<JSString> deathSignals,
+  JSFunction onDeath,
+);
+
+@JS('siteInterop.restartRive')
+external void restartRive(web.Element canvas);
 
 @JS('siteInterop.resizeRive')
 external void resizeRive(web.Element canvas);

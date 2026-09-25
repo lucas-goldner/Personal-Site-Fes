@@ -60,21 +60,50 @@
      * asked for. Returns nothing; the instance is parked on the canvas so
      * stopRive can find it again.
      */
-    startRive: function (canvas, src, artboard, stateMachine) {
+    startRive: function (canvas, src, artboard, stateMachine, deathNames, onDeath) {
       if (!canvas || canvas.riveInstance) {
         return;
       }
-      loadRiveScript(function () {
-        if (!window.rive || canvas.riveInstance) {
+      // Marks the canvas as taken before either fetch resolves, so a second
+      // call cannot build a second instance on it.
+      canvas.riveInstance = 'pending';
+      Promise.all([
+        new Promise(loadRiveScript),
+        fetch(src).then(function (res) { return res.arrayBuffer(); })
+      ]).then(function (both) {
+        if (!window.rive) {
+          canvas.riveInstance = null;
           return;
         }
+        // Kept for restartRive, which has to rebuild the same thing.
+        canvas.riveSetup = {
+          buffer: both[1],
+          artboard: artboard,
+          stateMachine: stateMachine
+        };
+
+        // The file says nothing directly when the bird dies; it enters a state
+        // and fires a sound event. Either one standing in for "dead" is enough,
+        // and taking both means renaming one in the editor does not go silent.
+        var dead = false;
+        function died(name) {
+          if (dead || deathNames.indexOf(name) < 0) {
+            return;
+          }
+          dead = true;
+          onDeath();
+        }
+        canvas.riveClearDeath = function () { dead = false; };
         // Both wasm builds are served from this site, so nothing here reaches
         // for the CDN the runtime would otherwise default to.
         window.rive.RuntimeLoader.setWasmUrl('js/rive.wasm');
         window.rive.RuntimeLoader.setWasmFallbackUrl('js/rive_fallback.wasm');
 
         var instance = new window.rive.Rive({
-          src: src,
+          // The bytes rather than the url: restarting reloads the file, and
+          // going back to the network for a megabyte and a half every time
+          // somebody presses play again would be a waste of their data.
+          buffer: canvas.riveSetup.buffer,
           canvas: canvas,
           artboard: artboard,
           autoplay: true,
@@ -89,20 +118,50 @@
             instance.resizeDrawingSurfaceToCanvas();
           }
         });
+        instance.on(window.rive.EventType.StateChange, function (e) {
+          (e.data || []).forEach(died);
+        });
+        instance.on(window.rive.EventType.RiveEvent, function (e) {
+          died(e.data && e.data.name);
+        });
         canvas.riveInstance = instance;
       });
     },
 
+    /*
+     * Puts the file back to its first frame and starts it playing again.
+     *
+     * load() rather than reset(): reset tears the pointer handling down with
+     * everything else and does not put it back, so the restarted game ignored
+     * every tap and sat in its loading state. load re-runs the setup and keeps
+     * the subscriptions, and the file is already in the browser's cache by the
+     * time anyone can have died.
+     */
+    restartRive: function (canvas) {
+      if (!canvas || !canvas.riveInstance || canvas.riveInstance === 'pending') {
+        return;
+      }
+      canvas.riveInstance.load({
+        buffer: canvas.riveSetup.buffer,
+        artboard: canvas.riveSetup.artboard,
+        stateMachines: canvas.riveSetup.stateMachine,
+        autoplay: true
+      });
+      if (canvas.riveClearDeath) {
+        canvas.riveClearDeath();
+      }
+    },
+
     /** Matches the drawing surface to the canvas box again after a resize. */
     resizeRive: function (canvas) {
-      if (canvas && canvas.riveInstance) {
+      if (canvas && canvas.riveInstance && canvas.riveInstance !== 'pending') {
         canvas.riveInstance.resizeDrawingSurfaceToCanvas();
       }
     },
 
     /** Tears the instance down when the section leaves the tree. */
     stopRive: function (canvas) {
-      if (canvas && canvas.riveInstance) {
+      if (canvas && canvas.riveInstance && canvas.riveInstance !== 'pending') {
         canvas.riveInstance.cleanup();
         canvas.riveInstance = null;
       }
