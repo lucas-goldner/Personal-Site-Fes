@@ -82,9 +82,9 @@ class Services extends StatefulComponent {
       css('#services .service.featured h4').styles(margin: .only(bottom: 4.px)),
     ]),
     // The section is locked to the viewport height on desktop and clips what
-    // does not fit, and three rows of cards outgrow a laptop screen at the
-    // ported sizes. Step the whole block down there rather than cutting copy.
-    css.media(const MediaQuery.raw('(min-width: 992px) and (max-height: 900px)'), [
+    // does not fit, and three rows of cards still outgrow a laptop screen even
+    // with the copy cut back. Above that the block is left at full size.
+    css.media(const MediaQuery.raw('(min-width: 992px) and (max-height: 880px)'), [
       // The ported padding is a percentage of the width, so it is at its
       // most generous exactly where the height is scarcest.
       css('#services .row.top .content').styles(
@@ -205,10 +205,14 @@ class _ServicesState extends State<Services> {
 
   /// Three columns on a desktop, two on a tablet, one on a phone; the featured
   /// card takes the full width at every size.
+  ///
+  /// The ported `border-side` class, which ruled a line down either side of
+  /// the middle column, is not used: the columns are far enough apart to read
+  /// as columns without it, and the rule above the closing card says more
+  /// when it is the only line in the section.
   String _cardClasses(Service service) => [
     'service',
     if (service.featured) 'featured col-xs-12' else 'col-sm-6 col-md-4',
-    if (service.borderSide) 'border-side',
   ].join(' ');
 
   Component _counters(SiteMetrics metrics) {

@@ -141,7 +141,6 @@ class Service {
     required this.text,
     required this.delay,
     required this.animation,
-    this.borderSide = false,
     this.featured = false,
   });
 
@@ -159,9 +158,6 @@ class Service {
   /// The animate.css classes applied once the delay has elapsed.
   final String animation;
 
-  /// Whether the card carries the vertical dividers of the middle column.
-  final bool borderSide;
-
   /// The closing card, laid out as a full-width band rather than a column so
   /// it reads as a way of working rather than another platform.
   final bool featured;
@@ -173,10 +169,8 @@ const services = <Service>[
     title: 'Mobile App Development',
     technologies: 'Flutter \u00b7 SwiftUI \u00b7 Jetpack Compose',
     text:
-        'I build mobile applications across Flutter and native platforms, '
-        'from polished UI and complex product features to platform-specific '
-        'integrations. Flutter is my primary stack, while I also work with '
-        'SwiftUI and Jetpack Compose when native development makes sense.',
+        'Flutter is my primary stack, with SwiftUI and Jetpack '
+        'Compose when native makes more sense.',
     delay: 200,
     animation: 'fadeInLeft fast',
   ),
@@ -185,23 +179,18 @@ const services = <Service>[
     title: 'Frontend Development',
     technologies: 'React \u00b7 Next.js \u00b7 TypeScript',
     text:
-        'I build modern web applications using React, Next.js, and '
-        'TypeScript, with a focus on maintainable components, responsive '
-        'interfaces, good user experience, and clean integration with backend '
-        'services.',
+        'Modern web apps with maintainable components, responsive '
+        'interfaces and clean backend integration.',
     delay: 400,
     animation: 'fadeInDown fast',
-    borderSide: true,
   ),
   Service(
     icon: faServer,
     title: 'Backend & Infrastructure',
     technologies: 'NestJS \u00b7 MongoDB \u00b7 PostgreSQL \u00b7 Azure \u00b7 GCP \u00b7 Terraform',
     text:
-        'I work across backend development and infrastructure, building APIs '
-        'and services with NestJS, working with MongoDB and PostgreSQL, and '
-        'deploying and managing cloud infrastructure using Azure, GCP, and '
-        'Terraform.',
+        'APIs and services, relational and document databases, and '
+        'the cloud infrastructure they run on.',
     delay: 600,
     animation: 'fadeInRight fast',
   ),
@@ -210,10 +199,8 @@ const services = <Service>[
     title: 'Mobile Architecture',
     technologies: 'Architecture \u00b7 State Management \u00b7 Technical Design',
     text:
-        'I work on scalable mobile architecture, state management, reusable '
-        'components, technical design, platform boundaries, and engineering '
-        'decisions that keep applications maintainable as products and teams '
-        'grow.',
+        'Technical design and state management that keep an app '
+        'maintainable as the product and the team grow.',
     delay: 800,
     animation: 'fadeInLeft fast',
   ),
@@ -222,23 +209,18 @@ const services = <Service>[
     title: 'Testing & Quality',
     technologies: 'Widget \u00b7 Golden \u00b7 E2E \u00b7 QA',
     text:
-        'I build quality into the development process through widget, golden, '
-        'and end-to-end testing. I also work on QA planning, QA sheet '
-        'creation, test-case definition, execution, bug tracking, regression '
-        'testing, and improving release confidence.',
+        'Widget, golden and end-to-end tests, plus the QA planning '
+        'and tracking that make releases predictable.',
     delay: 1000,
     animation: 'fadeInUp fast',
-    borderSide: true,
   ),
   Service(
     icon: faUsers,
     title: 'Team Growth & Mentoring',
     technologies: 'Code Reviews \u00b7 Mentoring \u00b7 Internal Education',
     text:
-        'I help engineers grow through code reviews, technical feedback, '
-        'mentoring, and knowledge sharing. I organize internal study '
-        'sessions, prepare learning materials, explain technical concepts, '
-        'and help engineers become more confident and independent.',
+        'Code reviews, mentoring and study sessions that help '
+        'engineers grow into confident, independent work.',
     delay: 1200,
     animation: 'fadeInRight fast',
   ),
@@ -247,11 +229,9 @@ const services = <Service>[
     title: 'AI-Assisted Engineering',
     technologies: 'Claude Code \u00b7 Agentic Development',
     text:
-        'AI-assisted development is part of my primary engineering workflow. '
-        'I use Claude Code for implementation, codebase exploration, '
-        'debugging, refactoring, testing, and accelerating larger development '
-        'tasks while keeping engineering decisions and code quality under '
-        'human control.',
+        'Claude Code across implementation, debugging and '
+        'refactoring, with the engineering decisions and the code '
+        'quality staying under human control.',
     delay: 1400,
     animation: 'fadeIn fast',
     featured: true,
