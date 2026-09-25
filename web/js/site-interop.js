@@ -80,24 +80,12 @@
           autoplay: true,
           stateMachines: stateMachine,
           layout: new window.rive.Layout({
-            // The screen is cut to the artboard's own proportions below, so
-            // there is nothing left for a fit mode to crop or letterbox.
-            fit: window.rive.Fit.Contain,
+            fit: window.rive.Fit.Cover,
             alignment: window.rive.Alignment.Center
           }),
           onLoad: function () {
-            // Hand the artboard's shape to the frame, so the phone wraps the
-            // drawing rather than the drawing being squeezed into the phone.
-            var b = instance.bounds;
-            var shell = canvas.closest('.rive_phone');
-            if (shell && b && b.maxX > b.minX && b.maxY > b.minY) {
-              shell.style.setProperty(
-                '--screen-ratio',
-                (b.maxX - b.minX) + ' / ' + (b.maxY - b.minY)
-              );
-            }
-            // After the ratio, so the backing store matches the box the canvas
-            // actually ends up with.
+            // The canvas is sized by CSS; this matches its backing store to
+            // the device pixels it actually occupies.
             instance.resizeDrawingSurfaceToCanvas();
           }
         });

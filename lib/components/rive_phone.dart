@@ -32,18 +32,15 @@ class RivePhone extends StatefulComponent {
       raw: {'box-sizing': 'border-box'},
     ),
     css('.rive_phone', [
-      // Height is what is scarce here, so the shell takes the room the column
-      // gives it and then shrinks to whatever width the screen inside asks
-      // for. The screen's shape comes from the artboard, so the phone ends up
-      // wrapped around the drawing rather than cropping it to a fixed
-      // silhouette.
+      // The height is what is scarce here, so the shell is sized from it and
+      // the aspect ratio settles the width. 9/19.5 is the iPhone proportion.
       css('&').styles(
-        display: .inlineFlex,
         position: .relative(),
         height: 100.percent,
         maxHeight: 620.px,
         padding: .all(9.px),
         raw: {
+          'aspect-ratio': '9 / 19.5',
           'max-width': '100%',
           'background': 'linear-gradient(160deg, #3a4350 0%, #2c343f 45%, #1b2028 100%)',
           'border-radius': '44px',
@@ -71,16 +68,10 @@ class RivePhone extends StatefulComponent {
       css('&').styles(
         position: .relative(),
         overflow: .hidden,
+        width: 100.percent,
         height: 100.percent,
         backgroundColor: const Color('#000'),
-        raw: {
-          // Replaced with the artboard's own ratio once the file has loaded;
-          // the fallback is the iPhone one, so the frame is phone-shaped for
-          // the moment before that happens.
-          'aspect-ratio': 'var(--screen-ratio, 9 / 19.5)',
-          'max-width': '100%',
-          'border-radius': '36px',
-        },
+        raw: {'border-radius': '36px'},
       ),
       // The island floats over the canvas the way it does over an app.
       css('.phone_island').styles(
