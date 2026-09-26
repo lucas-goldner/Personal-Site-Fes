@@ -306,15 +306,16 @@ class PortfolioItem {
 /// https://github.com/lucas-goldner/Talks-Articles-Events, which is the list
 /// of record for them.
 ///
-/// TODO(lucas): none of the apps has artwork in the repository, so they stand
-/// as panels; drop an icon into web/projectImg and set `image` to turn one
-/// into a picture tile.
+/// The app tiles carry the App Store artwork each app ships in its own
+/// repository, except ReadOn, whose icon is a layered Icon Composer document
+/// with no flat export; its wordmark stands in until one exists.
 const portfolioItems = <PortfolioItem>[
   PortfolioItem(
     id: 1,
     title: 'Pushup Bro',
     category: 'App',
     link: 'https://apps.apple.com/jp/app/pushup-bro/id1673181014',
+    image: 'projectImg/appPushupBro.jpg',
     meta: 'iOS \u00b7 Push-up tracking with AirPods',
   ),
   PortfolioItem(
@@ -322,6 +323,7 @@ const portfolioItems = <PortfolioItem>[
     title: 'Japanana',
     category: 'App',
     link: 'https://apps.apple.com/jp/app/japanana-japanese-grammar/id6476447175',
+    image: 'projectImg/appJapanana.jpg',
     meta: 'iOS \u00b7 Japanese grammar',
   ),
   PortfolioItem(
@@ -329,6 +331,7 @@ const portfolioItems = <PortfolioItem>[
     title: 'Giro',
     category: 'App',
     link: 'https://apps.apple.com/jp/app/giro-mark-past-walks/id6737528413',
+    image: 'projectImg/appGiro.jpg',
     meta: 'iOS \u00b7 Marking past walks',
   ),
   PortfolioItem(
@@ -336,6 +339,7 @@ const portfolioItems = <PortfolioItem>[
     title: 'ReadOn',
     category: 'App',
     link: 'https://apps.apple.com/jp/app/readon-read-in-any-language/id6757393728',
+    image: 'projectImg/appReadOn.png',
     meta: 'iOS \u00b7 Reading in any language',
   ),
   PortfolioItem(
@@ -343,6 +347,7 @@ const portfolioItems = <PortfolioItem>[
     title: 'Dream Lucid Now!',
     category: 'App',
     link: 'https://apps.apple.com/jp/app/dream-lucid-now-dreams-sleep/id6752128546',
+    image: 'projectImg/appDreamLucid.jpg',
     meta: 'iOS \u00b7 Dreams and sleep',
   ),
   PortfolioItem(
