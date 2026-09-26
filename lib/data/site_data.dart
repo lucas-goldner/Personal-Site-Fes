@@ -317,13 +317,17 @@ class PortfolioItem {
 /// The app tiles carry the App Store artwork for each app: four of them taken
 /// from the appiconset in their own repository, and ReadOn's exported from the
 /// Icon Composer document that has no flat version in source.
+///
+/// The four flat ones are cut to the shape of the ReadOn icon, using its own
+/// alpha channel as the stencil rather than a border-radius, so every tile
+/// carries the same squircle by construction.
 const portfolioItems = <PortfolioItem>[
   PortfolioItem(
     id: 1,
     title: 'Pushup Bro',
     category: 'App',
     link: 'https://apps.apple.com/jp/app/pushup-bro/id1673181014',
-    image: 'projectImg/appPushupBro.jpg',
+    image: 'projectImg/appPushupBro.webp',
     meta: 'iOS \u00b7 Push-up tracking with AirPods',
   ),
   PortfolioItem(
@@ -331,7 +335,7 @@ const portfolioItems = <PortfolioItem>[
     title: 'Japanana',
     category: 'App',
     link: 'https://apps.apple.com/jp/app/japanana-japanese-grammar/id6476447175',
-    image: 'projectImg/appJapanana.jpg',
+    image: 'projectImg/appJapanana.webp',
     meta: 'iOS \u00b7 Japanese grammar',
   ),
   PortfolioItem(
@@ -339,7 +343,7 @@ const portfolioItems = <PortfolioItem>[
     title: 'Giro',
     category: 'App',
     link: 'https://apps.apple.com/jp/app/giro-mark-past-walks/id6737528413',
-    image: 'projectImg/appGiro.jpg',
+    image: 'projectImg/appGiro.webp',
     meta: 'iOS \u00b7 Marking past walks',
   ),
   PortfolioItem(
@@ -355,7 +359,7 @@ const portfolioItems = <PortfolioItem>[
     title: 'Dream Lucid Now!',
     category: 'App',
     link: 'https://apps.apple.com/jp/app/dream-lucid-now-dreams-sleep/id6752128546',
-    image: 'projectImg/appDreamLucid.jpg',
+    image: 'projectImg/appDreamLucid.webp',
     meta: 'iOS \u00b7 Dreams and sleep',
   ),
   PortfolioItem(
