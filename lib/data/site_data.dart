@@ -256,12 +256,20 @@ class CounterData {
 /// Kept apart from [counters] so the numbers can be bumped in one place
 /// without touching the icons or the wording around them.
 abstract final class Stats {
+  /// Counted by hand: more apps have shipped than are listed in the grid,
+  /// which only carries the ones still worth linking to.
   static const appsShipped = 12;
-  static const articlesPublished = 30;
-  static const talksDelivered = 40;
+
+  /// Counted from the grid, so the figures cannot drift away from the tiles
+  /// sitting above them as the list of record grows.
+  static final articlesPublished = _tilesIn('Article');
+  static final talksDelivered = _tilesIn('Talk');
+
+  static int _tilesIn(String category) => portfolioItems.where((item) => item.category == category).length;
 }
 
-const counters = <CounterData>[
+/// Not const, because two of the three figures are counted at startup.
+final counters = <CounterData>[
   CounterData(faMobileAlt, Stats.appsShipped, 'Shipped', 'Apps', 2),
   CounterData(faPenNib, Stats.articlesPublished, 'Published', 'Articles', 3),
   CounterData(faMicrophoneAlt, Stats.talksDelivered, 'Delivered', 'Talks', 4),
