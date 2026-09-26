@@ -387,154 +387,409 @@ const portfolioItems = <PortfolioItem>[
   ),
   PortfolioItem(
     id: 20,
+    title: 'Building a City #2: The Storefronts',
+    category: 'Article',
+    link: 'https://tech.youtrust.co.jp/entry/app-architecture-2',
+    meta: 'YOUTRUST Tech Blog',
+  ),
+  PortfolioItem(
+    id: 21,
+    title:
+        'Before Technology, There Were People — A Talk at Open Seminar '
+        '2026 @ Okayama',
+    category: 'Article',
+    link: 'https://tech.youtrust.co.jp/entry/open-seminar-okayama',
+    meta: 'YOUTRUST Tech Blog',
+  ),
+  PortfolioItem(
+    id: 22,
+    title:
+        'My First Presentation at iOSDC Japan 2026: A Flutter Engineer\'s '
+        'Perspective on Cross-Platform Development',
+    category: 'Article',
+    link: 'https://tech.youtrust.co.jp/entry/iosdc-2026',
+    meta: 'YOUTRUST Tech Blog',
+  ),
+  PortfolioItem(
+    id: 23,
+    title: 'Building a City #1: The Master Plan',
+    category: 'Article',
+    link: 'https://tech.youtrust.co.jp/entry/app-architecture-1',
+    meta: 'YOUTRUST Tech Blog',
+  ),
+  PortfolioItem(
+    id: 24,
+    title:
+        'He cooked: Crafting a Sexy Drawer Using Only Standard Flutter '
+        'Features',
+    category: 'Article',
+    link: 'https://tech.youtrust.co.jp/entry/sexy-drawer',
+    meta: 'YOUTRUST Tech Blog',
+  ),
+  PortfolioItem(
+    id: 25,
+    title:
+        'Eliminating Manual Authentication Code Entry in iOS 26: Teaching '
+        'the Keyboard Summoning Magic',
+    category: 'Article',
+    link: 'https://tech.youtrust.co.jp/entry/ios-26-one-time-code-keyboard',
+    meta: 'YOUTRUST Tech Blog',
+  ),
+  PortfolioItem(
+    id: 26,
+    title:
+        'Graduating from custom_lint: Completely Porting 13 Unique '
+        'Flutter Lint Rules to Dart Analyzer Plugin',
+    category: 'Article',
+    link: 'https://tech.youtrust.co.jp/entry/analyzer-plugins',
+    meta: 'YOUTRUST Tech Blog',
+  ),
+  PortfolioItem(
+    id: 27,
+    title: 'Implementing 1-on-1 Voice Calls in YOUTRUST: An S-Rank Challenge',
+    category: 'Article',
+    link: 'https://tech.youtrust.co.jp/entry/flutter-phone-call',
+    meta: 'YOUTRUST Tech Blog',
+  ),
+  PortfolioItem(
+    id: 28,
+    title: 'Flutter Kaigi 2025 Participation Report',
+    category: 'Article',
+    link: 'https://tech.youtrust.co.jp/entry/2025/11/14/223527',
+    meta: 'YOUTRUST Tech Blog',
+  ),
+  PortfolioItem(
+    id: 29,
+    title: 'DevFest 2025 Greater Kwansai @Kobe Report',
+    category: 'Article',
+    link: 'https://tech.youtrust.co.jp/entry/devfest-2025-kwansai',
+    meta: 'YOUTRUST Tech Blog',
+  ),
+  PortfolioItem(
+    id: 30,
+    title: 'Fluttercon 2025 Day 3: Career Change Through Courage',
+    category: 'Article',
+    link: 'https://tech.youtrust.co.jp/entry/fluttercon-2025-3',
+    meta: 'YOUTRUST Tech Blog',
+  ),
+  PortfolioItem(
+    id: 31,
+    title: 'Fluttercon 2025 Day 2: Discovering New Worlds',
+    category: 'Article',
+    link: 'https://tech.youtrust.co.jp/entry/fluttercon-2025-2',
+    meta: 'YOUTRUST Tech Blog',
+  ),
+  PortfolioItem(
+    id: 32,
+    title: 'Flutterエンジニアの聖地へ：Fluttercon 2025 Day 1 の記録',
+    category: 'Article',
+    link: 'https://tech.youtrust.co.jp/entry/fluttercon-2025-1',
+    meta: 'YOUTRUST Tech Blog',
+  ),
+  PortfolioItem(
+    id: 33,
+    title:
+        'App Engineers Can Also Create Animations!! Creating '
+        'Next-Generation UI Experiences with Flutter x Rive',
+    category: 'Article',
+    link: 'https://tech.youtrust.co.jp/entry/rive-animation-flutter',
+    meta: 'YOUTRUST Tech Blog',
+  ),
+  PortfolioItem(
+    id: 34,
+    title:
+        'The Liquid Glass Debate That Shook the Flutter Community — and '
+        'How to Implement It',
+    category: 'Article',
+    link: 'https://tech.youtrust.co.jp/entry/liquid-glass-in-flutter',
+    meta: 'YOUTRUST Tech Blog',
+  ),
+  PortfolioItem(
+    id: 35,
     title: '拙者、FlutterNinjas2025にて修行して参った！',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/flutterninjas2025-day-one',
     meta: 'YOUTRUST Tech Blog',
   ),
   PortfolioItem(
-    id: 21,
+    id: 36,
     title: '美味しいチーズ牛丼を通じて、ListView.builderのfindChildIndexCallbackについて学びませんか？',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/flutter-findchildindexcallback',
     meta: 'YOUTRUST Tech Blog',
   ),
   PortfolioItem(
-    id: 22,
+    id: 37,
     title: 'AndroidでFlutterアプリでイメージ選択に気をつけろ',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/flutter-image-picking-android',
     meta: 'YOUTRUST Tech Blog',
   ),
   PortfolioItem(
-    id: 23,
+    id: 38,
     title: 'テキスト入力のUXを改善しました',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/app-text-ux-improvements',
     meta: 'YOUTRUST Tech Blog',
   ),
   PortfolioItem(
-    id: 24,
+    id: 39,
     title: 'FlutterKaigi 2024に参加してきました！',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/2024/11/27/184941',
     meta: 'YOUTRUST Tech Blog',
   ),
   PortfolioItem(
-    id: 25,
+    id: 40,
     title: 'Flutter Connection参加レポート',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/2024/08/07/184732',
     meta: 'YOUTRUST Tech Blog',
   ),
   PortfolioItem(
-    id: 26,
-    title: 'Flutter エレメントエンべディング・アプリを ウェブサイト内に入れられるの力！AngularやReactまでもできる！',
+    id: 41,
+    title: 'Flutter エレメントエンべディング・アプリを ウェブサイト内に入れられるの力！AngularやReactまでもできる！',
     category: 'Article',
     link: 'https://qiita.com/LucasGoldner/items/64b9e74f5b982465cf76',
-    meta: 'Qiita \u00b7 Zenn',
+    meta: 'Qiita · Zenn',
   ),
   PortfolioItem(
-    id: 27,
+    id: 42,
     title:
-        'Flutter Element Embedding \u2014 Unleashing the Power of Integrating Flutter Apps into Websites, including React-powered ones!',
+        'Flutter Element Embedding — Unleashing the Power of Integrating '
+        'Flutter Apps into Websites, including React-powered ones!',
     category: 'Article',
     link:
         'https://medium.com/@lucas.goldner/flutter-element-embedding-unleashing-the-power-of-integrating-flutter-apps-into-websites-e91c84c13f2d',
     meta: 'Medium',
   ),
   PortfolioItem(
-    id: 28,
+    id: 43,
     title: '僕の最初のテックトーク、どうやって乗り越えたか - Fluttercon2023',
     category: 'Article',
     link: 'https://qiita.com/LucasGoldner/items/7583c9bc1316286b9121',
     meta: 'Qiita',
   ),
   PortfolioItem(
-    id: 29,
-    title: 'How I Survived My First BIG Tech Presentation \u2014 Fluttercon 2023',
+    id: 44,
+    title: 'How I Survived My First BIG Tech Presentation — Fluttercon 2023',
     category: 'Article',
     link:
         'https://medium.com/@lucas.goldner/how-i-survived-my-first-big-tech-presentation-fluttercon-2023-f6c1c10f0263',
     meta: 'Medium',
   ),
   PortfolioItem(
-    id: 30,
+    id: 45,
     title: 'Flutterで簡単プレゼンをする - FlutterShow⚡',
     category: 'Article',
     link: 'https://qiita.com/LucasGoldner/items/225a793035820137fc18',
     meta: 'Qiita',
   ),
   PortfolioItem(
-    id: 31,
-    title: 'Presentations made easy in Flutter - FlutterShow⚡',
+    id: 46,
+    title: 'Presentations made easy in Flutter -FlutterShow⚡',
     category: 'Article',
     link: 'https://medium.com/@lucas.goldner/presentations-made-easy-in-flutter-fluttershow-79ab316253b5',
     meta: 'Medium',
   ),
   PortfolioItem(
-    id: 40,
+    id: 100,
+    title:
+        'Technology Didn’t Change My Life. People Did. — How Flutter '
+        'Opened Up My World',
+    category: 'Talk',
+    link: 'https://okayama.open-seminar.org/detail/?speaker=lucas',
+    meta: '岡山Open Seminar 2026',
+  ),
+  PortfolioItem(
+    id: 101,
+    title:
+        'Calls don\'t end when they connect - The back end of call '
+        'functionality with CallKit',
+    category: 'Talk',
+    link: 'https://fortee.jp/iosdc-japan-2026/proposal/db0b002a-ed2b-47e8-b798-3b8f8bcc4007',
+    meta: 'iOSDC Japan 2026',
+  ),
+  PortfolioItem(
+    id: 102,
+    title:
+        'Beyond the Keynote — Google I/O 2026: Hands-on with the Latest '
+        'Flutter Information',
+    category: 'Talk',
+    link: 'https://gdgkwansai.connpass.com/event/391029/',
+    meta: 'Google I/O Extended Kwansai 2026',
+  ),
+  PortfolioItem(
+    id: 103,
+    title:
+        'Beyond the Keynote: Experiencing the Latest Flutter Information '
+        'from Google I/O 2026',
+    category: 'Talk',
+    link: 'https://gdg-tokyo.connpass.com/event/394136/',
+    meta: 'Google I/O Extended Tokyo 2026',
+  ),
+  PortfolioItem(
+    id: 104,
+    title: 'JSからDartへ：React Native開発者のFlutter初体験',
+    category: 'Talk',
+    link: 'https://react-native-meetup.connpass.com/event/390014/',
+    meta: 'React Native Meetup',
+  ),
+  PortfolioItem(
+    id: 105,
+    title: 'Mobile App Development: A Community Learning Experience',
+    category: 'Talk',
+    link: 'https://wantedly.connpass.com/event/377759/',
+    meta: 'Mobile勉強会 #23',
+  ),
+  PortfolioItem(
+    id: 106,
+    title: 'もうバグは許さない — Flutter E2Eテスト最終対策',
+    category: 'Talk',
+    link: 'https://assign.connpass.com/event/378631/',
+    meta: 'もうバグは許さない — Flutter E2Eテスト最終対策',
+  ),
+  PortfolioItem(
+    id: 107,
+    title: '[Keynote] Flutter in 2026',
+    category: 'Talk',
+    link: 'https://okayama-dot-flutter.connpass.com/event/378340/',
+    meta: '岡山.Flutter #1',
+  ),
+  PortfolioItem(
+    id: 108,
+    title: 'My recent struggles with Flutter',
+    category: 'Talk',
+    link: 'https://flutter-jp.connpass.com/event/374220/',
+    meta: 'Flutter Tokyo',
+  ),
+  PortfolioItem(
+    id: 109,
+    title: 'Flutterで実現する「120％ネイティブ」なLiquid Glassエフェクト',
+    category: 'Talk',
+    link: 'https://gdg-tokyo.connpass.com/event/369416/',
+    meta: 'GDG Tokyo',
+  ),
+  PortfolioItem(
+    id: 110,
+    title: '[Keynote] The Flutter Effect',
+    category: 'Talk',
+    link: 'https://2025.flutterkaigi.jp/',
+    meta: 'FlutterKaigi 2025',
+  ),
+  PortfolioItem(
+    id: 111,
+    title: 'Flutterの“秘密の超能力”がヤバい！【誰も気づいていない】',
+    category: 'Talk',
+    link: 'https://www.youtube.com/watch?v=uzsZnsmbOmU&t=5948s',
+    meta: 'DevFest 2025 Greater Kwansai · Recording',
+  ),
+  PortfolioItem(
+    id: 112,
+    title: 'No More Anxiety: iOS Extensions in Flutter',
+    category: 'Talk',
+    link: 'https://www.youtube.com/watch?v=b8lfmkBB0vg',
+    meta: 'Fluttercon EU 2025 · Recording',
+  ),
+  PortfolioItem(
+    id: 113,
+    title: 'Flutter Sceneで3D表現に挑戦！試行錯誤から学んだこと',
+    category: 'Talk',
+    link: 'https://youtrust.jp/lp/knowledgenight-vol2-flutter-online',
+    meta: 'YOUTRUST Knowledge Night vol.2 Flutter',
+  ),
+  PortfolioItem(
+    id: 114,
+    title:
+        'Write integration tests as high-quality as Wagyu beef with '
+        'Patrol! (MVP 🏆)',
+    category: 'Talk',
+    link: 'https://fluttergakkai.connpass.com/event/359514/',
+    meta: 'FlutterGakkai',
+  ),
+  PortfolioItem(
+    id: 115,
+    title:
+        'Create a Multi-Million-Download App for Free! The Power of the '
+        'Smartphone-Compatible AI ‘Gemma’',
+    category: 'Talk',
+    link: 'https://www.youtube.com/watch?v=rIPHc6IhqAE&t=169s&ab_channel=GDGTokyo',
+    meta: 'Google I/O Extended Tokyo 2025 · Recording',
+  ),
+  PortfolioItem(
+    id: 116,
+    title:
+        'Recreating Liquid Glass in Flutter: Embracing the New UI Era of '
+        'iOS 26 + Panel talk',
+    category: 'Talk',
+    link: 'https://flutter-jp.connpass.com/event/359088/',
+    meta: 'Flutter Tokyo #9',
+  ),
+  PortfolioItem(
+    id: 117,
     title: 'ListView.builderの謎：効率的リスト構築の秘密を解明',
     category: 'Talk',
     link: 'https://enechange-meetup.connpass.com/event/347260/',
     meta: 'Flutter開発の舞台裏！3社のエンジニアがおくるLTナイト',
   ),
   PortfolioItem(
-    id: 41,
+    id: 118,
     title: 'Part of Team Flutter',
     category: 'Talk',
     link: 'https://dena.connpass.com/event/339747/',
     meta: '突撃！隣のモバイルプラットフォーム！',
   ),
   PortfolioItem(
-    id: 42,
+    id: 119,
     title: 'テキスト入力のUXを改善',
     category: 'Talk',
     link: 'https://yumemi.connpass.com/event/340473/',
     meta: 'YOUTRUST x ビビッドガーデン x ゆめみ Flutter LT会@渋谷 #7',
   ),
   PortfolioItem(
-    id: 43,
+    id: 120,
     title: '僕のstate restorationアカデミア',
     category: 'Talk',
     link: 'https://www.youtube.com/watch?v=ZEpcXKXSIyI',
-    meta: 'FlutterKaigi 2024 \u00b7 Recording',
+    meta: 'FlutterKaigi 2024 · Recording',
   ),
   PortfolioItem(
-    id: 44,
-    title: 'Don\u2019t Leave Your Assets in Their Pajamas\u2014Transform Them!',
+    id: 121,
+    title: 'Don’t Leave Your Assets in Their Pajamas—Transform Them!',
     category: 'Talk',
-    link: 'https://www.meetup.com/de-DE/fluttervienna/events/303135184/',
-    meta: '22nd Flutter Vienna Meetup',
+    link: 'https://www.meetup.com/de-DE/fluttervienna/events/303135184/?eventOrigin=group_events_list',
+    meta: '22nd Flutter Vienna Meetup at LEAN-CODERS',
   ),
   PortfolioItem(
-    id: 45,
-    title: 'Saving data before the app getting killed! Easy state restoration with Flutter',
+    id: 122,
+    title:
+        'Saving data before the app getting killed! Easy state '
+        'restoration with Flutter',
     category: 'Talk',
     link:
         'https://www.droidcon.com/2024/09/03/saving-data-before-the-app-getting-killed-easy-state-restoration-with-flutter/',
-    meta: 'Fluttercon 2024 \u00b7 Recording',
+    meta: 'Fluttercon 2024 · Recording',
   ),
   PortfolioItem(
-    id: 46,
+    id: 123,
     title: 'Flutter Web Laughs: Element Embedding Made Easy',
     category: 'Talk',
     link: 'https://www.youtube.com/watch?v=Hhq5PRD6c3I',
-    meta: 'Flutterconnection 2024 \u00b7 Recording',
+    meta: 'Flutterconnection 2024 · Recording',
   ),
   PortfolioItem(
-    id: 47,
+    id: 124,
     title: 'flutterでエレメントエンベディング',
     category: 'Talk',
     link: 'https://www.youtube.com/live/uuaxvgKrDtE?feature=shared&t=25508',
-    meta: 'GDG DevFest Tokyo 2023 \u00b7 Recording',
+    meta: 'GDG DevFest Tokyo 2023 · Recording',
   ),
   PortfolioItem(
-    id: 48,
+    id: 125,
     title: 'Comparing ways of accessing native functionality',
     category: 'Talk',
     link: 'https://droidcon.com/2023/08/07/comparing-ways-of-accessing-native-functionality/',
-    meta: 'Fluttercon 2023 \u00b7 Recording',
+    meta: 'Fluttercon 2023 · Recording',
   ),
 ];
 
