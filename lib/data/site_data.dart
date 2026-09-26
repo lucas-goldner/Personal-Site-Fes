@@ -314,9 +314,9 @@ class PortfolioItem {
 /// https://github.com/lucas-goldner/Talks-Articles-Events, which is the list
 /// of record for them.
 ///
-/// The app tiles carry the App Store artwork each app ships in its own
-/// repository, except ReadOn, whose icon is a layered Icon Composer document
-/// with no flat export; its wordmark stands in until one exists.
+/// The app tiles carry the App Store artwork for each app: four of them taken
+/// from the appiconset in their own repository, and ReadOn's exported from the
+/// Icon Composer document that has no flat version in source.
 const portfolioItems = <PortfolioItem>[
   PortfolioItem(
     id: 1,
@@ -347,7 +347,7 @@ const portfolioItems = <PortfolioItem>[
     title: 'ReadOn',
     category: 'App',
     link: 'https://apps.apple.com/jp/app/readon-read-in-any-language/id6757393728',
-    image: 'projectImg/appReadOn.png',
+    image: 'projectImg/appReadOn.webp',
     meta: 'iOS \u00b7 Reading in any language',
   ),
   PortfolioItem(
