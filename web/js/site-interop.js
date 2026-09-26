@@ -19,6 +19,23 @@
    */
   var riveScript = null;
 
+  /*
+   * Matches the canvas's backing store to the box CSS has given it.
+   *
+   * On a frame of its own rather than straight away: the runtime can call
+   * onLoad before the constructor has returned, so the instance is read back
+   * off the canvas instead of closed over, and by the next frame the layout
+   * the surface is being measured against has settled.
+   */
+  function fitRiveSurface(canvas) {
+    window.requestAnimationFrame(function () {
+      var instance = canvas.riveInstance;
+      if (instance && instance !== 'pending') {
+        instance.resizeDrawingSurfaceToCanvas();
+      }
+    });
+  }
+
   function loadRiveScript(callback) {
     if (window.rive) {
       callback();
@@ -113,9 +130,7 @@
             alignment: window.rive.Alignment.Center
           }),
           onLoad: function () {
-            // The canvas is sized by CSS; this matches its backing store to
-            // the device pixels it actually occupies.
-            instance.resizeDrawingSurfaceToCanvas();
+            fitRiveSurface(canvas);
           }
         });
         instance.on(window.rive.EventType.StateChange, function (e) {
@@ -147,6 +162,9 @@
         stateMachines: canvas.riveSetup.stateMachine,
         autoplay: true
       });
+      // load() rebuilds the surface at the default size, so it is measured
+      // against the canvas box again.
+      fitRiveSurface(canvas);
       if (canvas.riveClearDeath) {
         canvas.riveClearDeath();
       }

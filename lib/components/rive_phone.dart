@@ -25,6 +25,7 @@ class RivePhone extends StatefulComponent {
     // keeps it off the edges on the way down to a narrow screen.
     css('#contact .phone_stage').styles(
       display: .flex,
+      width: 100.percent,
       height: 100.percent,
       padding: .symmetric(vertical: 6.percent, horizontal: 5.percent),
       alignItems: .center,
@@ -32,16 +33,26 @@ class RivePhone extends StatefulComponent {
       raw: {'box-sizing': 'border-box'},
     ),
     css('.rive_phone', [
-      // The height is what is scarce here, so the shell is sized from it and
-      // the aspect ratio settles the width. 9/19.5 is the iPhone proportion.
+      // Height is what is scarce here, so one number decides it and the width
+      // is calculated from that number at the iPhone proportion of 9/19.5.
+      //
+      // Both are spelled out because the shell used to have only a height and
+      // an `aspect-ratio`, leaving the width to be carried across from the
+      // height into an automatic width on a flex item. Chrome does carry it;
+      // on iOS the shell arrived as a grey sliver the width of its own 18px of
+      // padding, which is exactly what is left when that transfer does not
+      // happen and the width falls back to content that is sized entirely in
+      // percentages. Two explicit lengths cannot be read two ways.
       css('&').styles(
+        display: .flex,
         position: .relative(),
-        height: 100.percent,
-        maxHeight: 620.px,
         padding: .all(9.px),
         raw: {
-          'aspect-ratio': '9 / 19.5',
+          '--phone-height': 'min(620px, 84vh)',
+          'width': 'calc(var(--phone-height) * 9 / 19.5)',
+          'height': 'var(--phone-height)',
           'max-width': '100%',
+          'flex': '0 0 auto',
           'background': 'linear-gradient(160deg, #3a4350 0%, #2c343f 45%, #1b2028 100%)',
           'border-radius': '44px',
           'box-shadow': '0 0 0 1px #11151b, 0 24px 60px rgba(0, 0, 0, .55)',
@@ -68,10 +79,8 @@ class RivePhone extends StatefulComponent {
       css('&').styles(
         position: .relative(),
         overflow: .hidden,
-        width: 100.percent,
-        height: 100.percent,
         backgroundColor: const Color('#000'),
-        raw: {'border-radius': '36px'},
+        raw: {'flex': '1 1 auto', 'min-width': '0', 'border-radius': '36px'},
       ),
       // The island floats over the canvas the way it does over an app.
       css('.phone_island').styles(
@@ -131,6 +140,7 @@ class RivePhone extends StatefulComponent {
       ]),
       css('canvas').styles(
         display: .block,
+        position: .absolute(left: 0.px, top: 0.px),
         width: 100.percent,
         height: 100.percent,
         raw: {'touch-action': 'none'},
@@ -160,7 +170,11 @@ class RivePhone extends StatefulComponent {
         height: .auto,
         padding: .symmetric(vertical: 30.px, horizontal: 5.percent),
       ),
-      css('.rive_phone').styles(height: 70.vh, maxHeight: 520.px),
+      // One number again, and the width follows it. The third term keeps the
+      // shell inside a narrow screen rather than leaning on a max-width.
+      css('.rive_phone').styles(
+        raw: {'--phone-height': 'min(520px, 70vh, calc(84vw * 19.5 / 9))'},
+      ),
     ]),
   ];
 }
