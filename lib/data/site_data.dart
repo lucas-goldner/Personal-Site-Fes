@@ -96,7 +96,18 @@ const heroIcons = <HeroIcon>[
 ];
 
 /// The photo of Lucas shown on the right half of the hero.
+///
+/// This is the largest thing on the page and the one the browser measures the
+/// load against, so it is offered in three widths rather than one. A phone
+/// asking for 900px was being sent 1800: 574KB where 186KB would do.
 const heroImage = 'person2x.webp';
+const heroImageWidth = 1800;
+const heroImageHeight = 2400;
+const heroImageSrcset =
+    'person2x-900.webp 900w, person2x-1200.webp 1200w, person2x.webp 1800w';
+
+/// Half the window once the columns sit side by side, all of it below that.
+const heroImageSizes = '(min-width: 992px) 50vw, 100vw';
 const heroImageAlt = L(
   'Lucas Goldner with inline skates posing in front of a graffiti wall',
   '\u30a4\u30f3\u30e9\u30a4\u30f3\u30b9\u30b1\u30fc\u30c8\u3092\u5c65\u3044\u3066'

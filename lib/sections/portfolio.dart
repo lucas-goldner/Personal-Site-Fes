@@ -611,6 +611,11 @@ class _PortfolioState extends State<Portfolio> {
       return img(
         src: image,
         alt: item.title,
+        // The grid reserves the cell with an aspect ratio, so nothing moves
+        // when these arrive late; on a phone all five sections are laid out at
+        // once, and without this the whole first page of tiles downloaded
+        // before anything above them had finished.
+        attributes: const {'loading': 'lazy', 'decoding': 'async'},
         styles: Styles(
           raw: {
             'max-height': maxHeight == null ? 'none' : '${maxHeight.toStringAsFixed(0)}px',

@@ -5,10 +5,12 @@
  *
  * The whole frame is a grey smudge at 16px, so this takes the square the face
  * fills and steps it down by halves: one straight resize to 16px loses the
- * features. The sizes are the ones a browser actually asks for — 16 and 32 for
- * the tab, 48 and 64 for hidpi and the bookmark bar, 128 for a pinned
- * shortcut. A 256 entry costs 154KB that a browser downloads whether it wants
- * that size or not.
+ * features.
+ *
+ * Three sizes, because a browser downloads the whole file to pick one and this
+ * one is fetched during the initial page load. 16 and 32 are the tab, 48 covers
+ * hidpi and the bookmark bar. Adding 64 and 128 took it from 10KB to 64KB for
+ * cases that upscale acceptably from 48.
  *
  * Each image is stored as PNG, which .ico has allowed since Vista and every
  * browser in use understands.
@@ -45,7 +47,7 @@ function photoDataUrl() {
 // rather than pixels: the file this reads has been resized once already and
 // fixed coordinates would quietly crop the wrong square.
 const CROP = { x: 0.11658, y: 0.23996, side: 0.58679 };
-const SIZES = [16, 32, 48, 64, 128];
+const SIZES = [16, 32, 48];
 
 (async () => {
   const browser = await chromium.launch(

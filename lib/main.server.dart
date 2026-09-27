@@ -29,24 +29,25 @@ void main() {
         // The query is a cache-buster, not a path. A browser holds on to a
         // favicon well past the page that named it, so replacing the file
         // without renaming what points at it leaves the old face in the tab.
-        link(href: 'img/favicon.ico?v=2', rel: 'icon'),
+        link(href: 'img/favicon.ico?v=3', rel: 'icon'),
+        // The faces come from fonts.gstatic.com, a host the browser only
+        // learns about after it has fetched and parsed the stylesheet below.
+        // Warming the connection first takes a DNS lookup and a TLS handshake
+        // off the critical path.
+        link(href: 'https://fonts.gstatic.com', rel: 'preconnect', attributes: const {'crossorigin': ''}),
+        // One request for both families rather than two. Poppins carries no
+        // Japanese, so the Japanese page would otherwise fall through to
+        // whatever the device happens to have; Google serves that face split
+        // by unicode range, so an English reader downloads none of it.
         link(
-          href: 'https://fonts.googleapis.com/css?family=Poppins:300,400,400,700,800,900&display=swap',
+          href: 'https://fonts.googleapis.com/css2'
+              '?family=Noto+Sans+JP:wght@300;400;600;700'
+              '&family=Poppins:wght@300;400;700;800;900'
+              '&display=swap',
           rel: 'stylesheet',
         ),
-        // Poppins carries no Japanese, so the Japanese page would otherwise
-        // fall through to whatever the device happens to have. Google serves
-        // this one split by unicode range, so an English reader downloads
-        // none of it.
-        link(
-          href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;600;700&display=swap',
-          rel: 'stylesheet',
-        ),
-        // Vendored, unchanged from the versions the Gatsby build used.
-        link(href: 'styles/bootstrap.min.css', rel: 'stylesheet'),
-        link(href: 'styles/animate.css', rel: 'stylesheet'),
-        link(href: 'styles/fontawesome.css', rel: 'stylesheet'),
-        // Compiled from the original SCSS sources.
+        // One stylesheet: the grid, the icon sizing, the animations and the
+        // site's own rules, which used to be four separate blocking requests.
         link(href: 'styles/site.css', rel: 'stylesheet'),
         // What every page's link preview has in common; each route adds its
         // own title, description and address.

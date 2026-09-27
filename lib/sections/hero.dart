@@ -81,7 +81,25 @@ class Hero extends StatelessComponent {
             ..._floatingIcons(),
           ]),
           div(classes: 'img col-md-6', [
-            img(src: heroImage, alt: heroImageAlt(lang)),
+            // High priority because this is what the load is measured on;
+            // the browser otherwise treats it as just another image.
+            //
+            // No <link rel=preload> beside it. The element is in the markup
+            // the first response carries, so the scanner finds it either way,
+            // and a preload is a second opinion about which width to take:
+            // under emulation it resolved before the device metrics did, and
+            // the 1800px copy came down alongside the 900px one.
+            img(
+              src: heroImage,
+              alt: heroImageAlt(lang),
+              width: heroImageWidth,
+              height: heroImageHeight,
+              attributes: const {
+                'srcset': heroImageSrcset,
+                'sizes': heroImageSizes,
+                'fetchpriority': 'high',
+              },
+            ),
           ]),
         ]),
       ],
