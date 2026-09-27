@@ -271,6 +271,14 @@ class _PortfolioState extends State<Portfolio> {
   /// edge, and how wide it is. Both are zero until the first measurement,
   /// which is also what keeps it hidden until there is something to show.
   final _selectorKey = GlobalNodeKey<web.HTMLElement>();
+
+  /// The order the All filter runs in, settled once when the page loads.
+  ///
+  /// Fixed for as long as the page is open: it is the paging that has to stay
+  /// still while somebody uses it, not the order between one visit and the
+  /// next.
+  late final List<PortfolioItem> _allOrder = _orderEverything();
+
   double _underlineLeft = 0;
   double _underlineTop = 0;
   double _underlineWidth = 0;
@@ -334,10 +342,40 @@ class _PortfolioState extends State<Portfolio> {
   /// The distinct categories, in the order the items declare them.
   List<String> get _categories => <String>{for (final item in portfolioItems) item.category}.toList();
 
-  List<PortfolioItem> get _visibleItems => [
-    for (final item in portfolioItems)
-      if (_category == null || item.category == _category) item,
-  ];
+  /// The whole grid in the order All shows it: the showcase, then everything
+  /// else dealt out kind by kind.
+  ///
+  /// What is left over is shuffled within each kind first, so a second visit
+  /// is not the same pages in the same order. Only within a kind, and only
+  /// after the showcase: the opening page stays the one that was chosen, and
+  /// the newest article is still the newest article on the Article filter.
+  ///
+  /// There is nothing to keep in step with the pre-rendered markup here — the
+  /// grid only appears once the heading has resolved, which is a thing that
+  /// happens in the browser — so the shuffle cannot disagree with the HTML the
+  /// static build shipped.
+  List<PortfolioItem> _orderEverything() {
+    final shown = {for (final item in showcaseItems) item.id};
+    final rest = <String, List<PortfolioItem>>{};
+    for (final item in portfolioItems) {
+      if (shown.contains(item.id)) continue;
+      rest.putIfAbsent(item.category, () => []).add(item);
+    }
+    if (kIsWeb) {
+      final random = math.Random();
+      for (final pile in rest.values) {
+        pile.shuffle(random);
+      }
+    }
+    return [...showcaseItems, ...dealByKind(rest.values.toList())];
+  }
+
+  List<PortfolioItem> get _visibleItems => _category == null
+      ? _allOrder
+      : [
+          for (final item in portfolioItems)
+            if (item.category == _category) item,
+        ];
 
   int get _pageCount => (_visibleItems.length / _pageSize).ceil().clamp(1, 1 << 30);
 

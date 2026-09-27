@@ -37,6 +37,25 @@ class BaffleText extends StatefulComponent {
   /// Delay for [onRevealed], the `callMethodTime` prop of the React component.
   final int? revealCallbackDelay;
 
+  @css
+  static List<StyleRule> get styles => [
+    // The section headings in the side column are laid out normally and then
+    // rotated a quarter turn, so what decides whether they wrap is the width
+    // of that narrow column rather than the height they appear to run down.
+    // PORTFOLIO fits it; ポートフォリオ broke onto three stacked lines.
+    //
+    // Rotated, a line that is too long for the column runs down the section's
+    // height instead, which there is plenty of, and the transform keeps the
+    // wide unrotated box from reaching the page's scroll width.
+    //
+    // Only where the heading is actually turned: below this the side column is
+    // a short horizontal bar, and a line that cannot wrap there would run off
+    // the side of a phone.
+    css.media(const MediaQuery.raw('(min-width: 992px)'), [
+      css('.side .baffle_text').styles(raw: {'white-space': 'nowrap'}),
+    ]),
+  ];
+
   @override
   State<BaffleText> createState() => _BaffleTextState();
 }

@@ -896,6 +896,49 @@ const portfolioItems = <PortfolioItem>[
   ),
 ];
 
+/// The tiles the All filter opens on.
+///
+/// All used to mean every tile in order, which put a row of app icons above a
+/// row of websites and pushed the writing and the speaking onto page two: the
+/// first thing anyone saw said nothing about most of the work. It is a chosen
+/// sample now — a few apps and sites by hand, and the newest articles and
+/// talks, which stay current on their own because the list of record is kept
+/// newest first.
+final showcaseItems = dealByKind([
+  _picked(const [5, 1, 4]), // Dream Lucid Now!, Pushup Bro, ReadOn
+  _newest('Talk', 3),
+  _picked(const [10, 11]), // the personal site, FlowUs
+  _newest('Article', 2),
+]);
+
+/// The tiles with these ids, in the order the ids are written.
+///
+/// An id that matches nothing is passed over rather than thrown on: a tile
+/// renamed out from under this list should cost the showcase one entry, not
+/// the whole section.
+List<PortfolioItem> _picked(List<int> ids) => [
+  for (final id in ids) ...portfolioItems.where((item) => item.id == id),
+];
+
+/// The newest [count] tiles of a category, which is the front of the list.
+List<PortfolioItem> _newest(String category, int count) =>
+    portfolioItems.where((item) => item.category == category).take(count).toList();
+
+/// Deals one tile from each pile in turn until the piles run out.
+///
+/// A grid filled straight from the list of record is a block of apps, then a
+/// block of sites, then pages of nothing but articles. Dealing them round by
+/// round instead means a row holds several kinds, and a pile that runs out
+/// early simply stops being dealt from rather than leaving a gap.
+List<PortfolioItem> dealByKind(List<List<PortfolioItem>> piles) {
+  final deepest = piles.fold<int>(0, (deepest, pile) => pile.length > deepest ? pile.length : deepest);
+  return [
+    for (var round = 0; round < deepest; round++)
+      for (final pile in piles)
+        if (round < pile.length) pile[round],
+  ];
+}
+
 /// The Rive file playing on the phone beside the contact form.
 ///
 /// It replaces a Google Maps embed that pinned a private address, and one in

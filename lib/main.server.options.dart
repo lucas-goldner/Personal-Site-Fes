@@ -5,6 +5,7 @@
 // Generated with jaspr_builder
 
 import 'package:jaspr/server.dart';
+import 'package:persona_site/components/baffle_text.dart' as _baffle_text;
 import 'package:persona_site/components/gde_badge.dart' as _gde_badge;
 import 'package:persona_site/components/lang_slider.dart' as _lang_slider;
 import 'package:persona_site/components/progress.dart' as _progress;
@@ -43,6 +44,7 @@ ServerOptions get defaultServerOptions => ServerOptions(
     ),
   },
   styles: () => [
+    ..._baffle_text.BaffleText.styles,
     ..._gde_badge.GdeBadge.styles,
     ..._lang_slider.LangSlider.styles,
     ..._progress.Progress.styles,
