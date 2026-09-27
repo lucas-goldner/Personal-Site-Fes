@@ -4,6 +4,7 @@ import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 
 import '../data/site_data.dart';
+import '../i18n/language_host.dart';
 import 'in_viewport.dart';
 
 /// A skill bar in the about section.
@@ -77,10 +78,12 @@ class _ProgressState extends State<Progress> with ViewportAware {
 
   @override
   Component build(BuildContext context) {
+    final lang = LangScope.langOf(context);
+
     return div(key: viewportKey, classes: 'progress-container', [
       div(classes: 'progress-head', [
-        span(classes: 'name', [.text(component.skill.name)]),
-        span(classes: 'value', [.text(component.skill.label)]),
+        span(classes: 'name', [.text(component.skill.name(lang))]),
+        span(classes: 'value', [.text(component.skill.label(lang))]),
       ]),
       div(
         classes: 'progress',

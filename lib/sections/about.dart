@@ -4,6 +4,8 @@ import 'package:jaspr/jaspr.dart';
 import '../components/icon.dart';
 import '../components/progress.dart';
 import '../data/site_data.dart';
+import '../i18n/language_host.dart';
+import '../i18n/strings.dart';
 import '../interop/browser.dart';
 import '../interop/js_libs.dart' as js;
 import '../layout/metrics.dart';
@@ -79,6 +81,7 @@ class _AboutState extends State<About> {
   @override
   Component build(BuildContext context) {
     final metrics = MetricsProvider.of(context);
+    final lang = LangScope.langOf(context);
 
     return section(
       id: 'about',
@@ -90,15 +93,15 @@ class _AboutState extends State<About> {
           div(classes: 'content col-md-6', [
             div(classes: 'content-text', [
               div(classes: 'line-text', [
-                h4([.text('About Me')]),
+                h4([.text(Strings.aboutEyebrow(lang))]),
               ]),
-              h3([.text('Mobile Engineer. Builder. Speaker.')]),
+              h3([.text(Strings.aboutHeadline(lang))]),
               div(classes: 'separator', const []),
+              // Each paragraph is one sentence split around the links inside
+              // it, so both languages can put the link where their own grammar
+              // wants it.
               p([
-                .text(
-                  'I\u2019m a mobile engineer based in Japan, specializing in '
-                  'Flutter and Dart. At ',
-                ),
+                .text(Strings.aboutWorkBefore(lang)),
                 a(
                   href: youtrustUrl,
                   target: Target.blank,
@@ -106,26 +109,18 @@ class _AboutState extends State<About> {
                   classes: 'freshColor',
                   [.text('YOUTRUST')],
                 ),
-                .text(
-                  ' I build and improve a large-scale production app, and '
-                  'contribute to technical direction, architecture, '
-                  'performance, testing and developer experience.',
-                ),
+                .text(Strings.aboutWorkAfter(lang)),
               ]),
               p([
-                .text(
-                  'I like digging deeper than the screens \u2014 Flutter '
-                  'internals, shaders and rendering, native iOS integrations '
-                  'and platform APIs. I\u2019m also a ',
-                ),
+                .text(Strings.aboutDeeperBefore(lang)),
                 a(
                   href: gdeUrl,
                   target: Target.blank,
                   attributes: const {'rel': 'noopener noreferrer'},
                   classes: 'freshColor',
-                  [.text('Flutter & Dart Google Developer Expert')],
+                  [.text(Strings.gdeTitle(lang))],
                 ),
-                .text(' and an organizer of '),
+                .text(Strings.aboutDeeperBetween(lang)),
                 a(
                   href: flutterTokyoUrl,
                   target: Target.blank,
@@ -133,24 +128,10 @@ class _AboutState extends State<About> {
                   classes: 'freshColor',
                   [.text('Flutter Tokyo')],
                 ),
-                .text(', where I share what I learn with the community.'),
+                .text(Strings.aboutDeeperAfter(lang)),
               ]),
-              p([
-                .text(
-                  'Before Flutter I worked across Android, iOS, web, Unity '
-                  'and backend. That background still shapes how I work: '
-                  'understand the whole product, experiment with new '
-                  'technology, and turn ideas into things people can '
-                  'actually use.',
-                ),
-              ]),
-              p([
-                .text(
-                  'Outside of work I\u2019m usually building side projects, '
-                  'experimenting with UI ideas, writing technical articles, '
-                  'or preparing my next Flutter talk.',
-                ),
-              ]),
+              p([.text(Strings.aboutBackground(lang))]),
+              p([.text(Strings.aboutOutside(lang))]),
               div(classes: 'social social_icons', [
                 // Real anchors rather than click handlers on the SVGs: the
                 // icons carry no text, so each link needs an accessible name,
@@ -173,7 +154,7 @@ class _AboutState extends State<About> {
           ]),
           div(classes: 'skills col-md-6', [
             div(classes: 'line-text', [
-              h4([.text('My Skills')]),
+              h4([.text(Strings.skillsHeading(lang))]),
             ]),
             div(classes: 'skills-container', [
               for (final skill in skills) Progress(skill),

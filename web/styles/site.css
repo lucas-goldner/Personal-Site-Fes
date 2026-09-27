@@ -15,7 +15,7 @@ body {
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: Poppins;
+  font-family: Poppins, "Noto Sans JP", sans-serif;
 }
 
 #app {
@@ -45,7 +45,7 @@ img {
 
 .line-text h4 {
   color: #fff;
-  font-family: Poppins;
+  font-family: Poppins, "Noto Sans JP", sans-serif;
   font-size: 22px;
   position: relative;
   left: 110px;
@@ -78,7 +78,7 @@ img {
   border: 2px solid;
   padding: 5px 20px;
   border-radius: 20px;
-  font-family: Poppins;
+  font-family: Poppins, "Noto Sans JP", sans-serif;
   font-weight: 700;
   transition: 0.5s;
 }
@@ -377,7 +377,7 @@ img {
   color: #FFF;
   font-size: 100px;
   font-weight: 900;
-  font-family: Poppins;
+  font-family: Poppins, "Noto Sans JP", sans-serif;
   animation: glitch-skew 1s infinite linear alternate-reverse;
   line-height: 100px;
 }
@@ -623,14 +623,14 @@ img {
 }
 .progress-container .name, .progress-container .value {
   font-size: 17px;
-  font-family: Poppins;
+  font-family: Poppins, "Noto Sans JP", sans-serif;
   color: #fff;
 }
 .progress-container .value {
   float: right;
 }
 .progress-container .value span {
-  font-family: Poppins;
+  font-family: Poppins, "Noto Sans JP", sans-serif;
 }
 
 .hero {
@@ -686,7 +686,7 @@ img {
 .hero .row .content .Typewriter span {
   color: #fff;
   font-size: 50px;
-  font-family: Poppins;
+  font-family: Poppins, "Noto Sans JP", sans-serif;
   font-weight: 700;
 }
 .hero .row .content .Typewriter span.Typewriter__cursor {
@@ -785,7 +785,7 @@ img {
 }
 .about .row .content h3 {
   color: #fff;
-  font-family: Poppins;
+  font-family: Poppins, "Noto Sans JP", sans-serif;
   font-size: 60px;
   margin: 10px 0 20px 0;
   line-height: 60px;
@@ -805,7 +805,7 @@ img {
 }
 .about .row .content p {
   color: #eee;
-  font-family: Poppins;
+  font-family: Poppins, "Noto Sans JP", sans-serif;
   font-size: 14px;
   margin-top: 20px;
   font-weight: 300;
@@ -833,7 +833,7 @@ img {
   }
 }
 .about .row .skills h5 {
-  font-family: Poppins;
+  font-family: Poppins, "Noto Sans JP", sans-serif;
   font-weight: 700;
   color: #fff;
   font-size: 40px;
@@ -889,7 +889,7 @@ img {
 }
 .services .row.top .content .baffle_text span {
   color: #fff;
-  font-family: Poppins;
+  font-family: Poppins, "Noto Sans JP", sans-serif;
   font-size: 60px;
   line-height: 60px;
   font-weight: 800;
@@ -941,12 +941,12 @@ img {
 }
 .services .row.top .content .services_container .container .service h4 {
   color: #fff;
-  font-family: Poppins;
+  font-family: Poppins, "Noto Sans JP", sans-serif;
   margin: 15px 0px 9px 0px;
   font-size: 20px;
 }
 .services .row.top .content .services_container .container .service p {
-  font-family: Poppins;
+  font-family: Poppins, "Noto Sans JP", sans-serif;
   color: #eee;
   font-size: 10px;
   font-weight: 300;
@@ -1036,7 +1036,7 @@ img {
 }
 .portfolio .row .side .baffle_text span {
   color: #fff;
-  font-family: Poppins;
+  font-family: Poppins, "Noto Sans JP", sans-serif;
   font-size: 60px;
   margin: 10px 0 20px 0;
   line-height: 60px;
@@ -1137,7 +1137,7 @@ img {
 }
 .portfolio .row .recent-works .portfolio_selector .portfolio_category span {
   color: #fff;
-  font-family: Poppins;
+  font-family: Poppins, "Noto Sans JP", sans-serif;
   margin-right: 40px;
   position: relative;
   cursor: pointer;
@@ -1210,7 +1210,7 @@ img {
 }
 .contact .row .side .baffle_text span {
   color: #fff;
-  font-family: Poppins;
+  font-family: Poppins, "Noto Sans JP", sans-serif;
   font-size: 60px;
   margin: 10px 0 20px 0;
   line-height: 60px;

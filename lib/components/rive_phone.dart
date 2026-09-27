@@ -3,6 +3,8 @@ import 'package:jaspr/jaspr.dart';
 import 'package:universal_web/web.dart' as web;
 
 import '../data/site_data.dart';
+import '../i18n/language_host.dart';
+import '../i18n/strings.dart';
 import '../interop/browser.dart';
 import '../interop/js_libs.dart' as js;
 import 'in_viewport.dart';
@@ -127,7 +129,7 @@ class RivePhone extends StatefulComponent {
             'border-radius': '999px',
             'letter-spacing': '1.5px',
             'cursor': 'pointer',
-            'font-family': 'Poppins',
+            'font-family': 'Poppins, "Noto Sans JP", sans-serif',
             'transition': 'transform .2s ease, background-color .2s ease',
           },
         ),
@@ -232,6 +234,8 @@ class _RivePhoneState extends State<RivePhone> with ViewportAware {
 
   @override
   Component build(BuildContext context) {
+    final lang = LangScope.langOf(context);
+
     return div(key: viewportKey, classes: 'phone_column', [
       div(classes: 'phone_stage', [
         div(classes: 'rive_phone', [
@@ -241,26 +245,26 @@ class _RivePhoneState extends State<RivePhone> with ViewportAware {
             Component.element(
               tag: 'canvas',
               key: _canvas,
-              attributes: const {
+              attributes: {
                 'role': 'img',
-                'aria-label': riveSceneLabel,
+                'aria-label': Strings.gameLabel(lang),
               },
               children: const [],
             ),
             if (_over)
               div(classes: 'phone_over', [
-                span(classes: 'over_title', [.text('Game over')]),
+                span(classes: 'over_title', [.text(Strings.gameOver(lang))]),
                 button(
                   classes: 'over_button',
                   attributes: const {'type': 'button'},
                   onClick: _restart,
-                  [.text('Play again')],
+                  [.text(Strings.playAgain(lang))],
                 ),
               ]),
           ]),
         ]),
       ]),
-      p(classes: 'phone_caption', [.text(riveSceneCaption)]),
+      p(classes: 'phone_caption', [.text(Strings.gameCaption(lang))]),
     ]);
   }
 }

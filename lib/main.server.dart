@@ -30,6 +30,14 @@ void main() {
           href: 'https://fonts.googleapis.com/css?family=Poppins:300,400,400,700,800,900&display=swap',
           rel: 'stylesheet',
         ),
+        // Poppins carries no Japanese, so the Japanese page would otherwise
+        // fall through to whatever the device happens to have. Google serves
+        // this one split by unicode range, so an English reader downloads
+        // none of it.
+        link(
+          href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;600;700&display=swap',
+          rel: 'stylesheet',
+        ),
         // Vendored, unchanged from the versions the Gatsby build used.
         link(href: 'styles/bootstrap.min.css', rel: 'stylesheet'),
         link(href: 'styles/animate.css', rel: 'stylesheet'),

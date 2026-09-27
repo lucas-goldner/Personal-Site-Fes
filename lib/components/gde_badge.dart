@@ -2,6 +2,8 @@ import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 
 import '../data/site_data.dart';
+import '../i18n/language_host.dart';
+import '../i18n/strings.dart';
 import 'icon.dart';
 
 /// The Google Developer Expert credential line under the hero's job titles.
@@ -24,7 +26,7 @@ class GdeBadge extends StatelessComponent {
         [
           const Icon(faStar, classes: 'gde-star'),
           span(classes: 'gde-label', [
-            .text('Flutter & Dart Google Developer Expert'),
+            .text(Strings.gdeTitle(LangScope.langOf(context))),
           ]),
         ],
       ),

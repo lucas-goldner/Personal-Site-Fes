@@ -5,6 +5,9 @@ import '../components/animation_container.dart';
 import '../components/baffle_text.dart';
 import '../components/hover_button.dart';
 import '../components/rive_phone.dart';
+import '../i18n/lang.dart';
+import '../i18n/language_host.dart';
+import '../i18n/strings.dart';
 import '../interop/email.dart';
 import '../layout/metrics.dart';
 
@@ -42,7 +45,9 @@ class _ContactState extends State<Contact> {
   String _message = '';
 
   /// The status line under the form.
-  String _sent = '';
+  /// What the form last said, kept as a pair so it can be re-read in the
+  /// other language if the page is switched while it is on screen.
+  L? _sent;
 
   /// True once a submit was rejected for missing required fields.
   bool _error = false;
@@ -60,7 +65,7 @@ class _ContactState extends State<Contact> {
     }
     setState(() {
       _error = false;
-      _sent = '';
+      _sent = null;
     });
 
     var ok = false;
@@ -76,13 +81,14 @@ class _ContactState extends State<Contact> {
     }
     if (!mounted) return;
     setState(() {
-      _sent = ok ? 'Email sent!' : 'Sending failed, please try again.';
+      _sent = ok ? Strings.sendSucceeded : Strings.sendFailed;
     });
   }
 
   @override
   Component build(BuildContext context) {
     final metrics = MetricsProvider.of(context);
+    final lang = LangScope.langOf(context);
 
     return section(
       id: 'contact',
@@ -93,7 +99,8 @@ class _ContactState extends State<Contact> {
           div(classes: 'side col-md-2', [
             h2([
               BaffleText(
-                text: 'Contact',
+                key: ValueKey(lang),
+                text: Strings.contactHeading(lang),
                 revealDuration: 500,
                 revealDelay: 500,
                 revealCallbackDelay: 1100,
@@ -101,7 +108,7 @@ class _ContactState extends State<Contact> {
               ),
             ]),
           ]),
-          div(classes: 'form col-md-5', [_form(metrics)]),
+          div(classes: 'form col-md-5', [_form(metrics, lang)]),
           div(classes: 'phone col-md-5', [_scene(metrics)]),
         ]),
       ],
@@ -110,7 +117,7 @@ class _ContactState extends State<Contact> {
 
   bool _visible(SiteMetrics metrics) => _show || metrics.isAuto;
 
-  Component _form(SiteMetrics metrics) {
+  Component _form(SiteMetrics metrics, Lang lang) {
     if (!_visible(metrics)) return const Component.empty();
 
     return AnimationContainer(
@@ -119,13 +126,13 @@ class _ContactState extends State<Contact> {
       children: [
         div(classes: 'form-container', [
           div(classes: 'line-text', [
-            h4([.text('Get In Touch')]),
+            h4([.text(Strings.contactEyebrow(lang))]),
             _field(
               delay: 50,
               child: input(
                 type: InputType.text,
                 classes: 'name${_isValid(_name) ? '' : ' error'}',
-                attributes: const {'placeholder': 'Name'},
+                attributes: {'placeholder': Strings.fieldName(lang)},
                 onInput: (String value) => _name = value,
               ),
             ),
@@ -134,7 +141,7 @@ class _ContactState extends State<Contact> {
               child: input(
                 type: InputType.text,
                 classes: 'email${_isValid(_email) ? '' : ' error'}',
-                attributes: const {'placeholder': 'Email'},
+                attributes: {'placeholder': Strings.fieldEmail(lang)},
                 onInput: (String value) => _email = value,
               ),
             ),
@@ -143,7 +150,7 @@ class _ContactState extends State<Contact> {
               child: input(
                 type: InputType.text,
                 classes: 'phone',
-                attributes: const {'placeholder': 'Phone'},
+                attributes: {'placeholder': Strings.fieldPhone(lang)},
                 onInput: (String value) => _phone = value,
               ),
             ),
@@ -151,20 +158,20 @@ class _ContactState extends State<Contact> {
               delay: 200,
               child: textarea(
                 classes: 'message${_isValid(_message) ? '' : ' error'}',
-                placeholder: 'Message',
+                placeholder: Strings.fieldMessage(lang),
                 rows: 3,
                 onInput: (String value) => _message = value,
                 const [],
               ),
             ),
-            p(classes: 'message whiteColor', [.text(' $_sent')]),
+            p(classes: 'message whiteColor', [.text(_sent == null ? '' : ' ${_sent!(lang)}')]),
             AnimationContainer(
               delay: 250,
               animation: 'fadeInUp fast',
               children: [
                 div(classes: 'submit', [
                   HoverButton(
-                    label: 'Send Message',
+                    label: Strings.sendMessage(lang),
                     hasError: _error,
                     onClick: _submit,
                   ),

@@ -5,6 +5,7 @@ import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 
 import '../data/site_data.dart';
+import '../i18n/language_host.dart';
 import 'icon.dart';
 import 'in_viewport.dart';
 
@@ -69,13 +70,15 @@ class _CounterState extends State<Counter> with ViewportAware {
 
   @override
   Component build(BuildContext context) {
+    final lang = LangScope.langOf(context);
+
     return div(key: viewportKey, classes: 'counter_component', [
       div(classes: 'icon', [Icon(component.data.icon)]),
       div(classes: 'value', [
         span([.text('$_value')]),
-        span(classes: 'symbol', [.text(component.data.symbol)]),
+        span(classes: 'symbol', [.text(component.data.symbol(lang))]),
       ]),
-      div(classes: 'text', [.text(component.data.text)]),
+      div(classes: 'text', [.text(component.data.text(lang))]),
     ]);
   }
 }

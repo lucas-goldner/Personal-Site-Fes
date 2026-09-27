@@ -8,7 +8,9 @@ import 'package:jaspr/server.dart';
 import 'package:persona_site/components/gde_badge.dart' as _gde_badge;
 import 'package:persona_site/components/progress.dart' as _progress;
 import 'package:persona_site/components/rive_phone.dart' as _rive_phone;
+import 'package:persona_site/layout/navigation.dart' as _navigation;
 import 'package:persona_site/pages/home_page.dart' as _home_page;
+import 'package:persona_site/pages/not_found_page.dart' as _not_found_page;
 import 'package:persona_site/sections/about.dart' as _about;
 import 'package:persona_site/sections/contact.dart' as _contact;
 import 'package:persona_site/sections/portfolio.dart' as _portfolio;
@@ -32,11 +34,17 @@ import 'package:persona_site/sections/services.dart' as _services;
 /// ```
 ServerOptions get defaultServerOptions => ServerOptions(
   clientId: 'main.client.dart.js',
-  clients: {_home_page.HomeApp: ClientTarget<_home_page.HomeApp>('home_page')},
+  clients: {
+    _home_page.HomeApp: ClientTarget<_home_page.HomeApp>('home_page'),
+    _not_found_page.NotFoundApp: ClientTarget<_not_found_page.NotFoundApp>(
+      'not_found_page',
+    ),
+  },
   styles: () => [
     ..._gde_badge.GdeBadge.styles,
     ..._progress.Progress.styles,
     ..._rive_phone.RivePhone.styles,
+    ..._navigation.Navigation.styles,
     ..._about.About.styles,
     ..._contact.Contact.styles,
     ..._portfolio.Portfolio.styles,

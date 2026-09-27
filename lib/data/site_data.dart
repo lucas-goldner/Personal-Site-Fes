@@ -3,6 +3,7 @@
 library;
 
 import '../components/icons_data.dart';
+import '../i18n/lang.dart';
 
 /// Document metadata, previously `data/meta.json`.
 class SiteMeta {
@@ -32,9 +33,9 @@ class SiteMeta {
 /// The scroll-snapped sections of the home page, in order.
 ///
 /// The ids double as the anchor targets used by the navigation and the wheel
-/// handler; the labels are the navigation entries.
+/// handler. The labels the navigation shows are in `Strings.navLabels`, in this
+/// same order.
 const sectionIds = ['home', 'about', 'services', 'portfolio', 'contact'];
-const sectionLabels = ['Home', 'About', 'Expertise', 'Portfolio', 'Contact'];
 
 /// A hobby icon floating over the hero panel.
 ///
@@ -71,7 +72,12 @@ const heroIcons = <HeroIcon>[
 
 /// The photo of Lucas shown on the right half of the hero.
 const heroImage = 'person2x.png';
-const heroImageAlt = 'Lucas Goldner with inline skates posing in front of a graffiti wall';
+const heroImageAlt = L(
+  'Lucas Goldner with inline skates posing in front of a graffiti wall',
+  '\u30a4\u30f3\u30e9\u30a4\u30f3\u30b9\u30b1\u30fc\u30c8\u3092\u5c65\u3044\u3066'
+      '\u30b0\u30e9\u30d5\u30a3\u30c6\u30a3\u306e\u58c1\u306e\u524d\u306b\u7acb\u3064'
+      'Lucas Goldner',
+);
 
 /// Lucas's employer, linked from the about text.
 const youtrustUrl = 'https://youtrust.jp/';
@@ -112,24 +118,44 @@ const socialLinks = <SocialLink>[
 class Skill {
   const Skill(this.name, this.percent, this.label);
 
-  final String name;
+  final L name;
 
   /// How far the bar fills, 0 to 100. Previously a 1-5 level rendered at
   /// `value * 20%`, which could not express the values this list needs.
   final int percent;
 
   /// The wording shown on the right of the bar.
-  final String label;
+  final L label;
 }
 
+const _primaryStack = L('Primary Stack', '\u30e1\u30a4\u30f3\u30b9\u30bf\u30c3\u30af');
+const _advanced = L('Advanced', '\u4e0a\u7d1a');
+const _proficient = L('Proficient', '\u5b9f\u52d9\u30ec\u30d9\u30eb');
+const _experienced = L('Experienced', '\u7d4c\u9a13\u3042\u308a');
+
 const skills = <Skill>[
-  Skill('Flutter & Dart', 100, 'Primary Stack'),
-  Skill('iOS & Swift', 85, 'Advanced'),
-  Skill('Architecture & Scalability', 85, 'Advanced'),
-  Skill('Testing & Quality', 80, 'Advanced'),
-  Skill('TypeScript \u2014 Backend & Frontend', 75, 'Proficient'),
-  Skill('Android & Kotlin', 50, 'Experienced'),
-  Skill('AI-Assisted Development \u2014 Claude Code', 100, 'Primary Stack'),
+  Skill(L.same('Flutter & Dart'), 100, _primaryStack),
+  Skill(L.same('iOS & Swift'), 85, _advanced),
+  Skill(
+    L('Architecture & Scalability', '\u30a2\u30fc\u30ad\u30c6\u30af\u30c1\u30e3\u3068\u62e1\u5f35\u6027'),
+    85,
+    _advanced,
+  ),
+  Skill(L('Testing & Quality', '\u30c6\u30b9\u30c8\u3068\u54c1\u8cea'), 80, _advanced),
+  Skill(
+    L(
+      'TypeScript \u2014 Backend & Frontend',
+      'TypeScript \u2014 \u30d0\u30c3\u30af\u30a8\u30f3\u30c9\uff06\u30d5\u30ed\u30f3\u30c8\u30a8\u30f3\u30c9',
+    ),
+    75,
+    _proficient,
+  ),
+  Skill(L.same('Android & Kotlin'), 50, _experienced),
+  Skill(
+    L('AI-Assisted Development \u2014 Claude Code', 'AI\u6d3b\u7528\u958b\u767a \u2014 Claude Code'),
+    100,
+    _primaryStack,
+  ),
 ];
 
 /// A card in the expertise section.
@@ -145,12 +171,12 @@ class Service {
   });
 
   final FaIcon icon;
-  final String title;
+  final L title;
 
   /// The stack behind the area, shown as a smaller line under the title.
-  final String technologies;
+  final L technologies;
 
-  final String text;
+  final L text;
 
   /// Delay in milliseconds before the card animates in.
   final int delay;
@@ -166,72 +192,111 @@ class Service {
 const services = <Service>[
   Service(
     icon: faMobile,
-    title: 'Mobile App Development',
-    technologies: 'Flutter \u00b7 SwiftUI \u00b7 Jetpack Compose',
-    text:
-        'Flutter is my primary stack, with SwiftUI and Jetpack '
-        'Compose when native makes more sense.',
+    title: L('Mobile App Development', '\u30e2\u30d0\u30a4\u30eb\u30a2\u30d7\u30ea\u958b\u767a'),
+    technologies: L.same('Flutter \u00b7 SwiftUI \u00b7 Jetpack Compose'),
+    text: L(
+      'Flutter is my primary stack, with SwiftUI and Jetpack '
+          'Compose when native makes more sense.',
+      'Flutter\u3092\u30e1\u30a4\u30f3\u306b\u3001\u30cd\u30a4\u30c6\u30a3\u30d6\u304c'
+          '\u9069\u3059\u308b\u5834\u9762\u3067\u306fSwiftUI\u3084Jetpack Compose\u3067'
+          '\u958b\u767a\u3057\u307e\u3059\u3002',
+    ),
     delay: 200,
     animation: 'fadeInLeft fast',
   ),
   Service(
     icon: faLaptopCode,
-    title: 'Frontend Development',
-    technologies: 'React \u00b7 Next.js \u00b7 TypeScript',
-    text:
-        'Modern web apps with maintainable components, responsive '
-        'interfaces and clean backend integration.',
+    title: L('Frontend Development', '\u30d5\u30ed\u30f3\u30c8\u30a8\u30f3\u30c9\u958b\u767a'),
+    technologies: L.same('React \u00b7 Next.js \u00b7 TypeScript'),
+    text: L(
+      'Modern web apps with maintainable components, responsive '
+          'interfaces and clean backend integration.',
+      '\u4fdd\u5b88\u3057\u3084\u3059\u3044\u30b3\u30f3\u30dd\u30fc\u30cd\u30f3\u30c8\u3068'
+          '\u30ec\u30b9\u30dd\u30f3\u30b7\u30d6\u306aUI\u3001\u305d\u3057\u3066'
+          '\u7d20\u76f4\u306a\u30d0\u30c3\u30af\u30a8\u30f3\u30c9\u9023\u643a\u3067'
+          '\u30e2\u30c0\u30f3\u306aWeb\u30a2\u30d7\u30ea\u3092\u3064\u304f\u308a\u307e\u3059\u3002',
+    ),
     delay: 400,
     animation: 'fadeInDown fast',
   ),
   Service(
     icon: faServer,
-    title: 'Backend & Infrastructure',
-    technologies: 'NestJS \u00b7 MongoDB \u00b7 PostgreSQL \u00b7 Azure \u00b7 GCP \u00b7 Terraform',
-    text:
-        'APIs and services, relational and document databases, and '
-        'the cloud infrastructure they run on.',
+    title: L('Backend & Infrastructure', '\u30d0\u30c3\u30af\u30a8\u30f3\u30c9\u3068\u30a4\u30f3\u30d5\u30e9'),
+    technologies: L.same('NestJS \u00b7 MongoDB \u00b7 PostgreSQL \u00b7 Azure \u00b7 GCP \u00b7 Terraform'),
+    text: L(
+      'APIs and services, relational and document databases, and '
+          'the cloud infrastructure they run on.',
+      'API\u3068\u30b5\u30fc\u30d3\u30b9\u3001\u30ea\u30ec\u30fc\u30b7\u30e7\u30ca\u30eb'
+          'DB\u3068\u30c9\u30ad\u30e5\u30e1\u30f3\u30c8DB\u3001\u305d\u3057\u3066'
+          '\u305d\u308c\u3089\u3092\u52d5\u304b\u3059\u30af\u30e9\u30a6\u30c9'
+          '\u57fa\u76e4\u307e\u3067\u3002',
+    ),
     delay: 600,
     animation: 'fadeInRight fast',
   ),
   Service(
     icon: faLayerGroup,
-    title: 'Mobile Architecture',
-    technologies: 'Architecture \u00b7 State Management \u00b7 Technical Design',
-    text:
-        'Technical design and state management that keep an app '
-        'maintainable as the product and the team grow.',
+    title: L('Mobile Architecture', '\u30e2\u30d0\u30a4\u30eb\u30a2\u30fc\u30ad\u30c6\u30af\u30c1\u30e3'),
+    technologies: L(
+      'Architecture \u00b7 State Management \u00b7 Technical Design',
+      '\u30a2\u30fc\u30ad\u30c6\u30af\u30c1\u30e3 \u00b7 \u72b6\u614b\u7ba1\u7406 \u00b7 \u6280\u8853\u8a2d\u8a08',
+    ),
+    text: L(
+      'Technical design and state management that keep an app '
+          'maintainable as the product and the team grow.',
+      '\u30d7\u30ed\u30c0\u30af\u30c8\u3068\u30c1\u30fc\u30e0\u304c\u5927\u304d\u304f'
+          '\u306a\u3063\u3066\u3082\u4fdd\u5b88\u3067\u304d\u308b\u6280\u8853\u8a2d\u8a08\u3068'
+          '\u72b6\u614b\u7ba1\u7406\u3092\u3002',
+    ),
     delay: 800,
     animation: 'fadeInLeft fast',
   ),
   Service(
     icon: faVials,
-    title: 'Testing & Quality',
-    technologies: 'Widget \u00b7 Golden \u00b7 E2E \u00b7 QA',
-    text:
-        'Widget, golden and end-to-end tests, plus the QA planning '
-        'and tracking that make releases predictable.',
+    title: L('Testing & Quality', '\u30c6\u30b9\u30c8\u3068\u54c1\u8cea'),
+    technologies: L.same('Widget \u00b7 Golden \u00b7 E2E \u00b7 QA'),
+    text: L(
+      'Widget, golden and end-to-end tests, plus the QA planning '
+          'and tracking that make releases predictable.',
+      'Widget\u30fbGolden\u30fbE2E\u30c6\u30b9\u30c8\u306b\u52a0\u3048\u3001'
+          '\u30ea\u30ea\u30fc\u30b9\u3092\u4e88\u6e2c\u53ef\u80fd\u306b\u3059\u308b'
+          'QA\u8a08\u753b\u3068\u7ba1\u7406\u307e\u3067\u3002',
+    ),
     delay: 1000,
     animation: 'fadeInUp fast',
   ),
   Service(
     icon: faUsers,
-    title: 'Team Growth & Mentoring',
-    technologies: 'Code Reviews \u00b7 Mentoring \u00b7 Internal Education',
-    text:
-        'Code reviews, mentoring and study sessions that help '
-        'engineers grow into confident, independent work.',
+    title: L('Team Growth & Mentoring', '\u30c1\u30fc\u30e0\u306e\u6210\u9577\u3068\u30e1\u30f3\u30bf\u30ea\u30f3\u30b0'),
+    technologies: L(
+      'Code Reviews \u00b7 Mentoring \u00b7 Internal Education',
+      '\u30b3\u30fc\u30c9\u30ec\u30d3\u30e5\u30fc \u00b7 \u30e1\u30f3\u30bf\u30ea\u30f3\u30b0 \u00b7 \u793e\u5185\u52c9\u5f37\u4f1a',
+    ),
+    text: L(
+      'Code reviews, mentoring and study sessions that help '
+          'engineers grow into confident, independent work.',
+      '\u30b3\u30fc\u30c9\u30ec\u30d3\u30e5\u30fc\u3084\u30e1\u30f3\u30bf\u30ea\u30f3\u30b0\u3001'
+          '\u52c9\u5f37\u4f1a\u3092\u901a\u3058\u3066\u3001\u81ea\u8d70\u3067\u304d\u308b'
+          '\u30a8\u30f3\u30b8\u30cb\u30a2\u306e\u6210\u9577\u3092\u652f\u3048\u307e\u3059\u3002',
+    ),
     delay: 1200,
     animation: 'fadeInRight fast',
   ),
   Service(
     icon: faRobot,
-    title: 'AI-Assisted Engineering',
-    technologies: 'Claude Code \u00b7 Agentic Development',
-    text:
-        'Claude Code across implementation, debugging and '
-        'refactoring, with the engineering decisions and the code '
-        'quality staying under human control.',
+    title: L('AI-Assisted Engineering', 'AI\u3092\u6d3b\u7528\u3057\u305f\u30a8\u30f3\u30b8\u30cb\u30a2\u30ea\u30f3\u30b0'),
+    technologies: L(
+      'Claude Code \u00b7 Agentic Development',
+      'Claude Code \u00b7 \u30a8\u30fc\u30b8\u30a7\u30f3\u30c8\u958b\u767a',
+    ),
+    text: L(
+      'Claude Code across implementation, debugging and '
+          'refactoring, with the engineering decisions and the code '
+          'quality staying under human control.',
+      '\u5b9f\u88c5\u30fb\u30c7\u30d0\u30c3\u30b0\u30fb\u30ea\u30d5\u30a1\u30af\u30bf\u30ea\u30f3\u30b0\u306b'
+          'Claude Code\u3092\u6d3b\u7528\u3057\u3064\u3064\u3001\u8a2d\u8a08\u5224\u65ad\u3068'
+          '\u30b3\u30fc\u30c9\u54c1\u8cea\u306f\u4eba\u304c\u30b3\u30f3\u30c8\u30ed\u30fc\u30eb\u3057\u307e\u3059\u3002',
+    ),
     delay: 1400,
     animation: 'fadeIn fast',
     featured: true,
@@ -244,8 +309,8 @@ class CounterData {
 
   final FaIcon icon;
   final int value;
-  final String text;
-  final String symbol;
+  final L text;
+  final L symbol;
 
   /// Duration of the count-up animation, in seconds.
   final int duration;
@@ -270,9 +335,27 @@ abstract final class Stats {
 
 /// Not const, because two of the three figures are counted at startup.
 final counters = <CounterData>[
-  CounterData(faMobileAlt, Stats.appsShipped, 'Shipped', 'Apps', 2),
-  CounterData(faPenNib, Stats.articlesPublished, 'Published', 'Articles', 3),
-  CounterData(faMicrophoneAlt, Stats.talksDelivered, 'Delivered', 'Talks', 4),
+  CounterData(
+    faMobileAlt,
+    Stats.appsShipped,
+    L('Shipped', '\u30ea\u30ea\u30fc\u30b9'),
+    L('Apps', '\u30a2\u30d7\u30ea'),
+    2,
+  ),
+  CounterData(
+    faPenNib,
+    Stats.articlesPublished,
+    L('Published', '\u516c\u958b'),
+    L('Articles', '\u8a18\u4e8b'),
+    3,
+  ),
+  CounterData(
+    faMicrophoneAlt,
+    Stats.talksDelivered,
+    L('Delivered', '\u767a\u8868'),
+    L('Talks', '\u767b\u58c7'),
+    4,
+  ),
 ];
 
 /// A tile in the portfolio grid.
@@ -305,7 +388,10 @@ class PortfolioItem {
 
   /// The line under the title on a tile without a screenshot: the publication
   /// or the event, and the year.
-  final String? meta;
+  ///
+  /// Most of these are names — a conference, a blog, a stack — and read the
+  /// same in both languages, so they are [L.same].
+  final L? meta;
 }
 
 /// The App Store apps, the sites, and the writing and speaking.
@@ -328,7 +414,7 @@ const portfolioItems = <PortfolioItem>[
     category: 'App',
     link: 'https://apps.apple.com/jp/app/pushup-bro/id1673181014',
     image: 'projectImg/appPushupBro.webp',
-    meta: 'iOS \u00b7 Push-up tracking with AirPods',
+    meta: L('iOS \u00b7 Push-up tracking with AirPods', 'iOS \u00b7 AirPods\u3067\u8155\u7acb\u3066\u4f0f\u305b\u3092\u8a18\u9332'),
   ),
   PortfolioItem(
     id: 2,
@@ -336,7 +422,7 @@ const portfolioItems = <PortfolioItem>[
     category: 'App',
     link: 'https://apps.apple.com/jp/app/japanana-japanese-grammar/id6476447175',
     image: 'projectImg/appJapanana.webp',
-    meta: 'iOS \u00b7 Japanese grammar',
+    meta: L('iOS \u00b7 Japanese grammar', 'iOS \u00b7 \u65e5\u672c\u8a9e\u6587\u6cd5'),
   ),
   PortfolioItem(
     id: 3,
@@ -344,7 +430,7 @@ const portfolioItems = <PortfolioItem>[
     category: 'App',
     link: 'https://apps.apple.com/jp/app/giro-mark-past-walks/id6737528413',
     image: 'projectImg/appGiro.webp',
-    meta: 'iOS \u00b7 Marking past walks',
+    meta: L('iOS \u00b7 Marking past walks', 'iOS \u00b7 \u6b69\u3044\u305f\u9053\u3092\u8a18\u9332'),
   ),
   PortfolioItem(
     id: 4,
@@ -352,7 +438,7 @@ const portfolioItems = <PortfolioItem>[
     category: 'App',
     link: 'https://apps.apple.com/jp/app/readon-read-in-any-language/id6757393728',
     image: 'projectImg/appReadOn.webp',
-    meta: 'iOS \u00b7 Reading in any language',
+    meta: L('iOS \u00b7 Reading in any language', 'iOS \u00b7 \u3069\u3093\u306a\u8a00\u8a9e\u3067\u3082\u8aad\u3080'),
   ),
   PortfolioItem(
     id: 5,
@@ -360,7 +446,7 @@ const portfolioItems = <PortfolioItem>[
     category: 'App',
     link: 'https://apps.apple.com/jp/app/dream-lucid-now-dreams-sleep/id6752128546',
     image: 'projectImg/appDreamLucid.webp',
-    meta: 'iOS \u00b7 Dreams and sleep',
+    meta: L('iOS \u00b7 Dreams and sleep', 'iOS \u00b7 \u5922\u3068\u7761\u7720'),
   ),
   PortfolioItem(
     id: 10,
@@ -368,7 +454,7 @@ const portfolioItems = <PortfolioItem>[
     category: 'Website',
     link: 'https://lucas-goldner.com',
     image: 'projectImg/personalSite.jpg',
-    meta: 'Jaspr \u00b7 Dart',
+    meta: L.same('Jaspr \u00b7 Dart'),
   ),
   PortfolioItem(
     id: 11,
@@ -376,7 +462,7 @@ const portfolioItems = <PortfolioItem>[
     category: 'Website',
     link: 'https://flowus.vercel.app',
     image: 'projectImg/flowUs.png',
-    meta: 'Next.js',
+    meta: L.same('Next.js'),
   ),
   PortfolioItem(
     id: 12,
@@ -384,7 +470,7 @@ const portfolioItems = <PortfolioItem>[
     category: 'Website',
     link: 'https://kawa-druck.de',
     image: 'projectImg/kawaPage.png',
-    meta: 'React',
+    meta: L.same('React'),
   ),
   PortfolioItem(
     id: 13,
@@ -392,7 +478,7 @@ const portfolioItems = <PortfolioItem>[
     category: 'Website',
     link: 'https://old-metro.vercel.app',
     image: 'projectImg/nifterPage.png',
-    meta: 'React',
+    meta: L.same('React'),
   ),
   PortfolioItem(
     id: 14,
@@ -400,14 +486,14 @@ const portfolioItems = <PortfolioItem>[
     category: 'Website',
     link: 'https://golden.lucas-goldner.com',
     image: 'projectImg/golden.png',
-    meta: 'React',
+    meta: L.same('React'),
   ),
   PortfolioItem(
     id: 20,
     title: 'Building a City #2: The Storefronts',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/app-architecture-2',
-    meta: 'YOUTRUST Tech Blog',
+    meta: L.same('YOUTRUST Tech Blog'),
   ),
   PortfolioItem(
     id: 21,
@@ -416,7 +502,7 @@ const portfolioItems = <PortfolioItem>[
         '2026 @ Okayama',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/open-seminar-okayama',
-    meta: 'YOUTRUST Tech Blog',
+    meta: L.same('YOUTRUST Tech Blog'),
   ),
   PortfolioItem(
     id: 22,
@@ -425,14 +511,14 @@ const portfolioItems = <PortfolioItem>[
         'Perspective on Cross-Platform Development',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/iosdc-2026',
-    meta: 'YOUTRUST Tech Blog',
+    meta: L.same('YOUTRUST Tech Blog'),
   ),
   PortfolioItem(
     id: 23,
     title: 'Building a City #1: The Master Plan',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/app-architecture-1',
-    meta: 'YOUTRUST Tech Blog',
+    meta: L.same('YOUTRUST Tech Blog'),
   ),
   PortfolioItem(
     id: 24,
@@ -441,7 +527,7 @@ const portfolioItems = <PortfolioItem>[
         'Features',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/sexy-drawer',
-    meta: 'YOUTRUST Tech Blog',
+    meta: L.same('YOUTRUST Tech Blog'),
   ),
   PortfolioItem(
     id: 25,
@@ -450,7 +536,7 @@ const portfolioItems = <PortfolioItem>[
         'the Keyboard Summoning Magic',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/ios-26-one-time-code-keyboard',
-    meta: 'YOUTRUST Tech Blog',
+    meta: L.same('YOUTRUST Tech Blog'),
   ),
   PortfolioItem(
     id: 26,
@@ -459,49 +545,49 @@ const portfolioItems = <PortfolioItem>[
         'Flutter Lint Rules to Dart Analyzer Plugin',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/analyzer-plugins',
-    meta: 'YOUTRUST Tech Blog',
+    meta: L.same('YOUTRUST Tech Blog'),
   ),
   PortfolioItem(
     id: 27,
     title: 'Implementing 1-on-1 Voice Calls in YOUTRUST: An S-Rank Challenge',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/flutter-phone-call',
-    meta: 'YOUTRUST Tech Blog',
+    meta: L.same('YOUTRUST Tech Blog'),
   ),
   PortfolioItem(
     id: 28,
     title: 'Flutter Kaigi 2025 Participation Report',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/2025/11/14/223527',
-    meta: 'YOUTRUST Tech Blog',
+    meta: L.same('YOUTRUST Tech Blog'),
   ),
   PortfolioItem(
     id: 29,
     title: 'DevFest 2025 Greater Kwansai @Kobe Report',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/devfest-2025-kwansai',
-    meta: 'YOUTRUST Tech Blog',
+    meta: L.same('YOUTRUST Tech Blog'),
   ),
   PortfolioItem(
     id: 30,
     title: 'Fluttercon 2025 Day 3: Career Change Through Courage',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/fluttercon-2025-3',
-    meta: 'YOUTRUST Tech Blog',
+    meta: L.same('YOUTRUST Tech Blog'),
   ),
   PortfolioItem(
     id: 31,
     title: 'Fluttercon 2025 Day 2: Discovering New Worlds',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/fluttercon-2025-2',
-    meta: 'YOUTRUST Tech Blog',
+    meta: L.same('YOUTRUST Tech Blog'),
   ),
   PortfolioItem(
     id: 32,
     title: 'Flutterエンジニアの聖地へ：Fluttercon 2025 Day 1 の記録',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/fluttercon-2025-1',
-    meta: 'YOUTRUST Tech Blog',
+    meta: L.same('YOUTRUST Tech Blog'),
   ),
   PortfolioItem(
     id: 33,
@@ -510,7 +596,7 @@ const portfolioItems = <PortfolioItem>[
         'Next-Generation UI Experiences with Flutter x Rive',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/rive-animation-flutter',
-    meta: 'YOUTRUST Tech Blog',
+    meta: L.same('YOUTRUST Tech Blog'),
   ),
   PortfolioItem(
     id: 34,
@@ -519,56 +605,56 @@ const portfolioItems = <PortfolioItem>[
         'How to Implement It',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/liquid-glass-in-flutter',
-    meta: 'YOUTRUST Tech Blog',
+    meta: L.same('YOUTRUST Tech Blog'),
   ),
   PortfolioItem(
     id: 35,
     title: '拙者、FlutterNinjas2025にて修行して参った！',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/flutterninjas2025-day-one',
-    meta: 'YOUTRUST Tech Blog',
+    meta: L.same('YOUTRUST Tech Blog'),
   ),
   PortfolioItem(
     id: 36,
     title: '美味しいチーズ牛丼を通じて、ListView.builderのfindChildIndexCallbackについて学びませんか？',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/flutter-findchildindexcallback',
-    meta: 'YOUTRUST Tech Blog',
+    meta: L.same('YOUTRUST Tech Blog'),
   ),
   PortfolioItem(
     id: 37,
     title: 'AndroidでFlutterアプリでイメージ選択に気をつけろ',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/flutter-image-picking-android',
-    meta: 'YOUTRUST Tech Blog',
+    meta: L.same('YOUTRUST Tech Blog'),
   ),
   PortfolioItem(
     id: 38,
     title: 'テキスト入力のUXを改善しました',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/app-text-ux-improvements',
-    meta: 'YOUTRUST Tech Blog',
+    meta: L.same('YOUTRUST Tech Blog'),
   ),
   PortfolioItem(
     id: 39,
     title: 'FlutterKaigi 2024に参加してきました！',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/2024/11/27/184941',
-    meta: 'YOUTRUST Tech Blog',
+    meta: L.same('YOUTRUST Tech Blog'),
   ),
   PortfolioItem(
     id: 40,
     title: 'Flutter Connection参加レポート',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/2024/08/07/184732',
-    meta: 'YOUTRUST Tech Blog',
+    meta: L.same('YOUTRUST Tech Blog'),
   ),
   PortfolioItem(
     id: 41,
     title: 'Flutter エレメントエンべディング・アプリを ウェブサイト内に入れられるの力！AngularやReactまでもできる！',
     category: 'Article',
     link: 'https://qiita.com/LucasGoldner/items/64b9e74f5b982465cf76',
-    meta: 'Qiita · Zenn',
+    meta: L.same('Qiita · Zenn'),
   ),
   PortfolioItem(
     id: 42,
@@ -578,14 +664,14 @@ const portfolioItems = <PortfolioItem>[
     category: 'Article',
     link:
         'https://medium.com/@lucas.goldner/flutter-element-embedding-unleashing-the-power-of-integrating-flutter-apps-into-websites-e91c84c13f2d',
-    meta: 'Medium',
+    meta: L.same('Medium'),
   ),
   PortfolioItem(
     id: 43,
     title: '僕の最初のテックトーク、どうやって乗り越えたか - Fluttercon2023',
     category: 'Article',
     link: 'https://qiita.com/LucasGoldner/items/7583c9bc1316286b9121',
-    meta: 'Qiita',
+    meta: L.same('Qiita'),
   ),
   PortfolioItem(
     id: 44,
@@ -593,21 +679,21 @@ const portfolioItems = <PortfolioItem>[
     category: 'Article',
     link:
         'https://medium.com/@lucas.goldner/how-i-survived-my-first-big-tech-presentation-fluttercon-2023-f6c1c10f0263',
-    meta: 'Medium',
+    meta: L.same('Medium'),
   ),
   PortfolioItem(
     id: 45,
     title: 'Flutterで簡単プレゼンをする - FlutterShow⚡',
     category: 'Article',
     link: 'https://qiita.com/LucasGoldner/items/225a793035820137fc18',
-    meta: 'Qiita',
+    meta: L.same('Qiita'),
   ),
   PortfolioItem(
     id: 46,
     title: 'Presentations made easy in Flutter -FlutterShow⚡',
     category: 'Article',
     link: 'https://medium.com/@lucas.goldner/presentations-made-easy-in-flutter-fluttershow-79ab316253b5',
-    meta: 'Medium',
+    meta: L.same('Medium'),
   ),
   PortfolioItem(
     id: 100,
@@ -616,7 +702,7 @@ const portfolioItems = <PortfolioItem>[
         'Opened Up My World',
     category: 'Talk',
     link: 'https://okayama.open-seminar.org/detail/?speaker=lucas',
-    meta: '岡山Open Seminar 2026',
+    meta: L.same('岡山Open Seminar 2026'),
   ),
   PortfolioItem(
     id: 101,
@@ -625,7 +711,7 @@ const portfolioItems = <PortfolioItem>[
         'functionality with CallKit',
     category: 'Talk',
     link: 'https://fortee.jp/iosdc-japan-2026/proposal/db0b002a-ed2b-47e8-b798-3b8f8bcc4007',
-    meta: 'iOSDC Japan 2026',
+    meta: L.same('iOSDC Japan 2026'),
   ),
   PortfolioItem(
     id: 102,
@@ -634,7 +720,7 @@ const portfolioItems = <PortfolioItem>[
         'Flutter Information',
     category: 'Talk',
     link: 'https://gdgkwansai.connpass.com/event/391029/',
-    meta: 'Google I/O Extended Kwansai 2026',
+    meta: L.same('Google I/O Extended Kwansai 2026'),
   ),
   PortfolioItem(
     id: 103,
@@ -643,77 +729,77 @@ const portfolioItems = <PortfolioItem>[
         'from Google I/O 2026',
     category: 'Talk',
     link: 'https://gdg-tokyo.connpass.com/event/394136/',
-    meta: 'Google I/O Extended Tokyo 2026',
+    meta: L.same('Google I/O Extended Tokyo 2026'),
   ),
   PortfolioItem(
     id: 104,
     title: 'JSからDartへ：React Native開発者のFlutter初体験',
     category: 'Talk',
     link: 'https://react-native-meetup.connpass.com/event/390014/',
-    meta: 'React Native Meetup',
+    meta: L.same('React Native Meetup'),
   ),
   PortfolioItem(
     id: 105,
     title: 'Mobile App Development: A Community Learning Experience',
     category: 'Talk',
     link: 'https://wantedly.connpass.com/event/377759/',
-    meta: 'Mobile勉強会 #23',
+    meta: L.same('Mobile勉強会 #23'),
   ),
   PortfolioItem(
     id: 106,
     title: 'もうバグは許さない — Flutter E2Eテスト最終対策',
     category: 'Talk',
     link: 'https://assign.connpass.com/event/378631/',
-    meta: 'もうバグは許さない — Flutter E2Eテスト最終対策',
+    meta: L.same('もうバグは許さない — Flutter E2Eテスト最終対策'),
   ),
   PortfolioItem(
     id: 107,
     title: '[Keynote] Flutter in 2026',
     category: 'Talk',
     link: 'https://okayama-dot-flutter.connpass.com/event/378340/',
-    meta: '岡山.Flutter #1',
+    meta: L.same('岡山.Flutter #1'),
   ),
   PortfolioItem(
     id: 108,
     title: 'My recent struggles with Flutter',
     category: 'Talk',
     link: 'https://flutter-jp.connpass.com/event/374220/',
-    meta: 'Flutter Tokyo',
+    meta: L.same('Flutter Tokyo'),
   ),
   PortfolioItem(
     id: 109,
     title: 'Flutterで実現する「120％ネイティブ」なLiquid Glassエフェクト',
     category: 'Talk',
     link: 'https://gdg-tokyo.connpass.com/event/369416/',
-    meta: 'GDG Tokyo',
+    meta: L.same('GDG Tokyo'),
   ),
   PortfolioItem(
     id: 110,
     title: '[Keynote] The Flutter Effect',
     category: 'Talk',
     link: 'https://2025.flutterkaigi.jp/',
-    meta: 'FlutterKaigi 2025',
+    meta: L.same('FlutterKaigi 2025'),
   ),
   PortfolioItem(
     id: 111,
     title: 'Flutterの“秘密の超能力”がヤバい！【誰も気づいていない】',
     category: 'Talk',
     link: 'https://www.youtube.com/watch?v=uzsZnsmbOmU&t=5948s',
-    meta: 'DevFest 2025 Greater Kwansai · Recording',
+    meta: L('DevFest 2025 Greater Kwansai · Recording', 'DevFest 2025 Greater Kwansai · 録画'),
   ),
   PortfolioItem(
     id: 112,
     title: 'No More Anxiety: iOS Extensions in Flutter',
     category: 'Talk',
     link: 'https://www.youtube.com/watch?v=b8lfmkBB0vg',
-    meta: 'Fluttercon EU 2025 · Recording',
+    meta: L('Fluttercon EU 2025 · Recording', 'Fluttercon EU 2025 · 録画'),
   ),
   PortfolioItem(
     id: 113,
     title: 'Flutter Sceneで3D表現に挑戦！試行錯誤から学んだこと',
     category: 'Talk',
     link: 'https://youtrust.jp/lp/knowledgenight-vol2-flutter-online',
-    meta: 'YOUTRUST Knowledge Night vol.2 Flutter',
+    meta: L.same('YOUTRUST Knowledge Night vol.2 Flutter'),
   ),
   PortfolioItem(
     id: 114,
@@ -722,7 +808,7 @@ const portfolioItems = <PortfolioItem>[
         'Patrol! (MVP 🏆)',
     category: 'Talk',
     link: 'https://fluttergakkai.connpass.com/event/359514/',
-    meta: 'FlutterGakkai',
+    meta: L.same('FlutterGakkai'),
   ),
   PortfolioItem(
     id: 115,
@@ -731,7 +817,7 @@ const portfolioItems = <PortfolioItem>[
         'Smartphone-Compatible AI ‘Gemma’',
     category: 'Talk',
     link: 'https://www.youtube.com/watch?v=rIPHc6IhqAE&t=169s&ab_channel=GDGTokyo',
-    meta: 'Google I/O Extended Tokyo 2025 · Recording',
+    meta: L('Google I/O Extended Tokyo 2025 · Recording', 'Google I/O Extended Tokyo 2025 · 録画'),
   ),
   PortfolioItem(
     id: 116,
@@ -740,42 +826,42 @@ const portfolioItems = <PortfolioItem>[
         'iOS 26 + Panel talk',
     category: 'Talk',
     link: 'https://flutter-jp.connpass.com/event/359088/',
-    meta: 'Flutter Tokyo #9',
+    meta: L.same('Flutter Tokyo #9'),
   ),
   PortfolioItem(
     id: 117,
     title: 'ListView.builderの謎：効率的リスト構築の秘密を解明',
     category: 'Talk',
     link: 'https://enechange-meetup.connpass.com/event/347260/',
-    meta: 'Flutter開発の舞台裏！3社のエンジニアがおくるLTナイト',
+    meta: L.same('Flutter開発の舞台裏！3社のエンジニアがおくるLTナイト'),
   ),
   PortfolioItem(
     id: 118,
     title: 'Part of Team Flutter',
     category: 'Talk',
     link: 'https://dena.connpass.com/event/339747/',
-    meta: '突撃！隣のモバイルプラットフォーム！',
+    meta: L.same('突撃！隣のモバイルプラットフォーム！'),
   ),
   PortfolioItem(
     id: 119,
     title: 'テキスト入力のUXを改善',
     category: 'Talk',
     link: 'https://yumemi.connpass.com/event/340473/',
-    meta: 'YOUTRUST x ビビッドガーデン x ゆめみ Flutter LT会@渋谷 #7',
+    meta: L.same('YOUTRUST x ビビッドガーデン x ゆめみ Flutter LT会@渋谷 #7'),
   ),
   PortfolioItem(
     id: 120,
     title: '僕のstate restorationアカデミア',
     category: 'Talk',
     link: 'https://www.youtube.com/watch?v=ZEpcXKXSIyI',
-    meta: 'FlutterKaigi 2024 · Recording',
+    meta: L('FlutterKaigi 2024 · Recording', 'FlutterKaigi 2024 · 録画'),
   ),
   PortfolioItem(
     id: 121,
     title: 'Don’t Leave Your Assets in Their Pajamas—Transform Them!',
     category: 'Talk',
     link: 'https://www.meetup.com/de-DE/fluttervienna/events/303135184/?eventOrigin=group_events_list',
-    meta: '22nd Flutter Vienna Meetup at LEAN-CODERS',
+    meta: L.same('22nd Flutter Vienna Meetup at LEAN-CODERS'),
   ),
   PortfolioItem(
     id: 122,
@@ -785,28 +871,28 @@ const portfolioItems = <PortfolioItem>[
     category: 'Talk',
     link:
         'https://www.droidcon.com/2024/09/03/saving-data-before-the-app-getting-killed-easy-state-restoration-with-flutter/',
-    meta: 'Fluttercon 2024 · Recording',
+    meta: L('Fluttercon 2024 · Recording', 'Fluttercon 2024 · 録画'),
   ),
   PortfolioItem(
     id: 123,
     title: 'Flutter Web Laughs: Element Embedding Made Easy',
     category: 'Talk',
     link: 'https://www.youtube.com/watch?v=Hhq5PRD6c3I',
-    meta: 'Flutterconnection 2024 · Recording',
+    meta: L('Flutterconnection 2024 · Recording', 'Flutterconnection 2024 · 録画'),
   ),
   PortfolioItem(
     id: 124,
     title: 'flutterでエレメントエンベディング',
     category: 'Talk',
     link: 'https://www.youtube.com/live/uuaxvgKrDtE?feature=shared&t=25508',
-    meta: 'GDG DevFest Tokyo 2023 · Recording',
+    meta: L('GDG DevFest Tokyo 2023 · Recording', 'GDG DevFest Tokyo 2023 · 録画'),
   ),
   PortfolioItem(
     id: 125,
     title: 'Comparing ways of accessing native functionality',
     category: 'Talk',
     link: 'https://droidcon.com/2023/08/07/comparing-ways-of-accessing-native-functionality/',
-    meta: 'Fluttercon 2023 · Recording',
+    meta: L('Fluttercon 2023 · Recording', 'Fluttercon 2023 · 録画'),
   ),
 ];
 
@@ -831,18 +917,11 @@ const riveStateMachine = 'flappy flap flap';
 /// in the editor does not leave the restart button unreachable.
 const riveDeathSignals = <String>['hitBOxx 0', 'death sound'];
 
-/// What a screen reader gets in place of a bare canvas. It describes the
-/// thing itself, which the line underneath the phone no longer does.
-const riveSceneLabel = 'Flappy Bird game, built in Rive \u2014 tap to play';
-
-/// The line under the phone. The game is the argument; this is the ask.
-const riveSceneCaption = 'Fun is a feature. Get in touch and I\'ll build one into your product.';
-
 /// The strings the hero's typewriter cycles through.
 const typewriterStrings = [
-  'Flutter Engineer',
-  'iOS Engineer',
-  'Android Engineer',
-  'Backend Engineer',
-  'Frontend Engineer',
+  L('Flutter Engineer', 'Flutter\u30a8\u30f3\u30b8\u30cb\u30a2'),
+  L('iOS Engineer', 'iOS\u30a8\u30f3\u30b8\u30cb\u30a2'),
+  L('Android Engineer', 'Android\u30a8\u30f3\u30b8\u30cb\u30a2'),
+  L('Backend Engineer', '\u30d0\u30c3\u30af\u30a8\u30f3\u30c9\u30a8\u30f3\u30b8\u30cb\u30a2'),
+  L('Frontend Engineer', '\u30d5\u30ed\u30f3\u30c8\u30a8\u30f3\u30b8\u30cb\u30a2'),
 ];

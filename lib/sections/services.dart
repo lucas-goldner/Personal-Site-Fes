@@ -6,6 +6,9 @@ import '../components/baffle_text.dart';
 import '../components/counter.dart';
 import '../components/icon.dart';
 import '../data/site_data.dart';
+import '../i18n/lang.dart';
+import '../i18n/language_host.dart';
+import '../i18n/strings.dart';
 import '../layout/metrics.dart';
 
 /// The expertise cards plus the count-up strip beneath them.
@@ -123,6 +126,7 @@ class _ServicesState extends State<Services> {
   @override
   Component build(BuildContext context) {
     final metrics = MetricsProvider.of(context);
+    final lang = LangScope.langOf(context);
     final topMaxHeight = metrics.fraction(0.8);
     final containerMinHeight = metrics.fraction(0.6);
 
@@ -142,11 +146,12 @@ class _ServicesState extends State<Services> {
             div(classes: 'content', [
               div(classes: 'col-md-12', [
                 div(classes: 'line-text', [
-                  h4([.text('Expertise')]),
+                  h4([.text(Strings.expertiseEyebrow(lang))]),
                 ]),
                 div(classes: 'heading', [
                   BaffleText(
-                    text: 'What I Do',
+                    key: ValueKey(lang),
+                    text: Strings.expertiseHeading(lang),
                     revealDuration: 500,
                     revealDelay: 500,
                     revealCallbackDelay: 1100,
@@ -163,7 +168,7 @@ class _ServicesState extends State<Services> {
                     },
                   ),
                   [
-                    div(classes: 'container', [_cards(metrics)]),
+                    div(classes: 'container', [_cards(metrics, lang)]),
                   ],
                 ),
               ]),
@@ -179,7 +184,7 @@ class _ServicesState extends State<Services> {
   /// the sections are auto-sized.
   bool _visible(SiteMetrics metrics) => _show || metrics.isAuto;
 
-  Component _cards(SiteMetrics metrics) {
+  Component _cards(SiteMetrics metrics, Lang lang) {
     if (!_visible(metrics)) return const Component.empty();
 
     return div(classes: 'row expertise-row', [
@@ -192,9 +197,9 @@ class _ServicesState extends State<Services> {
               div(classes: 'service-body', [
                 div(classes: 'icon', [Icon(service.icon)]),
                 div(classes: 'service-text', [
-                  h4([.text(service.title)]),
-                  p(classes: 'technologies', [.text(service.technologies)]),
-                  p([.text(service.text)]),
+                  h4([.text(service.title(lang))]),
+                  p(classes: 'technologies', [.text(service.technologies(lang))]),
+                  p([.text(service.text(lang))]),
                 ]),
               ]),
             ],

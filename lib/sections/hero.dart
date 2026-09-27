@@ -6,6 +6,8 @@ import '../components/glitch.dart';
 import '../components/hover_button.dart';
 import '../components/typewriter.dart';
 import '../data/site_data.dart';
+import '../i18n/language_host.dart';
+import '../i18n/strings.dart';
 import '../interop/browser.dart';
 import '../layout/metrics.dart';
 
@@ -16,6 +18,7 @@ class Hero extends StatelessComponent {
   @override
   Component build(BuildContext context) {
     final metrics = MetricsProvider.of(context);
+    final lang = LangScope.langOf(context);
 
     return section(
       id: 'home',
@@ -29,17 +32,23 @@ class Hero extends StatelessComponent {
                 h4([.text('俺は')]),
               ]),
               const Glitch('Lucas Goldner'),
-              const Typewriter(strings: typewriterStrings),
+              // Keyed by language: the effect types one string at a time, and
+              // swapping the list under it mid-word would leave it deleting
+              // characters that are no longer there.
+              Typewriter(
+                key: ValueKey(lang),
+                strings: [for (final title in typewriterStrings) title(lang)],
+              ),
               const GdeBadge(),
               HoverButton(
-                label: 'Download CV',
+                label: Strings.downloadCv(lang),
                 onClick: () => openUrl(cvUrl),
               ),
             ]),
             ..._floatingIcons(),
           ]),
           div(classes: 'img col-md-6', [
-            img(src: heroImage, alt: heroImageAlt),
+            img(src: heroImage, alt: heroImageAlt(lang)),
           ]),
         ]),
       ],

@@ -2,6 +2,7 @@ import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 
 import '../data/site_data.dart';
+import '../i18n/language_host.dart';
 import '../layout/layout.dart';
 import '../layout/spinner.dart';
 import '../sections/about.dart';
@@ -21,18 +22,24 @@ class HomeApp extends StatelessComponent {
 
   @override
   Component build(BuildContext context) {
-    return div([
-      const Layout(
-        children: [
-          Hero(),
-          About(),
-          Services(),
-          Portfolio(),
-          Contact(),
-        ],
-      ),
-      const Spinner(),
-    ]);
+    // Everything below reads its language from here. The host starts in the
+    // English the static build shipped and switches on the next turn of the
+    // event loop if the URL asked for Japanese, which is still behind the
+    // loading overlay.
+    return const LanguageHost(
+      child: div([
+        Layout(
+          children: [
+            Hero(),
+            About(),
+            Services(),
+            Portfolio(),
+            Contact(),
+          ],
+        ),
+        Spinner(),
+      ]),
+    );
   }
 }
 
@@ -44,6 +51,9 @@ class HomePage extends StatelessComponent {
   @override
   Component build(BuildContext context) {
     return Component.fragment([
+      // Static generation writes English; the language host rewrites the
+      // title and the description in the browser when the URL asks for
+      // Japanese.
       const Document.head(
         title: SiteMeta.title,
         meta: {

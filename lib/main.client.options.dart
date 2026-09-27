@@ -7,6 +7,8 @@
 import 'package:jaspr/client.dart';
 
 import 'package:persona_site/pages/home_page.dart' deferred as _home_page;
+import 'package:persona_site/pages/not_found_page.dart'
+    deferred as _not_found_page;
 
 /// Default [ClientOptions] for use with your Jaspr project.
 ///
@@ -29,6 +31,10 @@ ClientOptions get defaultClientOptions => ClientOptions(
     'home_page': ClientLoader(
       (p) => _home_page.HomeApp(),
       loader: _home_page.loadLibrary,
+    ),
+    'not_found_page': ClientLoader(
+      (p) => _not_found_page.NotFoundApp(),
+      loader: _not_found_page.loadLibrary,
     ),
   },
 );

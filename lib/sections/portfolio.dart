@@ -10,6 +10,9 @@ import '../components/baffle_text.dart';
 import '../components/icon.dart';
 import '../components/tilt_box.dart';
 import '../data/site_data.dart';
+import '../i18n/lang.dart';
+import '../i18n/language_host.dart';
+import '../i18n/strings.dart';
 import '../interop/js_libs.dart' as js;
 import '../layout/metrics.dart';
 
@@ -352,6 +355,9 @@ class _PortfolioState extends State<Portfolio> {
   /// The tiles on screen: one page of the current filter.
   List<PortfolioItem> get _pageItems => _visibleItems.skip(_page * _pageSize).take(_pageSize).toList();
 
+  /// The language the underline was last measured in.
+  Lang? _measuredLang;
+
   void _select(String? category) {
     setState(() {
       _category = category;
@@ -396,6 +402,13 @@ class _PortfolioState extends State<Portfolio> {
   @override
   Component build(BuildContext context) {
     final metrics = MetricsProvider.of(context);
+    final lang = LangScope.langOf(context);
+    // The filter names change width with the language, and the underline is
+    // measured from them, so it is taken again once the new names are laid out.
+    if (kIsWeb && lang != _measuredLang) {
+      _measuredLang = lang;
+      Timer.run(_measureUnderline);
+    }
     final containerMaxHeight = metrics.fraction(0.8);
 
     return section(
@@ -407,7 +420,8 @@ class _PortfolioState extends State<Portfolio> {
           div(classes: 'side col-md-2', [
             h2([
               BaffleText(
-                text: 'Portfolio',
+                key: ValueKey(lang),
+                text: Strings.portfolioHeading(lang),
                 revealDuration: 500,
                 revealDelay: 500,
                 revealCallbackDelay: 1100,
@@ -423,7 +437,7 @@ class _PortfolioState extends State<Portfolio> {
                 [
                   span(
                     classes: 'portfolio_label${_category == null ? ' active' : ''}',
-                    [.text('All')],
+                    [.text(Strings.filterAll(lang))],
                   ),
                 ],
               ),
@@ -435,7 +449,7 @@ class _PortfolioState extends State<Portfolio> {
                     span(
                       classes: 'portfolio_label${_category == category ? ' active' : ''}',
                       [
-                        .text(category),
+                        .text(Strings.category(category, lang)),
                         span(classes: 'count', [
                           .text(' (${_countFor(category)})'),
                         ]),
@@ -468,9 +482,9 @@ class _PortfolioState extends State<Portfolio> {
                     'max-height': containerMaxHeight == null ? 'inherit' : '${containerMaxHeight.toStringAsFixed(0)}px',
                   },
                 ),
-                _tiles(metrics),
+                _tiles(metrics, lang),
               ),
-              _nav(metrics),
+              _nav(metrics, lang),
             ]),
           ]),
         ]),
@@ -478,7 +492,7 @@ class _PortfolioState extends State<Portfolio> {
     );
   }
 
-  List<Component> _tiles(SiteMetrics metrics) {
+  List<Component> _tiles(SiteMetrics metrics, Lang lang) {
     if (!_show && !metrics.isAuto) return const [];
 
     final items = _pageItems;
@@ -510,7 +524,7 @@ class _PortfolioState extends State<Portfolio> {
               delay: 200,
               animation: 'fadeIn',
               children: [
-                _face(item, maxHeight),
+                _face(item, maxHeight, lang),
                 TiltBox(
                   children: [
                     div(classes: 'overlay', [
@@ -532,20 +546,20 @@ class _PortfolioState extends State<Portfolio> {
   }
 
   /// The arrows and the page counter, or nothing when the filter fits a page.
-  Component _nav(SiteMetrics metrics) {
+  Component _nav(SiteMetrics metrics, Lang lang) {
     if ((!_show && !metrics.isAuto) || _pageCount < 2) return const Component.empty();
 
     return div(classes: 'portfolio_nav', [
       button(
         classes: 'portfolio_arrow prev',
-        attributes: const {'aria-label': 'Previous page', 'type': 'button'},
+        attributes: {'aria-label': Strings.previousPage(lang), 'type': 'button'},
         onClick: () => _step(-1),
         [const Icon(faChevronLeft)],
       ),
       span(classes: 'portfolio_pages', [.text('${_page + 1} / $_pageCount')]),
       button(
         classes: 'portfolio_arrow next',
-        attributes: const {'aria-label': 'Next page', 'type': 'button'},
+        attributes: {'aria-label': Strings.nextPage(lang), 'type': 'button'},
         onClick: () => _step(1),
         [const Icon(faChevronRight)],
       ),
@@ -553,7 +567,7 @@ class _PortfolioState extends State<Portfolio> {
   }
 
   /// The tile itself: a screenshot where there is one, a panel otherwise.
-  Component _face(PortfolioItem item, double? maxHeight) {
+  Component _face(PortfolioItem item, double? maxHeight, Lang lang) {
     final image = item.image;
     if (image != null) {
       return img(
@@ -579,9 +593,9 @@ class _PortfolioState extends State<Portfolio> {
         },
       ),
       [
-        span(classes: 'kind', [.text(item.category)]),
+        span(classes: 'kind', [.text(Strings.category(item.category, lang))]),
         span(classes: 'card_title', [.text(item.title)]),
-        if (item.meta case final meta?) span(classes: 'card_meta', [.text(meta)]),
+        if (item.meta case final meta?) span(classes: 'card_meta', [.text(meta(lang))]),
       ],
     );
   }
