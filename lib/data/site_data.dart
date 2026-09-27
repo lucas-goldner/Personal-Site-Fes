@@ -8,7 +8,32 @@ import '../i18n/lang.dart';
 /// Document metadata, previously `data/meta.json`.
 class SiteMeta {
   static const title = 'Lucas Goldner - Persona(l) Portfolio Website';
-  static const description = 'Persona(l) site of a Web- and Mobile Developer with all of his projects';
+
+  /// The line a search result prints under the title, and the one a link
+  /// preview carries.
+  ///
+  /// The wording it replaced came from the Gatsby site and said only that this
+  /// was the site of a web and mobile developer with all of his projects on
+  /// it: nothing about Japan, Flutter or the credential, and the portfolio
+  /// stopped being all of anything when it started opening on a sample.
+  static const description =
+      'Mobile engineer in Japan specialising in Flutter and Dart, and a '
+      'Flutter & Dart Google Developer Expert. Apps, websites, talks and '
+      'writing by Lucas Goldner.';
+
+  /// Where the site answers from, for the canonical link and for the absolute
+  /// URLs the social tags have to carry: a preview scraper has no page to
+  /// resolve a relative one against.
+  static const canonicalUrl = 'https://lucas-goldner.com/';
+  static const shareImageUrl = '${canonicalUrl}img/og-card.jpg';
+  static const shareImageAlt =
+      'Lucas Goldner in front of Tokyo Tower, beside his name and the line '
+      'Flutter, iOS and Android Engineer.';
+
+  /// What the legal pages say about themselves, instead of inheriting a
+  /// description that advertises them as a portfolio.
+  static const legalDescription =
+      'Imprint and privacy declaration for the apps and websites of Lucas Goldner.';
 
   /// Keywords describing what the page actually covers.
   ///

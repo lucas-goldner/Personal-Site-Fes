@@ -1,6 +1,7 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 
+import '../components/social_tags.dart';
 import '../data/site_data.dart';
 import '../i18n/language_host.dart';
 import '../layout/layout.dart';
@@ -54,13 +55,17 @@ class HomePage extends StatelessComponent {
       // Static generation writes English; the language host rewrites the
       // title and the description in the browser when the URL asks for
       // Japanese.
-      const Document.head(
+      Document.head(
         title: SiteMeta.title,
-        meta: {
+        meta: const {
           'author': SiteMeta.author,
           'description': SiteMeta.description,
           'keywords': SiteMeta.keywords,
         },
+        children: pageSocialTags(
+          title: SiteMeta.title,
+          description: SiteMeta.description,
+        ),
       ),
       const HomeApp(),
     ]);

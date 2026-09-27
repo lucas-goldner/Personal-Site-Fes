@@ -8,6 +8,7 @@ import 'package:jaspr/dom.dart';
 import 'package:jaspr/server.dart';
 
 import 'app.dart';
+import 'components/social_tags.dart';
 import 'data/site_data.dart';
 import 'main.server.options.dart';
 
@@ -47,6 +48,9 @@ void main() {
         link(href: 'styles/fontawesome.css', rel: 'stylesheet'),
         // Compiled from the original SCSS sources.
         link(href: 'styles/site.css', rel: 'stylesheet'),
+        // What every page's link preview has in common; each route adds its
+        // own title, description and address.
+        ...siteSocialTags,
         // Deferred so they run before the Dart bundle but never block parsing.
         script(src: 'js/particles.js', defer: true),
         script(src: 'js/vanilla-tilt.min.js', defer: true),

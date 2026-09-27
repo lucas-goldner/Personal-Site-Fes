@@ -16,10 +16,14 @@ abstract final class Strings {
     'Lucas Goldner — ポートフォリオサイト',
   );
   static const description = L(
-    'Persona(l) site of a Web- and Mobile Developer with all of his projects',
-    'Web・モバイル開発者 Lucas Goldner '
-        'のポートフォリオサイト。'
-        'これまでの仕事をまとめています。',
+    'Mobile engineer in Japan specialising in Flutter and Dart, and a '
+        'Flutter & Dart Google Developer Expert. Apps, websites, talks and '
+        'writing by Lucas Goldner.',
+    '日本を拠点にFlutterとDartを専門とする'
+        'モバイルエンジニア、'
+        'Flutter & Dart Google Developer Expert。'
+        'Lucas Goldnerのアプリ・ウェブサイト・'
+        '登壇・執筆。',
   );
 
   static String documentTitle(Lang lang) => title(lang);
