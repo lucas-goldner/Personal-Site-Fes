@@ -527,6 +527,7 @@ const portfolioItems = <PortfolioItem>[
     title: 'Building a City #2: The Storefronts',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/app-architecture-2',
+    image: 'projectImg/article20.webp',
     meta: L.same('YOUTRUST Tech Blog'),
   ),
   PortfolioItem(
@@ -536,6 +537,7 @@ const portfolioItems = <PortfolioItem>[
         '2026 @ Okayama',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/open-seminar-okayama',
+    image: 'projectImg/article21.webp',
     meta: L.same('YOUTRUST Tech Blog'),
   ),
   PortfolioItem(
@@ -545,6 +547,7 @@ const portfolioItems = <PortfolioItem>[
         'Perspective on Cross-Platform Development',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/iosdc-2026',
+    image: 'projectImg/article22.webp',
     meta: L.same('YOUTRUST Tech Blog'),
   ),
   PortfolioItem(
@@ -552,6 +555,7 @@ const portfolioItems = <PortfolioItem>[
     title: 'Building a City #1: The Master Plan',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/app-architecture-1',
+    image: 'projectImg/article23.webp',
     meta: L.same('YOUTRUST Tech Blog'),
   ),
   PortfolioItem(
@@ -561,6 +565,7 @@ const portfolioItems = <PortfolioItem>[
         'Features',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/sexy-drawer',
+    image: 'projectImg/article24.webp',
     meta: L.same('YOUTRUST Tech Blog'),
   ),
   PortfolioItem(
@@ -570,6 +575,7 @@ const portfolioItems = <PortfolioItem>[
         'the Keyboard Summoning Magic',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/ios-26-one-time-code-keyboard',
+    image: 'projectImg/article25.webp',
     meta: L.same('YOUTRUST Tech Blog'),
   ),
   PortfolioItem(
@@ -579,6 +585,7 @@ const portfolioItems = <PortfolioItem>[
         'Flutter Lint Rules to Dart Analyzer Plugin',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/analyzer-plugins',
+    image: 'projectImg/article26.webp',
     meta: L.same('YOUTRUST Tech Blog'),
   ),
   PortfolioItem(
@@ -586,6 +593,7 @@ const portfolioItems = <PortfolioItem>[
     title: 'Implementing 1-on-1 Voice Calls in YOUTRUST: An S-Rank Challenge',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/flutter-phone-call',
+    image: 'projectImg/article27.webp',
     meta: L.same('YOUTRUST Tech Blog'),
   ),
   PortfolioItem(
@@ -593,6 +601,7 @@ const portfolioItems = <PortfolioItem>[
     title: 'Flutter Kaigi 2025 Participation Report',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/2025/11/14/223527',
+    image: 'projectImg/article28.webp',
     meta: L.same('YOUTRUST Tech Blog'),
   ),
   PortfolioItem(
@@ -600,6 +609,7 @@ const portfolioItems = <PortfolioItem>[
     title: 'DevFest 2025 Greater Kwansai @Kobe Report',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/devfest-2025-kwansai',
+    image: 'projectImg/article29.webp',
     meta: L.same('YOUTRUST Tech Blog'),
   ),
   PortfolioItem(
@@ -607,6 +617,7 @@ const portfolioItems = <PortfolioItem>[
     title: 'Fluttercon 2025 Day 3: Career Change Through Courage',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/fluttercon-2025-3',
+    image: 'projectImg/article30.webp',
     meta: L.same('YOUTRUST Tech Blog'),
   ),
   PortfolioItem(
@@ -614,6 +625,7 @@ const portfolioItems = <PortfolioItem>[
     title: 'Fluttercon 2025 Day 2: Discovering New Worlds',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/fluttercon-2025-2',
+    image: 'projectImg/article31.webp',
     meta: L.same('YOUTRUST Tech Blog'),
   ),
   PortfolioItem(
@@ -621,6 +633,7 @@ const portfolioItems = <PortfolioItem>[
     title: 'Flutterエンジニアの聖地へ：Fluttercon 2025 Day 1 の記録',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/fluttercon-2025-1',
+    image: 'projectImg/article32.webp',
     meta: L.same('YOUTRUST Tech Blog'),
   ),
   PortfolioItem(
@@ -630,6 +643,7 @@ const portfolioItems = <PortfolioItem>[
         'Next-Generation UI Experiences with Flutter x Rive',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/rive-animation-flutter',
+    image: 'projectImg/article33.webp',
     meta: L.same('YOUTRUST Tech Blog'),
   ),
   PortfolioItem(
@@ -639,6 +653,7 @@ const portfolioItems = <PortfolioItem>[
         'How to Implement It',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/liquid-glass-in-flutter',
+    image: 'projectImg/article34.webp',
     meta: L.same('YOUTRUST Tech Blog'),
   ),
   PortfolioItem(
@@ -646,6 +661,7 @@ const portfolioItems = <PortfolioItem>[
     title: '拙者、FlutterNinjas2025にて修行して参った！',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/flutterninjas2025-day-one',
+    image: 'projectImg/article35.webp',
     meta: L.same('YOUTRUST Tech Blog'),
   ),
   PortfolioItem(
@@ -653,6 +669,7 @@ const portfolioItems = <PortfolioItem>[
     title: '美味しいチーズ牛丼を通じて、ListView.builderのfindChildIndexCallbackについて学びませんか？',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/flutter-findchildindexcallback',
+    image: 'projectImg/article36.webp',
     meta: L.same('YOUTRUST Tech Blog'),
   ),
   PortfolioItem(
@@ -660,6 +677,7 @@ const portfolioItems = <PortfolioItem>[
     title: 'AndroidでFlutterアプリでイメージ選択に気をつけろ',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/flutter-image-picking-android',
+    image: 'projectImg/article37.webp',
     meta: L.same('YOUTRUST Tech Blog'),
   ),
   PortfolioItem(
@@ -667,6 +685,7 @@ const portfolioItems = <PortfolioItem>[
     title: 'テキスト入力のUXを改善しました',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/app-text-ux-improvements',
+    image: 'projectImg/article38.webp',
     meta: L.same('YOUTRUST Tech Blog'),
   ),
   PortfolioItem(
@@ -674,6 +693,7 @@ const portfolioItems = <PortfolioItem>[
     title: 'FlutterKaigi 2024に参加してきました！',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/2024/11/27/184941',
+    image: 'projectImg/article39.webp',
     meta: L.same('YOUTRUST Tech Blog'),
   ),
   PortfolioItem(
@@ -681,6 +701,7 @@ const portfolioItems = <PortfolioItem>[
     title: 'Flutter Connection参加レポート',
     category: 'Article',
     link: 'https://tech.youtrust.co.jp/entry/2024/08/07/184732',
+    image: 'projectImg/article40.webp',
     meta: L.same('YOUTRUST Tech Blog'),
   ),
   PortfolioItem(
@@ -688,6 +709,7 @@ const portfolioItems = <PortfolioItem>[
     title: 'Flutter エレメントエンべディング・アプリを ウェブサイト内に入れられるの力！AngularやReactまでもできる！',
     category: 'Article',
     link: 'https://qiita.com/LucasGoldner/items/64b9e74f5b982465cf76',
+    image: 'projectImg/article41.webp',
     meta: L.same('Qiita · Zenn'),
   ),
   PortfolioItem(
@@ -698,6 +720,7 @@ const portfolioItems = <PortfolioItem>[
     category: 'Article',
     link:
         'https://medium.com/@lucas.goldner/flutter-element-embedding-unleashing-the-power-of-integrating-flutter-apps-into-websites-e91c84c13f2d',
+    image: 'projectImg/article42.webp',
     meta: L.same('Medium'),
   ),
   PortfolioItem(
@@ -705,6 +728,7 @@ const portfolioItems = <PortfolioItem>[
     title: '僕の最初のテックトーク、どうやって乗り越えたか - Fluttercon2023',
     category: 'Article',
     link: 'https://qiita.com/LucasGoldner/items/7583c9bc1316286b9121',
+    image: 'projectImg/article43.webp',
     meta: L.same('Qiita'),
   ),
   PortfolioItem(
@@ -713,6 +737,7 @@ const portfolioItems = <PortfolioItem>[
     category: 'Article',
     link:
         'https://medium.com/@lucas.goldner/how-i-survived-my-first-big-tech-presentation-fluttercon-2023-f6c1c10f0263',
+    image: 'projectImg/article44.webp',
     meta: L.same('Medium'),
   ),
   PortfolioItem(
@@ -720,6 +745,7 @@ const portfolioItems = <PortfolioItem>[
     title: 'Flutterで簡単プレゼンをする - FlutterShow⚡',
     category: 'Article',
     link: 'https://qiita.com/LucasGoldner/items/225a793035820137fc18',
+    image: 'projectImg/article45.webp',
     meta: L.same('Qiita'),
   ),
   PortfolioItem(
@@ -727,6 +753,7 @@ const portfolioItems = <PortfolioItem>[
     title: 'Presentations made easy in Flutter -FlutterShow⚡',
     category: 'Article',
     link: 'https://medium.com/@lucas.goldner/presentations-made-easy-in-flutter-fluttershow-79ab316253b5',
+    image: 'projectImg/article46.webp',
     meta: L.same('Medium'),
   ),
   PortfolioItem(
@@ -736,6 +763,7 @@ const portfolioItems = <PortfolioItem>[
         'Opened Up My World',
     category: 'Talk',
     link: 'https://okayama.open-seminar.org/detail/?speaker=lucas',
+    image: 'projectImg/talk100.webp',
     meta: L.same('岡山Open Seminar 2026'),
   ),
   PortfolioItem(
@@ -745,6 +773,7 @@ const portfolioItems = <PortfolioItem>[
         'functionality with CallKit',
     category: 'Talk',
     link: 'https://fortee.jp/iosdc-japan-2026/proposal/db0b002a-ed2b-47e8-b798-3b8f8bcc4007',
+    image: 'projectImg/talk101.webp',
     meta: L.same('iOSDC Japan 2026'),
   ),
   PortfolioItem(
@@ -754,6 +783,7 @@ const portfolioItems = <PortfolioItem>[
         'Flutter Information',
     category: 'Talk',
     link: 'https://gdgkwansai.connpass.com/event/391029/',
+    image: 'projectImg/talk102.webp',
     meta: L.same('Google I/O Extended Kwansai 2026'),
   ),
   PortfolioItem(
@@ -763,6 +793,7 @@ const portfolioItems = <PortfolioItem>[
         'from Google I/O 2026',
     category: 'Talk',
     link: 'https://gdg-tokyo.connpass.com/event/394136/',
+    image: 'projectImg/talk103.webp',
     meta: L.same('Google I/O Extended Tokyo 2026'),
   ),
   PortfolioItem(
@@ -770,6 +801,7 @@ const portfolioItems = <PortfolioItem>[
     title: 'JSからDartへ：React Native開発者のFlutter初体験',
     category: 'Talk',
     link: 'https://react-native-meetup.connpass.com/event/390014/',
+    image: 'projectImg/talk104.webp',
     meta: L.same('React Native Meetup'),
   ),
   PortfolioItem(
@@ -777,6 +809,7 @@ const portfolioItems = <PortfolioItem>[
     title: 'Mobile App Development: A Community Learning Experience',
     category: 'Talk',
     link: 'https://wantedly.connpass.com/event/377759/',
+    image: 'projectImg/talk105.webp',
     meta: L.same('Mobile勉強会 #23'),
   ),
   PortfolioItem(
@@ -784,6 +817,7 @@ const portfolioItems = <PortfolioItem>[
     title: 'もうバグは許さない — Flutter E2Eテスト最終対策',
     category: 'Talk',
     link: 'https://assign.connpass.com/event/378631/',
+    image: 'projectImg/talk106.webp',
     meta: L.same('もうバグは許さない — Flutter E2Eテスト最終対策'),
   ),
   PortfolioItem(
@@ -791,6 +825,7 @@ const portfolioItems = <PortfolioItem>[
     title: '[Keynote] Flutter in 2026',
     category: 'Talk',
     link: 'https://okayama-dot-flutter.connpass.com/event/378340/',
+    image: 'projectImg/talk107.webp',
     meta: L.same('岡山.Flutter #1'),
   ),
   PortfolioItem(
@@ -798,6 +833,7 @@ const portfolioItems = <PortfolioItem>[
     title: 'My recent struggles with Flutter',
     category: 'Talk',
     link: 'https://flutter-jp.connpass.com/event/374220/',
+    image: 'projectImg/talk108.webp',
     meta: L.same('Flutter Tokyo'),
   ),
   PortfolioItem(
@@ -805,6 +841,7 @@ const portfolioItems = <PortfolioItem>[
     title: 'Flutterで実現する「120％ネイティブ」なLiquid Glassエフェクト',
     category: 'Talk',
     link: 'https://gdg-tokyo.connpass.com/event/369416/',
+    image: 'projectImg/talk109.webp',
     meta: L.same('GDG Tokyo'),
   ),
   PortfolioItem(
@@ -812,6 +849,7 @@ const portfolioItems = <PortfolioItem>[
     title: '[Keynote] The Flutter Effect',
     category: 'Talk',
     link: 'https://2025.flutterkaigi.jp/',
+    image: 'projectImg/talk110.webp',
     meta: L.same('FlutterKaigi 2025'),
   ),
   PortfolioItem(
@@ -819,6 +857,7 @@ const portfolioItems = <PortfolioItem>[
     title: 'Flutterの“秘密の超能力”がヤバい！【誰も気づいていない】',
     category: 'Talk',
     link: 'https://www.youtube.com/watch?v=uzsZnsmbOmU&t=5948s',
+    image: 'projectImg/talk111.webp',
     meta: L('DevFest 2025 Greater Kwansai · Recording', 'DevFest 2025 Greater Kwansai · 録画'),
   ),
   PortfolioItem(
@@ -826,6 +865,7 @@ const portfolioItems = <PortfolioItem>[
     title: 'No More Anxiety: iOS Extensions in Flutter',
     category: 'Talk',
     link: 'https://www.youtube.com/watch?v=b8lfmkBB0vg',
+    image: 'projectImg/talk112.webp',
     meta: L('Fluttercon EU 2025 · Recording', 'Fluttercon EU 2025 · 録画'),
   ),
   PortfolioItem(
@@ -833,6 +873,7 @@ const portfolioItems = <PortfolioItem>[
     title: 'Flutter Sceneで3D表現に挑戦！試行錯誤から学んだこと',
     category: 'Talk',
     link: 'https://youtrust.jp/lp/knowledgenight-vol2-flutter-online',
+    image: 'projectImg/talk113.webp',
     meta: L.same('YOUTRUST Knowledge Night vol.2 Flutter'),
   ),
   PortfolioItem(
@@ -842,6 +883,7 @@ const portfolioItems = <PortfolioItem>[
         'Patrol! (MVP 🏆)',
     category: 'Talk',
     link: 'https://fluttergakkai.connpass.com/event/359514/',
+    image: 'projectImg/talk114.webp',
     meta: L.same('FlutterGakkai'),
   ),
   PortfolioItem(
@@ -851,6 +893,7 @@ const portfolioItems = <PortfolioItem>[
         'Smartphone-Compatible AI ‘Gemma’',
     category: 'Talk',
     link: 'https://www.youtube.com/watch?v=rIPHc6IhqAE&t=169s&ab_channel=GDGTokyo',
+    image: 'projectImg/talk115.webp',
     meta: L('Google I/O Extended Tokyo 2025 · Recording', 'Google I/O Extended Tokyo 2025 · 録画'),
   ),
   PortfolioItem(
@@ -860,6 +903,7 @@ const portfolioItems = <PortfolioItem>[
         'iOS 26 + Panel talk',
     category: 'Talk',
     link: 'https://flutter-jp.connpass.com/event/359088/',
+    image: 'projectImg/talk116.webp',
     meta: L.same('Flutter Tokyo #9'),
   ),
   PortfolioItem(
@@ -867,6 +911,7 @@ const portfolioItems = <PortfolioItem>[
     title: 'ListView.builderの謎：効率的リスト構築の秘密を解明',
     category: 'Talk',
     link: 'https://enechange-meetup.connpass.com/event/347260/',
+    image: 'projectImg/talk117.webp',
     meta: L.same('Flutter開発の舞台裏！3社のエンジニアがおくるLTナイト'),
   ),
   PortfolioItem(
@@ -874,6 +919,7 @@ const portfolioItems = <PortfolioItem>[
     title: 'Part of Team Flutter',
     category: 'Talk',
     link: 'https://dena.connpass.com/event/339747/',
+    image: 'projectImg/talk118.webp',
     meta: L.same('突撃！隣のモバイルプラットフォーム！'),
   ),
   PortfolioItem(
@@ -881,6 +927,7 @@ const portfolioItems = <PortfolioItem>[
     title: 'テキスト入力のUXを改善',
     category: 'Talk',
     link: 'https://yumemi.connpass.com/event/340473/',
+    image: 'projectImg/talk119.webp',
     meta: L.same('YOUTRUST x ビビッドガーデン x ゆめみ Flutter LT会@渋谷 #7'),
   ),
   PortfolioItem(
@@ -888,6 +935,7 @@ const portfolioItems = <PortfolioItem>[
     title: '僕のstate restorationアカデミア',
     category: 'Talk',
     link: 'https://www.youtube.com/watch?v=ZEpcXKXSIyI',
+    image: 'projectImg/talk120.webp',
     meta: L('FlutterKaigi 2024 · Recording', 'FlutterKaigi 2024 · 録画'),
   ),
   PortfolioItem(
@@ -895,6 +943,7 @@ const portfolioItems = <PortfolioItem>[
     title: 'Don’t Leave Your Assets in Their Pajamas—Transform Them!',
     category: 'Talk',
     link: 'https://www.meetup.com/de-DE/fluttervienna/events/303135184/?eventOrigin=group_events_list',
+    image: 'projectImg/talk121.webp',
     meta: L.same('22nd Flutter Vienna Meetup at LEAN-CODERS'),
   ),
   PortfolioItem(
@@ -912,6 +961,7 @@ const portfolioItems = <PortfolioItem>[
     title: 'Flutter Web Laughs: Element Embedding Made Easy',
     category: 'Talk',
     link: 'https://www.youtube.com/watch?v=Hhq5PRD6c3I',
+    image: 'projectImg/talk123.webp',
     meta: L('Flutterconnection 2024 · Recording', 'Flutterconnection 2024 · 録画'),
   ),
   PortfolioItem(
@@ -919,6 +969,7 @@ const portfolioItems = <PortfolioItem>[
     title: 'flutterでエレメントエンベディング',
     category: 'Talk',
     link: 'https://www.youtube.com/live/uuaxvgKrDtE?feature=shared&t=25508',
+    image: 'projectImg/talk124.webp',
     meta: L('GDG DevFest Tokyo 2023 · Recording', 'GDG DevFest Tokyo 2023 · 録画'),
   ),
   PortfolioItem(
