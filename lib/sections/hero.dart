@@ -116,6 +116,10 @@ class Hero extends StatelessComponent {
           classes:
               'animated fadeIn '
               'move-${heroIcons[i].moveUp ? 'up' : 'down'} float-image',
+          attributes: {
+            'srcset': heroIcons[i].srcset,
+            'sizes': heroIconSizes,
+          },
           styles: Styles(
             raw: {
               'left': '${i * 10}%',

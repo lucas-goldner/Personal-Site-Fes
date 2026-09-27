@@ -71,14 +71,14 @@ class Portfolio extends StatefulComponent {
       margin: .only(bottom: 10.px),
       color: _accent,
       fontSize: 10.px,
-      fontWeight: .w600,
+      fontWeight: .w700,
       textTransform: .upperCase,
       raw: {'letter-spacing': '1.5px'},
     ),
     css('#portfolio .portfolio_card .card_title').styles(
       color: Colors.white,
       fontSize: 16.px,
-      fontWeight: .w600,
+      fontWeight: .w700,
       lineHeight: 22.px,
       raw: {
         'overflow-wrap': 'break-word',

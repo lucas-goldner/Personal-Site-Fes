@@ -56,11 +56,10 @@ class L {
   String call(Lang lang) => switch (lang) { Lang.en => en, Lang.ja => ja };
 }
 
-/// Poppins, which is what the site is set in.
-const latinFontUrl =
-    'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700;800;900&display=swap';
-
 /// Noto Sans JP, fetched only by [loadJapaneseFont].
+///
+/// The only font the site fetches from Google. Poppins is served from
+/// `web/fonts` and declared in the stylesheet.
 const japaneseFontUrl =
     'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;600;700&display=swap';
 

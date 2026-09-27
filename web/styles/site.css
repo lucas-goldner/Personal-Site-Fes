@@ -8,6 +8,11 @@
  *
  * Sections keep the headers they arrived with, so what is vendored and under
  * what licence stays legible.
+ *
+ * Nothing links to this file. The document head inlines it instead, so a page
+ * paints without waiting on a second round trip and the @font-face sources
+ * below are discovered as the HTML parses. See lib/components/inline_styles.dart,
+ * which also rewrites the ../fonts/ paths on the way in.
  */
 
 /*!

@@ -29,7 +29,11 @@ void initTilt(web.Element element) {}
 
 void destroyTilt(web.Element element) {}
 
-void observeInViewport(web.Element element, void Function() onEnter) {}
+void observeInViewport(
+  web.Element element,
+  void Function() onEnter, {
+  double threshold = 0,
+}) {}
 
 int addResizeListener(void Function() onResize) => 0;
 

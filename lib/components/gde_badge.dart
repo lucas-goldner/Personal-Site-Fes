@@ -45,7 +45,7 @@ class GdeBadge extends StatelessComponent {
         gap: Gap(column: 9.px),
         color: Colors.white,
         fontSize: 16.px,
-        fontWeight: .w600,
+        fontWeight: .w700,
         textDecoration: const TextDecoration(line: .none),
         letterSpacing: 0.4.px,
         raw: {'transition': 'color .3s ease'},

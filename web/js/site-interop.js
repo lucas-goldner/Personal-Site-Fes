@@ -20,6 +20,52 @@
   var riveScript = null;
 
   /*
+   * particles.js and vanilla-tilt are decoration: a drifting background behind
+   * the about section, and a tilt on the portfolio tiles under the pointer.
+   * Fifty kilobytes of script for that has no business competing with the hero
+   * image, so neither is in the document head any more. The first time Dart
+   * asks whether one is ready the fetch is queued for after the page has
+   * finished loading, and the answer stays false until the library has run.
+   */
+  var deferredScripts = {};
+
+  function loadWhenIdle(src) {
+    if (deferredScripts[src]) {
+      return;
+    }
+    deferredScripts[src] = true;
+    var inject = function () {
+      var script = document.createElement('script');
+      script.src = src;
+      script.async = true;
+      document.head.appendChild(script);
+    };
+    var soon = function () {
+      if (typeof window.requestIdleCallback === 'function') {
+        // The timeout matters more than the idle moment: on a busy main thread
+        // an idle callback can be a long time coming, and this should not wait
+        // for one to arrive.
+        window.requestIdleCallback(inject, { timeout: 2000 });
+      } else {
+        window.setTimeout(inject, 200);
+      }
+    };
+    if (document.readyState === 'complete') {
+      soon();
+    } else {
+      window.addEventListener('load', soon);
+    }
+  }
+
+  /** Whether the device has a pointer that can hover over things. */
+  function canHover() {
+    return (
+      typeof window.matchMedia !== 'function' ||
+      window.matchMedia('(hover: hover)').matches
+    );
+  }
+
+  /*
    * Matches the canvas's backing store to the box CSS has given it.
    *
    * On a frame of its own rather than straight away: the runtime can call
@@ -185,9 +231,13 @@
       }
     },
 
-    /** True once particles.js has been evaluated. */
+    /** True once particles.js has been evaluated; asks for it on first call. */
     particlesReady: function () {
-      return typeof window.particlesJS === 'function';
+      if (typeof window.particlesJS === 'function') {
+        return true;
+      }
+      loadWhenIdle('js/particles.js');
+      return false;
     },
 
     /** Starts the particle network inside the element with the given id. */
@@ -213,14 +263,23 @@
       });
     },
 
-    /** True once vanilla-tilt has been evaluated. */
+    /*
+     * True once vanilla-tilt has been evaluated, and straight away on a device
+     * that cannot hover: the effect needs a pointer, so there is nothing worth
+     * fetching and initTilt below has nothing to do. Saying yes rather than
+     * never lets the caller stop waiting instead of polling to its limit.
+     */
     tiltReady: function () {
-      return typeof window.VanillaTilt !== 'undefined';
+      if (!canHover() || typeof window.VanillaTilt !== 'undefined') {
+        return true;
+      }
+      loadWhenIdle('js/vanilla-tilt.min.js');
+      return false;
     },
 
     /** Applies the hover tilt to a portfolio tile. */
     initTilt: function (element) {
-      if (!element || element.vanillaTilt) {
+      if (!element || element.vanillaTilt || !canHover()) {
         return;
       }
       window.VanillaTilt.init(element, { scale: 1, max: 50 });
@@ -238,7 +297,7 @@
      * react-in-viewport. The observer disconnects itself after firing, which
      * matches the one-shot `animation_complete` flag of the React components.
      */
-    observeInViewport: function (element, callback) {
+    observeInViewport: function (element, callback, threshold) {
       if (!element) {
         return;
       }
@@ -254,7 +313,7 @@
             return;
           }
         }
-      });
+      }, { threshold: threshold || 0 });
       observer.observe(element);
     }
   };

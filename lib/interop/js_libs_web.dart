@@ -56,12 +56,24 @@ external void initTilt(web.Element element);
 external void destroyTilt(web.Element element);
 
 /// Calls [onEnter] the first time [element] scrolls into view.
-void observeInViewport(web.Element element, void Function() onEnter) {
-  _observeInViewport(element, onEnter.toJS);
+///
+/// [threshold] is the fraction of the element that has to be showing. The
+/// default fires on any overlap at all, including the zero-area one a browser
+/// reports for an element resting exactly on the fold.
+void observeInViewport(
+  web.Element element,
+  void Function() onEnter, {
+  double threshold = 0,
+}) {
+  _observeInViewport(element, onEnter.toJS, threshold);
 }
 
 @JS('siteInterop.observeInViewport')
-external void _observeInViewport(web.Element element, JSFunction callback);
+external void _observeInViewport(
+  web.Element element,
+  JSFunction callback,
+  double threshold,
+);
 
 /// Registers a window resize listener, returning a token for [removeResizeListener].
 int addResizeListener(void Function() onResize) => _addResizeListener(onResize.toJS);

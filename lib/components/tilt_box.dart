@@ -31,12 +31,17 @@ class _TiltBoxState extends State<TiltBox> {
     // The node only exists after the first render, so wait for it and for
     // vanilla-tilt to have been evaluated.
     _attachTimer = Timer(Duration.zero, () {
+      // vanilla-tilt is fetched after the page has loaded, so give it the same
+      // generous, unhurried window particles.js gets. On a device without a
+      // pointer tiltReady answers yes immediately and initTilt does nothing.
       whenReady(
         () => js.tiltReady() && _key.currentNode != null,
         () {
           final node = _key.currentNode;
           if (node != null) js.initTilt(node);
         },
+        maxAttempts: 300,
+        interval: const Duration(milliseconds: 100),
       );
     });
   }

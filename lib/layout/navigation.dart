@@ -69,7 +69,9 @@ class _NavigationState extends State<Navigation> {
           events: events(onClick: () => setState(() => _show = false)),
         ),
         div(classes: 'logo', [
-          img(src: 'img/LucasLogo.webp', alt: 'logo', width: 490, height: 133),
+          // 300px wide for a box CSS caps at 100px: enough for a three-times
+          // display, and nothing beyond it was ever drawn.
+          img(src: 'img/LucasLogo.webp', alt: 'logo', width: 300, height: 81),
         ]),
         div(classes: 'links', [
           ul([

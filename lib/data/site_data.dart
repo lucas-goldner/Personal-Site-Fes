@@ -80,7 +80,19 @@ class HeroIcon {
 
   /// Whether the icon bobs up (`move-up`) or down (`move-down`).
   final bool moveUp;
+
+  /// Candidate widths for [src]: a 40px variant beside the 100px original.
+  ///
+  /// The icons are 50px wide on desktop and 10px on phones, so a phone needs
+  /// 40px even at 3x while a retina desktop needs the full 100px.
+  String get srcset {
+    final base = src.substring(0, src.length - '.webp'.length);
+    return '$base-40.webp 40w, $src 100w';
+  }
 }
+
+/// Layout width of a floating hero icon, mirroring `.float-image` in site.css.
+const heroIconSizes = '(max-width: 991px) 10px, 50px';
 
 const heroIcons = <HeroIcon>[
   HeroIcon('heroIcons/pc.webp', 74.2, moveUp: true),

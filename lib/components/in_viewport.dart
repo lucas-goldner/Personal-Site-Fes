@@ -25,7 +25,10 @@ mixin ViewportAware<T extends StatefulComponent> on State<T> {
   ///
   /// The element is not attached to the document yet while `initState` runs, so
   /// this polls briefly for the node before handing it to the observer.
-  void watchViewport(void Function() onEnter) {
+  ///
+  /// [threshold] is the fraction of the element that has to be showing before
+  /// [onEnter] fires; the default is any overlap at all.
+  void watchViewport(void Function() onEnter, {double threshold = 0}) {
     if (!kIsWeb) return;
 
     var attempts = 0;
@@ -41,7 +44,7 @@ mixin ViewportAware<T extends StatefulComponent> on State<T> {
         if (_entered || !mounted) return;
         _entered = true;
         onEnter();
-      });
+      }, threshold: threshold);
     }
 
     _pollTimer = Timer(Duration.zero, attach);

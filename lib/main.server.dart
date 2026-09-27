@@ -8,6 +8,7 @@ import 'package:jaspr/dom.dart';
 import 'package:jaspr/server.dart';
 
 import 'app.dart';
+import 'components/inline_styles.dart';
 import 'components/social_tags.dart';
 import 'data/site_data.dart';
 import 'main.server.options.dart';
@@ -34,15 +35,17 @@ void main() {
         // below and served from this site. The Japanese face still comes from
         // Google, fetched by the language host only when a page is actually
         // being read in Japanese — see loadJapaneseFont.
-        // One stylesheet: the grid, the icon sizing, the animations and the
-        // site's own rules, which used to be four separate blocking requests.
-        link(href: 'styles/site.css', rel: 'stylesheet'),
+        // One stylesheet, and inline rather than linked: the grid, the icon
+        // sizing, the animations and the site's own rules, which used to be
+        // four separate blocking requests. See inlineSiteStyles.
+        inlineSiteStyles(),
         // What every page's link preview has in common; each route adds its
         // own title, description and address.
         ...siteSocialTags,
-        // Deferred so they run before the Dart bundle but never block parsing.
-        script(src: 'js/particles.js', defer: true),
-        script(src: 'js/vanilla-tilt.min.js', defer: true),
+        // The only script in the head, and deferred so it never blocks
+        // parsing. particles.js and vanilla-tilt used to sit beside it; they
+        // are decoration, so site-interop now fetches them once the page has
+        // loaded rather than alongside the hero image.
         script(src: 'js/site-interop.js', defer: true),
       ],
       body: const App(),

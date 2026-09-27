@@ -2,6 +2,7 @@ import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 
 import '../components/icon.dart';
+import '../components/in_viewport.dart';
 import '../components/progress.dart';
 import '../data/site_data.dart';
 import '../i18n/language_host.dart';
@@ -64,17 +65,41 @@ class About extends StatefulComponent {
   ];
 }
 
-class _AboutState extends State<About> {
+class _AboutState extends State<About> with ViewportAware<About> {
   @override
   void initState() {
     super.initState();
-    // Wait for particles.js to be evaluated and for the container to have been
-    // laid out: the library sizes its canvas from the container's box, which is
-    // still zero-height until the layout has measured the viewport.
+    // First wait for the section to have a height. Sections start at 0px and
+    // are sized from the viewport once the metrics arrive, and until then the
+    // whole page is collapsed into the fold — an observer attached that early
+    // would report every section as visible. This is also what particles.js
+    // needs, since it takes its canvas size from the container's box.
     whenReady(
-      () => js.particlesReady() && elementHeight(_particlesId) > 0,
-      () => js.initParticles(_particlesId),
-      maxAttempts: 200,
+      () => elementHeight(_particlesId) > 0,
+      // Then nothing more until the section is actually on screen. The
+      // particle network is a canvas that animates for as long as it exists,
+      // and it sits below the fold, so starting it on load spends a
+      // continuous slice of the main thread drawing something nobody is
+      // looking at. Waiting also holds back the download: asking whether
+      // particles.js is ready is what orders it.
+      // A tenth of the section, not the first pixel: a browser reports a
+      // section resting exactly on the fold as intersecting, which is every
+      // desktop viewport here, and that would start the canvas on load again.
+      () => watchViewport(threshold: 0.1, () {
+        // The script is only fetched once the page has finished loading,
+        // which on a slow connection lands well after this, so wait
+        // generously — and at a tenth of a second rather than every frame,
+        // since a background starting 100ms late is not something anyone can
+        // see.
+        // A closure, not a tear-off: particlesReady is an external interop
+        // member and dart2js refuses to tear those off.
+        whenReady(
+          () => js.particlesReady(),
+          () => js.initParticles(_particlesId),
+          maxAttempts: 300,
+          interval: const Duration(milliseconds: 100),
+        );
+      }),
     );
   }
 
@@ -85,6 +110,7 @@ class _AboutState extends State<About> {
 
     return section(
       id: 'about',
+      key: viewportKey,
       classes: 'about',
       styles: Styles(raw: {'height': metrics.cssHeight}),
       [

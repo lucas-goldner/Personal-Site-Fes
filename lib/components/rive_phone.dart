@@ -113,7 +113,7 @@ class RivePhone extends StatefulComponent {
       css('.phone_over .over_title').styles(
         color: Colors.white,
         fontSize: 18.px,
-        fontWeight: .w600,
+        fontWeight: .w700,
         raw: {'letter-spacing': '1px', 'text-shadow': '0 2px 6px rgba(0,0,0,.6)'},
       ),
       css('.phone_over .over_button', [
@@ -121,7 +121,7 @@ class RivePhone extends StatefulComponent {
           padding: .symmetric(vertical: 10.px, horizontal: 22.px),
           color: const Color('#000'),
           fontSize: 12.px,
-          fontWeight: .w600,
+          fontWeight: .w700,
           textTransform: .upperCase,
           raw: {
             'background-color': '#ffb035',

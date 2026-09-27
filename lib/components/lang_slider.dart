@@ -83,7 +83,7 @@ class LangSlider extends StatelessComponent {
           padding: .symmetric(vertical: 6.px, horizontal: 4.px),
           color: const Color('#cfd4db'),
           fontSize: 11.px,
-          fontWeight: .w600,
+          fontWeight: .w700,
           textAlign: .center,
           raw: {
             'background-color': 'transparent',
