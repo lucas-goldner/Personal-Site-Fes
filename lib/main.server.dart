@@ -25,7 +25,10 @@ void main() {
         'keywords': SiteMeta.keywords,
       },
       head: [
-        link(href: 'img/favicon.ico', rel: 'icon'),
+        // The query is a cache-buster, not a path. A browser holds on to a
+        // favicon well past the page that named it, so replacing the file
+        // without renaming what points at it leaves the old face in the tab.
+        link(href: 'img/favicon.ico?v=2', rel: 'icon'),
         link(
           href: 'https://fonts.googleapis.com/css?family=Poppins:300,400,400,700,800,900&display=swap',
           rel: 'stylesheet',
