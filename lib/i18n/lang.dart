@@ -25,6 +25,15 @@ enum Lang {
     Lang.en => 'English',
     Lang.ja => '日本語',
   };
+
+  /// The endonym cut down to what fits on half of a slider.
+  ///
+  /// Japanese does not shorten — 日本語 is already three characters — so this is
+  /// the lopsided pairing every bilingual site in Japan uses.
+  String get shortLabel => switch (this) {
+    Lang.en => 'EN',
+    Lang.ja => '日本語',
+  };
 }
 
 /// A string in both languages.
