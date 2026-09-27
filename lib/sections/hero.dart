@@ -9,7 +9,6 @@ import '../components/typewriter.dart';
 import '../data/site_data.dart';
 import '../i18n/language_host.dart';
 import '../i18n/strings.dart';
-import '../interop/browser.dart';
 import '../layout/metrics.dart';
 
 /// The landing panel: name, rotating job title, CV button and the photo.
@@ -73,7 +72,10 @@ class Hero extends StatelessComponent {
               const GdeBadge(),
               HoverButton(
                 label: Strings.downloadCv(lang),
-                onClick: () => openUrl(cvUrl),
+                href: cvLink(lang),
+                // A file this site serves is handed over; the copy on Drive
+                // has nothing to hand over and opens where it lives.
+                download: !cvLink(lang).startsWith('http'),
               ),
             ]),
             ..._floatingIcons(),

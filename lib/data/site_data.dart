@@ -113,8 +113,17 @@ const flutterTokyoUrl = 'https://flutter-jp.connpass.com/';
 /// The Google Developer Expert programme page, linked from the hero credential.
 const gdeUrl = 'https://developers.google.com/community/experts';
 
-/// Link behind the hero's "Download CV" button.
-const cvUrl = 'https://drive.google.com/file/d/1iRmTNFP1dI41ZUowzwdVZeJGzOwKNIjE/view?usp=sharing';
+/// What the hero's CV button points at, per language.
+///
+/// The English one is the copy on Drive. The Japanese one is a file this site
+/// serves, and the difference is load-bearing: an address of its own opens in
+/// a tab, while a path into this site is handed over as a download. Whether it
+/// starts with a scheme is the whole rule, so there is no second flag that can
+/// disagree with the link it describes.
+const cvLink = L(
+  'https://drive.google.com/file/d/1iRmTNFP1dI41ZUowzwdVZeJGzOwKNIjE/view?usp=sharing',
+  'cv/Lucas_Goldner_Japanese_CV.pdf',
+);
 
 /// One of the social links under the about text.
 class SocialLink {
