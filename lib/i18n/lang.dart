@@ -56,6 +56,35 @@ class L {
   String call(Lang lang) => switch (lang) { Lang.en => en, Lang.ja => ja };
 }
 
+/// Poppins, which is what the site is set in.
+const latinFontUrl =
+    'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700;800;900&display=swap';
+
+/// Noto Sans JP, fetched only by [loadJapaneseFont].
+const japaneseFontUrl =
+    'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;600;700&display=swap';
+
+/// Brings the Japanese face in, once, when a page is read in Japanese.
+///
+/// It is kept out of the document head because of what it costs there: the
+/// stylesheet is 458KB, nearly five hundred @font-face rules, one per unicode
+/// range. That was blocking the first paint for every visitor, and on the
+/// English page it bought two characters of flourish in the hero. Those two
+/// now render in whatever Japanese face the device already has.
+///
+/// Injected rather than declared, so it never blocks: by the time this runs
+/// the page has painted, and the text it applies to swaps in when it lands.
+void loadJapaneseFont() {
+  if (!kIsWeb) return;
+  const id = 'japanese-font';
+  if (web.document.getElementById(id) != null) return;
+  final link = web.document.createElement('link') as web.HTMLLinkElement
+    ..id = id
+    ..rel = 'stylesheet'
+    ..href = japaneseFontUrl;
+  web.document.head?.append(link);
+}
+
 /// The language the `lang` query parameter asks for.
 ///
 /// Anything that is not a language the site is published in falls back to

@@ -62,6 +62,7 @@ class _LanguageHostState extends State<LanguageHost> {
   }
 
   void _apply(Lang lang) {
+    if (lang == Lang.ja) loadJapaneseFont();
     setState(() => _lang = lang);
     applyDocumentLang(
       lang,
