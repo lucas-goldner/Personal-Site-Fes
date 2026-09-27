@@ -460,7 +460,7 @@ const portfolioItems = <PortfolioItem>[
     id: 11,
     title: 'FlowUs Website',
     category: 'Website',
-    link: 'https://flowus.vercel.app',
+    link: 'https://flowus-website-6llv9x8c6-lucas-goldner.vercel.app/',
     image: 'projectImg/flowUs.png',
     meta: L.same('Next.js'),
   ),
