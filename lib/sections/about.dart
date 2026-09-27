@@ -32,8 +32,21 @@ class About extends StatefulComponent {
   static List<StyleRule> get styles => [
     // The icons sit inside anchors now; Bootstrap would otherwise colour and
     // underline them.
+    //
+    // The glyph is 15px tall, which is a small thing to hit with a thumb, so
+    // the anchor is floored at 24px in both directions. Its width comes out at
+    // the glyph plus the 10px margin the icons already carried, so the row
+    // sits exactly where it did.
     css('#about .social_link').styles(
-      raw: {'color': 'inherit', 'text-decoration': 'none'},
+      raw: {
+        'color': 'inherit',
+        'text-decoration': 'none',
+        'display': 'inline-flex',
+        'align-items': 'center',
+        'justify-content': 'center',
+        'min-width': '24px',
+        'min-height': '24px',
+      },
     ),
     css.media(const MediaQuery.raw('(min-width: 992px) and (max-height: 860px)'), [
       css('#about .row .content').styles(

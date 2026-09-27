@@ -126,7 +126,10 @@ class _ContactState extends State<Contact> {
       children: [
         div(classes: 'form-container', [
           div(classes: 'line-text', [
-            h4([.text(Strings.contactEyebrow(lang))]),
+            // h3, not h4: the section's own heading above it is an h2, and a
+            // jump of two levels is a hole in the outline for anyone reading
+            // the page through its headings. `.line-text` styles both.
+            h3([.text(Strings.contactEyebrow(lang))]),
             _field(
               delay: 50,
               child: input(

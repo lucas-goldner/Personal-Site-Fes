@@ -114,7 +114,10 @@ class _LayoutState extends State<Layout> {
         Navigation(
           onSectionChanged: (index) => _sectionIndex = index,
         ),
-        div(
+        // <main>, not a div: the navigation above is repeated furniture and
+        // the sections are the content, which is what a screen reader's
+        // "skip to the main content" needs to be able to find.
+        main_(
           events: {'wheel': _onWheel},
           component.children,
         ),

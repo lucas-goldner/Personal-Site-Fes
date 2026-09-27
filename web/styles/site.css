@@ -899,14 +899,18 @@ img {
   height: auto;
 }
 
+.line-text h3,
 .line-text h4 {
   color: #fff;
   font-family: Poppins, "Noto Sans JP", sans-serif;
   font-size: 22px;
+  /* Stated rather than inherited: an h3 and an h4 carry different defaults. */
+  margin: 10px 0;
   position: relative;
   left: 110px;
   flex-basis: inherit;
 }
+.line-text h3:after,
 .line-text h4:after {
   content: "";
   height: 3px;
@@ -919,9 +923,11 @@ img {
   top: 11px;
 }
 @media (max-width: 500px) {
+  .line-text h3,
   .line-text h4 {
     font-size: 14px;
   }
+  .line-text h3:after,
   .line-text h4:after {
     top: 7px;
   }
@@ -1720,6 +1726,17 @@ img {
 
 .freshColor {
   color: #ffb035;
+}
+
+/*
+ * Colour alone does not mark a link. Against the #eee copy around them these
+ * sit at 1.54:1, well under the 3:1 that would let colour carry it on its own,
+ * so the ones inside a paragraph are underlined.
+ */
+a.freshColor {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
 }
 
 .services {
