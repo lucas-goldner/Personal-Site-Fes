@@ -69,7 +69,7 @@ class _NavigationState extends State<Navigation> {
           events: events(onClick: () => setState(() => _show = false)),
         ),
         div(classes: 'logo', [
-          img(src: 'img/LucasLogo.png', alt: 'logo'),
+          img(src: 'img/LucasLogo.webp', alt: 'logo'),
         ]),
         div(classes: 'links', [
           ul([

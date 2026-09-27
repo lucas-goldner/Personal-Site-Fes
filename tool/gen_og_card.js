@@ -26,12 +26,14 @@ const fs = require("fs");
  * The photo as a data URL.
  *
  * Not a file:// src: the page these run in has no origin of its own, and a
- * browser will not let such a page read off the disk. Sniffed rather than
- * trusted to its extension, because web/person2x.png is a JPEG.
+ * browser will not let such a page read off the disk. The type is sniffed
+ * rather than taken from the extension, which has been wrong here before.
  */
 function photoDataUrl() {
-  const bytes = fs.readFileSync(path.join(__dirname, "..", "web", "person2x.png"));
-  const type = bytes[0] === 0xff && bytes[1] === 0xd8 ? "image/jpeg" : "image/png";
+  const bytes = fs.readFileSync(path.join(__dirname, "..", "web", "person2x.webp"));
+  const type = bytes[0] === 0xff && bytes[1] === 0xd8 ? "image/jpeg"
+    : bytes.subarray(8, 12).toString("latin1") === "WEBP" ? "image/webp"
+    : "image/png";
   return `data:${type};base64,${bytes.toString("base64")}`;
 }
 

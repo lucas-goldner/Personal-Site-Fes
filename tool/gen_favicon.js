@@ -30,17 +30,21 @@ const OUT = path.join(__dirname, "..", "web", "img", "favicon.ico");
  * The photo as a data URL.
  *
  * Not a file:// src: the page these run in has no origin of its own, and a
- * browser will not let such a page read off the disk. Sniffed rather than
- * trusted to its extension, because web/person2x.png is a JPEG.
+ * browser will not let such a page read off the disk. The type is sniffed
+ * rather than taken from the extension, which has been wrong here before.
  */
 function photoDataUrl() {
-  const bytes = fs.readFileSync(path.join(__dirname, "..", "web", "person2x.png"));
-  const type = bytes[0] === 0xff && bytes[1] === 0xd8 ? "image/jpeg" : "image/png";
+  const bytes = fs.readFileSync(path.join(__dirname, "..", "web", "person2x.webp"));
+  const type = bytes[0] === 0xff && bytes[1] === 0xd8 ? "image/jpeg"
+    : bytes.subarray(8, 12).toString("latin1") === "WEBP" ? "image/webp"
+    : "image/png";
   return `data:${type};base64,${bytes.toString("base64")}`;
 }
 
-// In the 2316x3088 original: head and shoulders, hair to just below the chin.
-const CROP = { x: 270, y: 741, side: 1359 };
+// Head and shoulders, hair to just below the chin, as a share of the photo
+// rather than pixels: the file this reads has been resized once already and
+// fixed coordinates would quietly crop the wrong square.
+const CROP = { x: 0.11658, y: 0.23996, side: 0.58679 };
 const SIZES = [16, 32, 48, 64, 128];
 
 (async () => {
@@ -63,7 +67,8 @@ const SIZES = [16, 32, 48, 64, 128];
       ctx.drawImage(source, sx, sy, sw, sh, 0, 0, w, h);
       return c;
     };
-    const base = draw(512, 512, img, crop.x, crop.y, crop.side, crop.side);
+    const side = img.naturalWidth * crop.side;
+    const base = draw(512, 512, img, img.naturalWidth * crop.x, img.naturalHeight * crop.y, side, side);
     const out = {};
     for (const size of sizes) {
       let c = base;

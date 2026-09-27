@@ -83,20 +83,20 @@ class HeroIcon {
 }
 
 const heroIcons = <HeroIcon>[
-  HeroIcon('heroIcons/pc.png', 74.2, moveUp: true),
-  HeroIcon('heroIcons/brazil.png', 13.6, moveUp: false),
-  HeroIcon('heroIcons/party.png', 78.1, moveUp: false),
-  HeroIcon('heroIcons/tarot.png', 11.4, moveUp: true),
-  HeroIcon('heroIcons/japan.png', 72.5, moveUp: true),
-  HeroIcon('heroIcons/draw.png', 17.9, moveUp: false),
-  HeroIcon('heroIcons/video.png', 76.3, moveUp: true),
-  HeroIcon('heroIcons/controller.png', 15.2, moveUp: false),
-  HeroIcon('heroIcons/gym.png', 70.8, moveUp: false),
-  HeroIcon('heroIcons/inline.png', 18.7, moveUp: true),
+  HeroIcon('heroIcons/pc.webp', 74.2, moveUp: true),
+  HeroIcon('heroIcons/brazil.webp', 13.6, moveUp: false),
+  HeroIcon('heroIcons/party.webp', 78.1, moveUp: false),
+  HeroIcon('heroIcons/tarot.webp', 11.4, moveUp: true),
+  HeroIcon('heroIcons/japan.webp', 72.5, moveUp: true),
+  HeroIcon('heroIcons/draw.webp', 17.9, moveUp: false),
+  HeroIcon('heroIcons/video.webp', 76.3, moveUp: true),
+  HeroIcon('heroIcons/controller.webp', 15.2, moveUp: false),
+  HeroIcon('heroIcons/gym.webp', 70.8, moveUp: false),
+  HeroIcon('heroIcons/inline.webp', 18.7, moveUp: true),
 ];
 
 /// The photo of Lucas shown on the right half of the hero.
-const heroImage = 'person2x.png';
+const heroImage = 'person2x.webp';
 const heroImageAlt = L(
   'Lucas Goldner with inline skates posing in front of a graffiti wall',
   '\u30a4\u30f3\u30e9\u30a4\u30f3\u30b9\u30b1\u30fc\u30c8\u3092\u5c65\u3044\u3066'
@@ -487,7 +487,7 @@ const portfolioItems = <PortfolioItem>[
     title: 'Personal Website',
     category: 'Website',
     link: 'https://lucas-goldner.com',
-    image: 'projectImg/personalSite.jpg',
+    image: 'projectImg/personalSite.webp',
     meta: L.same('Jaspr \u00b7 Dart'),
   ),
   PortfolioItem(
@@ -495,7 +495,7 @@ const portfolioItems = <PortfolioItem>[
     title: 'FlowUs Website',
     category: 'Website',
     link: 'https://flowus-website-6llv9x8c6-lucas-goldner.vercel.app/',
-    image: 'projectImg/flowUs.png',
+    image: 'projectImg/flowUs.webp',
     meta: L.same('Next.js'),
   ),
   PortfolioItem(
@@ -503,7 +503,7 @@ const portfolioItems = <PortfolioItem>[
     title: 'Kawa Druck Homepage',
     category: 'Website',
     link: 'https://kawa-druck.de',
-    image: 'projectImg/kawaPage.png',
+    image: 'projectImg/kawaPage.webp',
     meta: L.same('React'),
   ),
   PortfolioItem(
@@ -511,7 +511,7 @@ const portfolioItems = <PortfolioItem>[
     title: 'NFT Metro Website',
     category: 'Website',
     link: 'https://old-metro.vercel.app',
-    image: 'projectImg/nifterPage.png',
+    image: 'projectImg/nifterPage.webp',
     meta: L.same('React'),
   ),
   PortfolioItem(
@@ -519,7 +519,7 @@ const portfolioItems = <PortfolioItem>[
     title: 'Golden Website',
     category: 'Website',
     link: 'https://golden.lucas-goldner.com',
-    image: 'projectImg/golden.png',
+    image: 'projectImg/golden.webp',
     meta: L.same('React'),
   ),
   PortfolioItem(
