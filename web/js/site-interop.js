@@ -109,6 +109,13 @@
    * Once even one has arrived the count is trusted and the timer stands down:
    * a stalled intro is a mask that has stopped moving, and opening the gate on
    * it is the very thing this exists to prevent.
+   *
+   * The count starts when the machine enters its opening state, not when the
+   * instance does. There is about a fifth of a second between the two, and
+   * counting the file's second from the wrong end of it released the tap with
+   * the mask still closing — which is the whole bug, just a fifth of a second
+   * of it. If that state change never arrives the count starts anyway, after
+   * waiting the same length again, so the gate can only ever open late.
    */
   function holdPointerUntilOpen(canvas, seconds) {
     var instance = canvas.riveInstance;
@@ -120,6 +127,8 @@
     }
     var remaining = seconds;
     var advances = 0;
+    var opening = false;
+    var beforeOpening = 0;
     canvas.style.pointerEvents = 'none';
 
     function release() {
@@ -129,12 +138,27 @@
       canvas.riveReleaseIntro = null;
       window.clearTimeout(backstop);
       instance.off(window.rive.EventType.Advance, onAdvance);
+      instance.off(window.rive.EventType.StateChange, onStateChange);
       canvas.style.pointerEvents = '';
+    }
+
+    function onStateChange() {
+      if (!opening) {
+        opening = true;
+        remaining = seconds;
+      }
     }
 
     function onAdvance(event) {
       advances++;
-      remaining -= (event && event.data) || 0;
+      var elapsed = (event && event.data) || 0;
+      if (!opening) {
+        beforeOpening += elapsed;
+        if (beforeOpening < seconds) {
+          return;
+        }
+      }
+      remaining -= elapsed;
       if (remaining <= 0) {
         release();
       }
@@ -146,6 +170,7 @@
       }
     }, seconds * 1000 * 4);
     canvas.riveReleaseIntro = release;
+    instance.on(window.rive.EventType.StateChange, onStateChange);
     instance.on(window.rive.EventType.Advance, onAdvance);
   }
 
