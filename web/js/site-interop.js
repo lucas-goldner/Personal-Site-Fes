@@ -20,6 +20,39 @@
   var riveScript = null;
 
   /*
+   * Puts the drawing surface back when a re-render wipes it.
+   *
+   * The canvas is described in Dart without a width or a height; the runtime
+   * sets both itself, to the box it has been given. Anything that re-renders
+   * the component around it — the game-over panel appearing, the restart, a
+   * language switch changing the canvas label — makes the framework apply the
+   * attributes it knows about, and the runtime's two are not among them, so
+   * they go. A canvas with neither is 300x150, and CSS then stretches that
+   * over a screen three times as tall as it is wide, which is what a finished
+   * run looked like: a blurred, enormous crop of the scene behind the panel.
+   *
+   * Watching the attributes and restoring them costs nothing while nothing
+   * touches them, and it covers every such re-render rather than the one that
+   * was noticed. Setting them again fires the observer a second time, where
+   * both are present and there is nothing to do.
+   */
+  function keepRiveSurface(canvas) {
+    if (canvas.riveSurfaceObserver || typeof window.MutationObserver !== 'function') {
+      return;
+    }
+    var observer = new window.MutationObserver(function () {
+      if (!canvas.hasAttribute('width') || !canvas.hasAttribute('height')) {
+        fitRiveSurface(canvas);
+      }
+    });
+    observer.observe(canvas, {
+      attributes: true,
+      attributeFilter: ['width', 'height']
+    });
+    canvas.riveSurfaceObserver = observer;
+  }
+
+  /*
    * particles.js and vanilla-tilt are decoration: a drifting background behind
    * the about section, and a tilt on the portfolio tiles under the pointer.
    * Fifty kilobytes of script for that has no business competing with the hero
@@ -69,9 +102,13 @@
    *
    * Counted by advance rather than by clock: the runtime only advances on a
    * frame it draws, so a tab switched away mid-intro comes back with the mask
-   * exactly where it left it, while a timer would have run on without it. The
-   * clock is still there as a backstop, generously long, so that a runtime
-   * that never reports an advance cannot leave the canvas permanently dead.
+   * exactly where it left it, while a timer would have run on without it.
+   *
+   * The clock is still there, but only to catch a runtime that reports no
+   * advances at all, which would otherwise leave the canvas permanently dead.
+   * Once even one has arrived the count is trusted and the timer stands down:
+   * a stalled intro is a mask that has stopped moving, and opening the gate on
+   * it is the very thing this exists to prevent.
    */
   function holdPointerUntilOpen(canvas, seconds) {
     var instance = canvas.riveInstance;
@@ -82,6 +119,7 @@
       canvas.riveReleaseIntro();
     }
     var remaining = seconds;
+    var advances = 0;
     canvas.style.pointerEvents = 'none';
 
     function release() {
@@ -95,13 +133,18 @@
     }
 
     function onAdvance(event) {
+      advances++;
       remaining -= (event && event.data) || 0;
       if (remaining <= 0) {
         release();
       }
     }
 
-    var backstop = window.setTimeout(release, seconds * 1000 * 4);
+    var backstop = window.setTimeout(function () {
+      if (advances === 0) {
+        release();
+      }
+    }, seconds * 1000 * 4);
     canvas.riveReleaseIntro = release;
     instance.on(window.rive.EventType.Advance, onAdvance);
   }
@@ -237,6 +280,7 @@
         canvas.riveInstance = instance;
         canvas.riveIntroSeconds = introSeconds;
         holdPointerUntilOpen(canvas, introSeconds);
+        keepRiveSurface(canvas);
       });
     },
 
@@ -284,6 +328,10 @@
         // timer back off an instance that is about to go away.
         if (canvas.riveReleaseIntro) {
           canvas.riveReleaseIntro();
+        }
+        if (canvas.riveSurfaceObserver) {
+          canvas.riveSurfaceObserver.disconnect();
+          canvas.riveSurfaceObserver = null;
         }
         canvas.riveInstance.cleanup();
         canvas.riveInstance = null;
