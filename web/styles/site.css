@@ -1164,6 +1164,37 @@ img {
   cursor: pointer;
   transition: 0.1s;
 }
+/*
+ * On a phone the button becomes a bar across the top.
+ *
+ * Nothing at all is painted behind it. A scrim was tried and thrown away: over
+ * the photograph, which is the brightest thing the bar ever crosses, the icon's
+ * own shadow already carries it, and over the dark panel the gradient read as a
+ * smudge. The bar takes no pointer events, so the transparent width of it never
+ * swallows a tap meant for the page.
+ *
+ * The icon is smaller than the desktop one and padded back out, so what the
+ * thumb has to hit stays larger than what the eye has to read.
+ */
+@media (max-width: 991px) {
+  .opener {
+    left: 0;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    height: 56px;
+    padding: 0 10px;
+    pointer-events: none;
+  }
+  .opener svg {
+    font-size: 26px;
+    padding: 9px;
+    box-sizing: content-box;
+    pointer-events: auto;
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.6));
+  }
+}
 .opener svg:hover {
   color: #ffb035;
 }
@@ -1509,6 +1540,18 @@ img {
     justify-content: center;
   }
 }
+/*
+ * No frame on a phone. The 50px of padding above sits in front of a black
+ * background, which on a desktop reads as a mount around the panel and on a
+ * phone reads as a black border down both edges of the screen, on the one
+ * layout with the least room to give away. The panel runs edge to edge
+ * instead; its own padding still keeps the type off the sides.
+ */
+@media (max-width: 991px) {
+  .hero {
+    padding: 0;
+  }
+}
 .hero .row {
   display: flex;
   flex-wrap: inherit;
@@ -1540,6 +1583,12 @@ img {
 @media (max-width: 991px) {
   .hero .row .content {
     width: 100%;
+    /*
+     * Clear of the bar the menu button sits in. It has to be stated after the
+     * padding shorthand above rather than beside the rule that drops the
+     * hero's own frame, or the shorthand simply puts it back.
+     */
+    padding-top: 68px;
   }
 }
 .hero .row .content .content-text {
