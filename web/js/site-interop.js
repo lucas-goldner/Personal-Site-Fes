@@ -174,6 +174,66 @@
     instance.on(window.rive.EventType.Advance, onAdvance);
   }
 
+  /*
+   * Runs the callback once a reloaded file has rebuilt its state machine.
+   *
+   * load() does not hand one back, and the machine is not there on the next
+   * line, so this waits on frames rather than a timer and gives up rather than
+   * spinning if it never appears.
+   */
+  function whenMachineReady(canvas, done) {
+    var tries = 0;
+    (function check() {
+      if (riveMachine(canvas)) {
+        done();
+        return;
+      }
+      if (++tries > 60) {
+        return;
+      }
+      window.requestAnimationFrame(check);
+    })();
+  }
+
+  function riveMachine(canvas) {
+    var instance = canvas.riveInstance;
+    return (
+      instance &&
+      instance !== 'pending' &&
+      instance.animator &&
+      instance.animator.stateMachines &&
+      instance.animator.stateMachines[0]
+    );
+  }
+
+  /*
+   * Drives a freshly reloaded file past its opening iris.
+   *
+   * Play Again reloads the file, and the file opens on a second of black that
+   * irises outwards. That is worth watching the first time; on a retry it is a
+   * second of nothing between wanting to play again and playing again. Stepping
+   * the state machine forward by hand, a frame at a time, puts the scene
+   * straight into the state the reveal ends in.
+   *
+   * Says whether it worked, so a runtime that will not be driven falls back to
+   * waiting the reveal out instead of starting the game behind a black screen.
+   */
+  function skipRiveIntro(canvas, seconds) {
+    var machine = riveMachine(canvas);
+    if (!machine || typeof machine.advanceAndApply !== 'function' || !(seconds > 0)) {
+      return false;
+    }
+    var step = 1 / 60;
+    try {
+      for (var elapsed = 0; elapsed < seconds; elapsed += step) {
+        machine.advanceAndApply(step);
+      }
+    } catch (error) {
+      return false;
+    }
+    return true;
+  }
+
   /** Whether the device has a pointer that can hover over things. */
   function canHover() {
     return (
@@ -331,9 +391,18 @@
       // load() rebuilds the surface at the default size, so it is measured
       // against the canvas box again.
       fitRiveSurface(canvas);
-      // The reload plays the opening iris from the start, so the tap has to be
-      // held off again exactly as it was the first time.
+      // The reload plays the opening iris from the start. Hold the tap as on
+      // the first load, then jump the iris as soon as the reloaded machine can
+      // be driven and let the tap straight back through: a retry should put
+      // the player back in the game, not back in front of the reveal. If the
+      // jump does not take, the hold runs its normal course and the reveal
+      // plays as before.
       holdPointerUntilOpen(canvas, canvas.riveIntroSeconds);
+      whenMachineReady(canvas, function () {
+        if (skipRiveIntro(canvas, canvas.riveIntroSeconds) && canvas.riveReleaseIntro) {
+          canvas.riveReleaseIntro();
+        }
+      });
       if (canvas.riveClearDeath) {
         canvas.riveClearDeath();
       }
