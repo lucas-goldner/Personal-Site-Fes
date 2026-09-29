@@ -1076,6 +1076,16 @@ const riveStateMachine = 'flappy flap flap';
 /// in the editor does not leave the restart button unreachable.
 const riveDeathSignals = <String>['hitBOxx 0', 'death sound'];
 
+/// How long the file's opening iris takes, in seconds.
+///
+/// The game opens behind a circular mask that widens until the screen is
+/// clear. A tap during that sends the state machine straight into play and
+/// leaves the mask frozen part-open, black in every corner for the rest of the
+/// run, so taps are held until it has finished. The number is the `loading`
+/// animation's own length, 60 frames at 60fps; it is here beside the artboard
+/// and state machine names because, like them, it comes from the file.
+const riveIntroSeconds = 1.0;
+
 /// The strings the hero's typewriter cycles through.
 const typewriterStrings = [
   L('Flutter Engineer', 'Flutter\u30a8\u30f3\u30b8\u30cb\u30a2'),

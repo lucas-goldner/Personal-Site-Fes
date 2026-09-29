@@ -10,8 +10,9 @@ void startRive(
   String artboard,
   String stateMachine,
   List<String> deathSignals,
-  void Function() onDeath,
-) {}
+  void Function() onDeath, {
+  double introSeconds = 0,
+}) {}
 
 void restartRive(web.Element canvas) {}
 

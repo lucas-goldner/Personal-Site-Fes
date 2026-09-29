@@ -207,6 +207,7 @@ class _RivePhoneState extends State<RivePhone> with ViewportAware {
           () {
             if (mounted) setState(() => _over = true);
           },
+          introSeconds: riveIntroSeconds,
         );
         _resizeToken = js.addResizeListener(() {
           final node = _canvas.currentNode;

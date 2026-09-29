@@ -9,8 +9,9 @@ void startRive(
   String artboard,
   String stateMachine,
   List<String> deathSignals,
-  void Function() onDeath,
-) {
+  void Function() onDeath, {
+  double introSeconds = 0,
+}) {
   _startRive(
     canvas,
     src,
@@ -18,6 +19,7 @@ void startRive(
     stateMachine,
     deathSignals.map((name) => name.toJS).toList().toJS,
     onDeath.toJS,
+    introSeconds,
   );
 }
 
@@ -29,6 +31,7 @@ external void _startRive(
   String stateMachine,
   JSArray<JSString> deathSignals,
   JSFunction onDeath,
+  double introSeconds,
 );
 
 @JS('siteInterop.restartRive')

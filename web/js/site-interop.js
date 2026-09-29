@@ -57,6 +57,55 @@
     }
   }
 
+  /*
+   * Holds pointer events off the canvas until the file's opening iris has
+   * played out.
+   *
+   * The game opens behind a circular mask that widens until the screen is
+   * clear. A tap while that is running sends the state machine straight into
+   * play and the mask stops where it is, leaving the corners black for the
+   * rest of the run. A second of nothing happening is a cheaper price than a
+   * game played through a keyhole.
+   *
+   * Counted by advance rather than by clock: the runtime only advances on a
+   * frame it draws, so a tab switched away mid-intro comes back with the mask
+   * exactly where it left it, while a timer would have run on without it. The
+   * clock is still there as a backstop, generously long, so that a runtime
+   * that never reports an advance cannot leave the canvas permanently dead.
+   */
+  function holdPointerUntilOpen(canvas, seconds) {
+    var instance = canvas.riveInstance;
+    if (!(seconds > 0) || !instance || instance === 'pending' || !window.rive) {
+      return;
+    }
+    if (canvas.riveReleaseIntro) {
+      canvas.riveReleaseIntro();
+    }
+    var remaining = seconds;
+    canvas.style.pointerEvents = 'none';
+
+    function release() {
+      if (!canvas.riveReleaseIntro) {
+        return;
+      }
+      canvas.riveReleaseIntro = null;
+      window.clearTimeout(backstop);
+      instance.off(window.rive.EventType.Advance, onAdvance);
+      canvas.style.pointerEvents = '';
+    }
+
+    function onAdvance(event) {
+      remaining -= (event && event.data) || 0;
+      if (remaining <= 0) {
+        release();
+      }
+    }
+
+    var backstop = window.setTimeout(release, seconds * 1000 * 4);
+    canvas.riveReleaseIntro = release;
+    instance.on(window.rive.EventType.Advance, onAdvance);
+  }
+
   /** Whether the device has a pointer that can hover over things. */
   function canHover() {
     return (
@@ -123,7 +172,7 @@
      * asked for. Returns nothing; the instance is parked on the canvas so
      * stopRive can find it again.
      */
-    startRive: function (canvas, src, artboard, stateMachine, deathNames, onDeath) {
+    startRive: function (canvas, src, artboard, stateMachine, deathNames, onDeath, introSeconds) {
       if (!canvas || canvas.riveInstance) {
         return;
       }
@@ -186,6 +235,8 @@
           died(e.data && e.data.name);
         });
         canvas.riveInstance = instance;
+        canvas.riveIntroSeconds = introSeconds;
+        holdPointerUntilOpen(canvas, introSeconds);
       });
     },
 
@@ -211,6 +262,9 @@
       // load() rebuilds the surface at the default size, so it is measured
       // against the canvas box again.
       fitRiveSurface(canvas);
+      // The reload plays the opening iris from the start, so the tap has to be
+      // held off again exactly as it was the first time.
+      holdPointerUntilOpen(canvas, canvas.riveIntroSeconds);
       if (canvas.riveClearDeath) {
         canvas.riveClearDeath();
       }
@@ -226,6 +280,11 @@
     /** Tears the instance down when the section leaves the tree. */
     stopRive: function (canvas) {
       if (canvas && canvas.riveInstance && canvas.riveInstance !== 'pending') {
+        // Before cleanup, so the intro hold takes its advance listener and its
+        // timer back off an instance that is about to go away.
+        if (canvas.riveReleaseIntro) {
+          canvas.riveReleaseIntro();
+        }
         canvas.riveInstance.cleanup();
         canvas.riveInstance = null;
       }
