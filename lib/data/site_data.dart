@@ -803,7 +803,7 @@ const portfolioItems = <PortfolioItem>[
         'Calls don\'t end when they connect - The back end of call '
         'functionality with CallKit',
     category: 'Talk',
-    link: 'https://fortee.jp/iosdc-japan-2026/proposal/db0b002a-ed2b-47e8-b798-3b8f8bcc4007',
+    link: 'https://www.youtube.com/watch?v=80gZUU83COk',
     image: 'projectImg/talk101.webp',
     meta: L.same('iOSDC Japan 2026'),
   ),
