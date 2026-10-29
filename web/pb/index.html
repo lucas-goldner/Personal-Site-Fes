@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pushup Bro</title>
+<meta name="description" content="A bro wants to do pushups with you. Get Pushup Bro on the App Store.">
+<meta name="apple-itunes-app" content="app-id=1673181014">
+<meta property="og:title" content="Be my bro on Pushup Bro">
+<meta property="og:description" content="Add me as a bro and race me on today's leaderboard.">
+<meta property="og:image" content="/pb/pushup-bro-icon.png">
+<!-- Shown for /pb/<code> to people without the app; with the app installed
+     the link opens Pushup Bro through apple-app-site-association. -->
+<style>
+  :root { --bg: #f2f6ff; --card: #fff; --ink: #17203a; --muted: #5d6680; --accent: #3d7bf5; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #0d1222; --card: #161d33; --ink: #eef2fb; --muted: #a3acc4; --accent: #7fb2ff; }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 16px;
+    background: var(--bg); color: var(--ink);
+    font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Hiragino Sans", system-ui, sans-serif;
+  }
+  main {
+    width: 100%; max-width: 380px; text-align: center; background: var(--card);
+    border-radius: 28px; padding: 32px 24px; box-shadow: 0 12px 30px rgba(23, 32, 58, .1);
+  }
+  img { width: 112px; height: 112px; border-radius: 26px; display: block; margin: 0 auto 18px; }
+  h1 { font-size: 26px; line-height: 1.15; margin: 0 0 8px; letter-spacing: -.02em; }
+  p { color: var(--muted); margin: 0 0 22px; }
+  .code {
+    display: inline-block; font: 600 20px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+    letter-spacing: .12em; padding: 10px 16px; border-radius: 12px; background: var(--bg); margin: 0 0 22px;
+  }
+  .code[hidden] { display: none; }
+  a.button {
+    display: block; text-decoration: none; font-weight: 700; color: #fff; background: var(--accent);
+    border-radius: 999px; padding: 14px 20px;
+  }
+  @media (prefers-color-scheme: dark) { a.button { color: #0d1222; } }
+  small { display: block; color: var(--muted); margin-top: 16px; font-size: 13px; }
+</style>
+</head>
+<body>
+<main>
+  <img src="/pb/pushup-bro-icon.png" alt="Pushup Bro app icon">
+  <h1>A bro wants to do pushups with you</h1>
+  <p>Get Pushup Bro, then open this link again to add them and race them on today's leaderboard.</p>
+  <div class="code" id="code" hidden></div>
+  <a class="button" href="https://apps.apple.com/app/id1673181014">Get Pushup Bro on the App Store</a>
+  <small>Already have the app? Open this link on your iPhone, or tap Add by code in Bros and enter the code.</small>
+</main>
+<script>
+  // /pb/<code>: show the bro code, as the app shows it (4K2-B7Q), so it can
+  // be typed in by hand.
+  var code = decodeURIComponent(location.pathname.replace(/^\/pb\/?/, ''))
+    .toUpperCase().replace(/[^A-Z0-9]/g, '');
+  if (/^[2-9A-HJKMNP-Z]{6}$/.test(code)) {
+    var el = document.getElementById('code');
+    el.textContent = code.slice(0, 3) + '-' + code.slice(3);
+    el.hidden = false;
+  }
+</script>
+</body>
+</html>

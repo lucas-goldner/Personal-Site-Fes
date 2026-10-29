@@ -5,7 +5,13 @@
   "buildCommand": "bash scripts/vercel-build.sh",
   "outputDirectory": "build/jaspr",
   "routes": [
+    {
+      "src": "/\\.well-known/apple-app-site-association",
+      "dest": "/well-known/apple-app-site-association",
+      "headers": { "Content-Type": "application/json" }
+    },
     { "handle": "filesystem" },
+    { "src": "/pb/[^/]+/?", "dest": "/pb/index.html" },
     { "src": "/.*", "status": 404, "dest": "/404/index.html" }
   ]
 }
